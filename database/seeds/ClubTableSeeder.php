@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Club;
+use Carbon\Carbon;
 
 class ClubTableSeeder extends Seeder
 {
@@ -18,7 +19,11 @@ class ClubTableSeeder extends Seeder
             'address' => 'Valley View Road 26',
             'suburb_id' => 1,
             'description' => 'Super Beautiful club.',
-            'cover_photo' => 'poudel'
+            'cover_photo' => 'club1.jpeg',
+            'order' => 256,
+            'email' => 'abc@gmail.com',
+            'phone' => 1245639875,
+            'opening_time' => Carbon::parse('10 p.m')->format('H:i:s'),
         ];
 
         $c2 = [
@@ -27,7 +32,11 @@ class ClubTableSeeder extends Seeder
             'address' => 'Nortond Driver 27',
             'suburb_id' => 2,
             'description' => 'We are techno  club.',
-            'cover_photo' => 'kushal'
+            'cover_photo' => 'club2.jpeg',
+            'order' => 4562,
+            'email' => 'sasjsj@gmail.com',
+            'phone' => 1245657875,
+            'opening_time' => Carbon::parse('9 p.m')->format('H:i:s'),
         ];
 
         Club::create($c1);

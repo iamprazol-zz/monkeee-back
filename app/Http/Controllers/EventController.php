@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Event;
-use App\Club;
+use App\Suburb;
 use App\Http\Resources\Event as EventResource;
+
+use Image;
 
 class EventController extends Controller
 {
@@ -20,33 +22,14 @@ class EventController extends Controller
 
         $num = $events->count();
 
-        $data = EventResource::collection($events);
+        $l = $this->liveEvent();
 
-        if ($num > 0) {
+        $u = $this->upComing();
 
-            return $this->responser($data , 200 , 'All Events  are listed');
-
-        } else {
-
-            return $this->responser($data,404,'Events not found');
-        }
-
-    }
-
-    public function weeklyEvent()
-    {
-
-        $today = Carbon::today();
-
-        $week = date('Y-m-d', strtotime($today . ' + 7 days'));
-
-        $events = Event::whereBetween('date', [$today, $week])->orderBy('date', 'asc')
-            ->orderBy('opening', 'asc')
-            ->get();
-
-        $num = $events->count();
-
-        $data = EventResource::collection($events);
+        $data = [
+            'live' => $l,
+            'upcoming' => $u,
+            ];
 
         if ($num > 0) {
 
@@ -56,7 +39,10 @@ class EventController extends Controller
 
             return $this->responser($data,404,'Events in this week not found');
         }
+
+
     }
+
 
 
     public function showById($id)
@@ -110,23 +96,29 @@ class EventController extends Controller
 
         $today = Carbon::today();
 
-        $week = date('Y-m-d', strtotime($today . ' + 7 days'));
+        $time = Carbon::now()->format('H:i:s');
 
-        $events = Event::where('date', '>', $week)->get();
+        $nolive = Event::where('date', $today)->where('opening', '>', $time)->get();
 
-        $num = $events->count();
+        $events = Event::where('date', '>', $today)->get();
 
-        $data = EventResource::collection($events);
+        $kk = $nolive->merge($events);
+
+        $num = $kk->count();
+
+        $data = EventResource::collection($kk);
 
         if ($num > 0) {
 
-            return $this->responser($data , 200 , 'All Events in upcoming weeks are listed');
+            return $this->responser($data, 200, 'All Events in upcoming weeks are listed');
 
         } else {
 
-            return $this->responser($data,404,'Events in the upcoming weeks not found');
+            return $this->responser($data, 404, 'Events in the upcoming weeks not found');
         }
+
     }
+
 
 
     public function showByClub($id)
@@ -174,6 +166,7 @@ class EventController extends Controller
             return $this->responser($data,404,'Events in the specified category not found');
         }
     }
+
 }
 
 

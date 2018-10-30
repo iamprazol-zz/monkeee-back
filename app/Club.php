@@ -7,14 +7,23 @@ use Illuminate\Database\Eloquent\Model;
 class Club extends Model
 {
     protected $fillable = [
-        'id' ,'name', 'address' , 'suburb_id', 'description' , 'cover_photo'
+        'id',
+        'name',
+        'address',
+        'suburb_id',
+        'description',
+        'cover_photo',
+        'order',
+        'email',
+        'phone',
+        'opening_time'
     ];
 
     public function suburbs() {
         return $this->belongsTo('App\Suburb');
     }
 
-    public function events() {
+    public function event() {
         return $this->hasMany('App\Event');
     }
 

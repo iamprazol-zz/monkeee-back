@@ -20,10 +20,11 @@ class CreateEventsTable extends Migration
             $table->date('date');
             $table->time('opening');
             $table->time('closing');
-            $table->string('picture');
+            $table->string('picture')->default('club.jpeg');
             $table->string('name');
             $table->string('description');
             $table->integer('price')->unsigned();
+            $table->string('ticket_link');
             $table->timestamps();
         });
     }

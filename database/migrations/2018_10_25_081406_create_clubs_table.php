@@ -20,6 +20,10 @@ class CreateClubsTable extends Migration
             $table->string('address');
             $table->string('description');
             $table->string('cover_photo');
+            $table->bigInteger('order')->unique();
+            $table->string('phone');
+            $table->string('email');
+            $table->string('opening_time');
             $table->timestamps();
         });
     }

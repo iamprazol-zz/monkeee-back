@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Event extends Model
 {
@@ -16,7 +17,8 @@ class Event extends Model
         'picture',
         'name',
         'description',
-        'price'
+        'price',
+        'ticket_link'
     ];
 
     public function club(){
@@ -26,4 +28,6 @@ class Event extends Model
     public function category() {
         return $this->belongsTo('App\Category');
     }
+
+
 }

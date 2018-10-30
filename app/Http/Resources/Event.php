@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Carbon\Carbon;
 
 class Event extends JsonResource
 {
@@ -18,15 +19,16 @@ class Event extends JsonResource
 
         return [
             'id' => $this->id,
-            'club_id' => $this->club_id,
-            'category_id' => $this->category_id,
+            'category' => $this->category->name,
+            'club' => $this->club->name,
             'date' => $this->date,
-            'opening' => $this->opening,
-            'closing' => $this->closing,
+            'opening' => Carbon::parse($this->opening)->format('g:i A'),
+            'closing' => Carbon::parse($this->closing)->format('g:i A'),
             'picture' => $this->picture,
             'name' => $this->name,
             'description' => $this->description,
-            'price' => $this->price
+            'price' => $this->price,
+            'ticket_link' => $this->ticket_link,
         ];
     }
 
