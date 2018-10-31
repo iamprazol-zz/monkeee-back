@@ -3,7 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-
+use App\Http\Resources\Event as EventResource;
 class Club extends JsonResource
 {
     /**
@@ -18,7 +18,7 @@ class Club extends JsonResource
 
         return [
             'id' => $this->id,
-            'suburb_id' => $this->suburb_id,
+            'suburb name' => $this->suburb->name,
             'name' => $this->name,
             'address' => $this->address,
             'description' => $this->description,
@@ -26,7 +26,7 @@ class Club extends JsonResource
             'order' => $this->order,
             'email' => $this->email,
             'phone' => $this->phone,
-            'opening_time' => $this->opening_time
-        ];
+            'opening_time' => $this->opening_time,
+            ];
     }
 }

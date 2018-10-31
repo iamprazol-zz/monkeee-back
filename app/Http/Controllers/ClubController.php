@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Event as EventResource;
 use Illuminate\Http\Request;
 use App\Club;
 use App\Suburb;
+use App\Event;
+use Carbon\Carbon;
 use App\Http\Resources\Club as ClubResource;
+use phpDocumentor\Reflection\Types\This;
 
 class ClubController extends Controller
 {
@@ -34,7 +38,15 @@ class ClubController extends Controller
 
         $num = $club->count();
 
-        $data = ClubResource::collection($club);
+        $c = ClubResource::collection($club);
+
+        $e = $this->eventByClub($id);
+
+        $data = [
+            ['club' => $c ,
+                'events' => $e
+            ]
+        ];
 
         if ($num > 0) {
 
@@ -45,6 +57,7 @@ class ClubController extends Controller
             return $this->responser($data,404,'Club with specific id is not found');
         }
     }
+
 
     public function showBySuburb($id){
 
@@ -61,6 +74,29 @@ class ClubController extends Controller
         } else {
 
             return $this->responser($data,404,'Club in specific suburb is not found');
+        }
+    }
+
+    public function eventByClub($id)
+    {
+
+        $today = Carbon::today();
+
+        $event = Event::where('club_id', $id)->where('date', '>=', $today)
+            ->get();
+
+        $num = $event->count();
+
+
+        $data = EventResource::collection($event);
+
+        if ($num > 0) {
+
+            return $this->responser($data , 200 , 'All Event in specified club are listed');
+
+        } else {
+
+            return $this->responser($data,404,'Events in the specified club is not found');
         }
     }
 }

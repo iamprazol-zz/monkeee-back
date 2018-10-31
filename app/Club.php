@@ -19,7 +19,7 @@ class Club extends Model
         'opening_time'
     ];
 
-    public function suburbs() {
+    public function suburb() {
         return $this->belongsTo('App\Suburb');
     }
 
