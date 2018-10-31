@@ -27,6 +27,8 @@ class Club extends JsonResource
             'email' => $this->email,
             'phone' => $this->phone,
             'opening_time' => $this->opening_time,
+            'facebook' => $this->facebook,
+            'instagram' => $this->instagram
             ];
     }
 }
