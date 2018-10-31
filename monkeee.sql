@@ -1,243 +1,354 @@
--- MySQL dump 10.13  Distrib 5.7.23, for Linux (x86_64)
+-- phpMyAdmin SQL Dump
+-- version 4.6.6deb5
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost    Database: monkeee
--- ------------------------------------------------------
--- Server version	5.7.23-0ubuntu0.18.04.1
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO,POSTGRESQL' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+-- Host: localhost:3306
+-- Generation Time: Oct 31, 2018 at 09:34 PM
+-- Server version: 5.7.24-0ubuntu0.18.04.1
+-- PHP Version: 7.2.11-3+ubuntu18.04.1+deb.sury.org+1
 
---
--- Table structure for table "categories"
---
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
-DROP TABLE IF EXISTS "categories";
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE "categories" (
-  "id" int(10) unsigned NOT NULL,
-  "name" varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  "created_at" timestamp NULL DEFAULT NULL,
-  "updated_at" timestamp NULL DEFAULT NULL,
-  PRIMARY KEY ("id")
-);
-/*!40101 SET character_set_client = @saved_cs_client */;
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
--- Dumping data for table "categories"
+-- Database: `monkeee`
 --
 
-LOCK TABLES "categories" WRITE;
-/*!40000 ALTER TABLE "categories" DISABLE KEYS */;
-INSERT INTO "categories" VALUES (1,'techno','2018-10-25 05:27:18','2018-10-25 05:27:18'),(2,'deep house','2018-10-25 05:27:18','2018-10-25 05:27:18'),(3,'latino americano','2018-10-25 05:27:18','2018-10-25 05:27:18');
-/*!40000 ALTER TABLE "categories" ENABLE KEYS */;
-UNLOCK TABLES;
+-- --------------------------------------------------------
 
 --
--- Table structure for table "club_galleries"
+-- Table structure for table `categories`
 --
 
-DROP TABLE IF EXISTS "club_galleries";
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE "club_galleries" (
-  "id" int(10) unsigned NOT NULL,
-  "club_id" int(10) unsigned NOT NULL,
-  "picture" varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  "description" varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  "created_at" timestamp NULL DEFAULT NULL,
-  "updated_at" timestamp NULL DEFAULT NULL,
-  PRIMARY KEY ("id")
-);
-/*!40101 SET character_set_client = @saved_cs_client */;
+CREATE TABLE `categories` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table "club_galleries"
+-- Dumping data for table `categories`
 --
 
-LOCK TABLES "club_galleries" WRITE;
-/*!40000 ALTER TABLE "club_galleries" DISABLE KEYS */;
-INSERT INTO "club_galleries" VALUES (1,1,'lll','Small Picure description 1','2018-10-25 05:27:18','2018-10-25 05:27:18'),(2,1,'lslaslals','Small Picure description 2','2018-10-25 05:27:18','2018-10-25 05:27:18'),(3,1,'ldldld','Small Picure description 3','2018-10-25 05:27:18','2018-10-25 05:27:18');
-/*!40000 ALTER TABLE "club_galleries" ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'techno', '2018-10-31 20:58:37', '2018-10-31 20:58:37'),
+(2, 'deep house', '2018-10-31 20:58:37', '2018-10-31 20:58:37'),
+(3, 'latino americano', '2018-10-31 20:58:37', '2018-10-31 20:58:37');
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table "clubs"
+-- Table structure for table `clubs`
 --
 
-DROP TABLE IF EXISTS "clubs";
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE "clubs" (
-  "id" int(10) unsigned NOT NULL,
-  "suburb_id" int(10) unsigned NOT NULL,
-  "name" varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  "address" varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  "description" varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  "cover_photo" varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  "created_at" timestamp NULL DEFAULT NULL,
-  "updated_at" timestamp NULL DEFAULT NULL,
-  PRIMARY KEY ("id")
-);
-/*!40101 SET character_set_client = @saved_cs_client */;
+CREATE TABLE `clubs` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `suburb_id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cover_photo` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `order` bigint(20) NOT NULL,
+  `phone` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `opening_time` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `facebook` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `instagram` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `show` tinyint(1) NOT NULL DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table "clubs"
+-- Dumping data for table `clubs`
 --
 
-LOCK TABLES "clubs" WRITE;
-/*!40000 ALTER TABLE "clubs" DISABLE KEYS */;
-INSERT INTO "clubs" VALUES (1,1,'Club Doroty','Valley View Road 26','Super Beautiful club.','poudel','2018-10-25 05:27:17','2018-10-25 05:27:17'),(2,2,'Club Margot','Nortond Driver 27','We are techno  club.','kushal','2018-10-25 05:27:17','2018-10-25 05:27:17'),(3,4,'Maroon','new york','Best club in the NY!','saksj.jpg',NULL,NULL);
-/*!40000 ALTER TABLE "clubs" ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `clubs` (`id`, `suburb_id`, `name`, `address`, `description`, `cover_photo`, `order`, `phone`, `email`, `opening_time`, `facebook`, `instagram`, `show`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Club Doroty', 'Valley View Road 26', 'Super Beautiful club.', 'club1.jpeg', 256, '1245639875', 'abc@gmail.com', '22:00:00', 'asasasddas', 'sasasdfdcc', 1, '2018-10-31 20:58:36', '2018-10-31 20:58:36'),
+(2, 2, 'Club Margot', 'Nortond Driver 27', 'We are techno  club.', 'club2.jpeg', 4562, '1245657875', 'sasjsj@gmail.com', '21:00:00', 'asasasddas', 'sasasdfdcc', 1, '2018-10-31 20:58:36', '2018-10-31 20:58:36'),
+(3, 2, 'Club Maroon', 'Nortond Driver 27', 'We are techno  club.', 'club2.jpeg', 4545, '1245657875', 'ssaaaj@gmail.com', '21:00:00', 'asasasddas', 'sasasdfdcc', 1, '2018-10-31 20:58:37', '2018-10-31 20:58:37');
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table "events"
+-- Table structure for table `club_galleries`
 --
 
-DROP TABLE IF EXISTS "events";
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE "events" (
-  "id" int(10) unsigned NOT NULL,
-  "club_id" int(10) unsigned NOT NULL,
-  "category_id" int(10) unsigned NOT NULL,
-  "date" date NOT NULL,
-  "opening" time NOT NULL,
-  "closing" time NOT NULL,
-  "picture" varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  "name" varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  "description" varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  "price" int(10) unsigned NOT NULL,
-  "created_at" timestamp NULL DEFAULT NULL,
-  "updated_at" timestamp NULL DEFAULT NULL,
-  PRIMARY KEY ("id")
-);
-/*!40101 SET character_set_client = @saved_cs_client */;
+CREATE TABLE `club_galleries` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `club_id` int(10) UNSIGNED NOT NULL,
+  `picture` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table "events"
+-- Dumping data for table `club_galleries`
 --
 
-LOCK TABLES "events" WRITE;
-/*!40000 ALTER TABLE "events" DISABLE KEYS */;
-INSERT INTO "events" VALUES (1,1,1,'2018-11-14','22:00:00','04:00:00','www.themonkey.com/event/pic_1.png',' mi vida loca ','beautifull event of techno music tututut ',20,'2018-10-25 05:27:18','2018-10-25 05:27:18'),(2,2,1,'2018-10-30','22:00:00','10:00:00','htpps://www.monkee.com// file_path',' Name 2 event','Descripètion event club; lorem ipsum ',10,'2018-10-25 05:27:18','2018-10-25 05:27:18'),(3,1,1,'2018-10-30','04:00:00','16:36:00','htpps://www.monkee.com// file_path',' Name 3 Event ','beautifull event of techno music tututut ',0,'2018-10-25 05:27:18','2018-10-25 05:27:18'),(4,2,3,'2018-11-01','02:00:00','07:07:00','kk.jpg','Rock the pub','best rocing band are invited',50,NULL,NULL);
-/*!40000 ALTER TABLE "events" ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `club_galleries` (`id`, `club_id`, `picture`, `description`, `created_at`, `updated_at`) VALUES
+(1, 1, 'g1.jpg', 'Small Picure description 1', '2018-10-31 20:58:37', '2018-10-31 20:58:37'),
+(2, 1, 'g2.jpg', 'Small Picure description 2', '2018-10-31 20:58:37', '2018-10-31 20:58:37'),
+(3, 1, 'g3.jpg', 'Small Picure description 3', '2018-10-31 20:58:37', '2018-10-31 20:58:37');
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table "migrations"
+-- Table structure for table `djs`
 --
 
-DROP TABLE IF EXISTS "migrations";
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE "migrations" (
-  "id" int(10) unsigned NOT NULL,
-  "migration" varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  "batch" int(11) NOT NULL,
-  PRIMARY KEY ("id")
-);
-/*!40101 SET character_set_client = @saved_cs_client */;
+CREATE TABLE `djs` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `category_id` int(10) UNSIGNED NOT NULL,
+  `resident` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `label` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mobile` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `bio` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `facebook` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `instagram` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `show` tinyint(1) NOT NULL DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table "migrations"
+-- Dumping data for table `djs`
 --
 
-LOCK TABLES "migrations" WRITE;
-/*!40000 ALTER TABLE "migrations" DISABLE KEYS */;
-INSERT INTO "migrations" VALUES (92,'2014_10_12_000000_create_users_table',1),(93,'2014_10_12_100000_create_password_resets_table',1),(94,'2018_10_25_081354_create_suburbs_table',1),(95,'2018_10_25_081406_create_clubs_table',1),(96,'2018_10_25_081420_create_events_table',1),(97,'2018_10_25_081433_create_club_galleries_table',1),(98,'2018_10_25_081442_create_categories_table',1);
-/*!40000 ALTER TABLE "migrations" ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `djs` (`id`, `category_id`, `resident`, `name`, `label`, `mobile`, `email`, `bio`, `facebook`, `instagram`, `show`, `created_at`, `updated_at`) VALUES
+(1, 2, 'Valley View Road 26', 'Steve', 'Super Beautiful club.', '3245698514', 'abc@gmail.com', '\"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?\"', 'asasasddas', 'sasasdfdcc', 1, '2018-10-31 20:58:37', '2018-10-31 20:58:37'),
+(2, 3, 'View Road', 'David', 'best', '5245698526', 'abssc@gmail.com', '\"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.\"', '125aasddas', 'kk125ass', 1, '2018-10-31 20:58:37', '2018-10-31 20:58:37'),
+(3, 1, 'Doroty', 'Darwin', 'Beautiful club.', '52468131654', 'asasas@gmail.com', '\"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?\"', 'as5656d', 'as562d1255', 1, '2018-10-31 20:58:38', '2018-10-31 20:58:38'),
+(4, 1, 'sydney', 'Stephen', 'Excellent', '4562134562', 'kbc@gmail.com', '\"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?\"', 'asa5668sddas', 'sasas4444dfdcc', 1, '2018-10-31 20:58:38', '2018-10-31 20:58:38');
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table "password_resets"
+-- Table structure for table `events`
 --
 
-DROP TABLE IF EXISTS "password_resets";
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE "password_resets" (
-  "email" varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  "token" varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  "created_at" timestamp NULL DEFAULT NULL,
-  KEY "password_resets_email_index" ("email")
-);
-/*!40101 SET character_set_client = @saved_cs_client */;
+CREATE TABLE `events` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `club_id` int(10) UNSIGNED NOT NULL,
+  `category_id` int(10) UNSIGNED NOT NULL,
+  `date` date NOT NULL,
+  `opening` time NOT NULL,
+  `closing` time NOT NULL,
+  `picture` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'club.jpeg',
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `price` int(10) UNSIGNED NOT NULL,
+  `ticket_link` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `facebook` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `instagram` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table "password_resets"
+-- Dumping data for table `events`
 --
 
-LOCK TABLES "password_resets" WRITE;
-/*!40000 ALTER TABLE "password_resets" DISABLE KEYS */;
-/*!40000 ALTER TABLE "password_resets" ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `events` (`id`, `club_id`, `category_id`, `date`, `opening`, `closing`, `picture`, `name`, `description`, `price`, `ticket_link`, `facebook`, `instagram`, `created_at`, `updated_at`) VALUES
+(1, 2, 2, '2018-10-01', '02:00:00', '07:00:00', 'club.jpeg', ' mi vida loca ', 'beautifull event of techno music tututut ', 20, '', 'asasasddas', 'sasasdfdcc', '2018-10-31 20:58:37', '2018-10-31 20:58:37'),
+(2, 2, 1, '2018-10-30', '12:00:00', '06:00:00', 'club.jpeg', ' Name 2 event', 'DescripÃ¨tion event club; lorem ipsum ', 10, '', 'asasasddas', 'sasasdfdcc', '2018-10-31 20:58:37', '2018-10-31 20:58:37'),
+(3, 1, 2, '2018-10-30', '13:00:00', '23:00:00', 'club.jpeg', ' Name 3 Event ', 'beautifull event of techno music tututut ', 0, '', 'asasasddas', 'sasasdfdcc', '2018-10-31 20:58:37', '2018-10-31 20:58:37'),
+(4, 2, 1, '2018-11-19', '22:00:00', '04:00:00', 'club.jpeg', ' mi vida loca ', 'beautifull event of techno music tututut ', 20, '', 'asasasddas', 'sasasdfdcc', '2018-10-31 20:58:37', '2018-10-31 20:58:37'),
+(5, 1, 1, '2018-11-10', '22:00:00', '04:00:00', 'club.jpeg', ' mi vida loca ', 'beautifull event of techno music tututut ', 20, '', 'asasasddas', 'sasasdfdcc', '2018-10-31 20:58:37', '2018-10-31 20:58:37'),
+(6, 2, 3, '2018-11-02', '22:00:00', '04:00:00', 'club.jpeg', ' mi vida loca ', 'beautifull event of techno music tututut ', 20, '', 'asasasddas', 'sasasdfdcc', '2018-10-31 20:58:37', '2018-10-31 20:58:37');
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table "suburbs"
+-- Table structure for table `migrations`
 --
 
-DROP TABLE IF EXISTS "suburbs";
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE "suburbs" (
-  "id" int(10) unsigned NOT NULL,
-  "name" varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  "postalcode" varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  "created_at" timestamp NULL DEFAULT NULL,
-  "updated_at" timestamp NULL DEFAULT NULL,
-  PRIMARY KEY ("id")
-);
-/*!40101 SET character_set_client = @saved_cs_client */;
+CREATE TABLE `migrations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table "suburbs"
+-- Dumping data for table `migrations`
 --
 
-LOCK TABLES "suburbs" WRITE;
-/*!40000 ALTER TABLE "suburbs" DISABLE KEYS */;
-INSERT INTO "suburbs" VALUES (1,'Gosford','2250','2018-10-25 05:27:17','2018-10-25 05:27:17'),(2,'Mardi','2230','2018-10-25 05:27:17','2018-10-25 05:27:17'),(3,'Wyoming','2200','2018-10-25 05:27:17','2018-10-25 05:27:17'),(4,'Woy Woy','2250','2018-10-25 05:27:17','2018-10-25 05:27:17');
-/*!40000 ALTER TABLE "suburbs" ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(286, '2014_10_12_000000_create_users_table', 1),
+(287, '2014_10_12_100000_create_password_resets_table', 1),
+(300, '2018_10_25_081354_create_suburbs_table', 2),
+(301, '2018_10_25_081406_create_clubs_table', 2),
+(302, '2018_10_25_081420_create_events_table', 2),
+(303, '2018_10_25_081433_create_club_galleries_table', 2),
+(304, '2018_10_25_081442_create_categories_table', 2),
+(305, '2018_11_01_003737_create_djs_table', 2);
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table "users"
+-- Table structure for table `password_resets`
 --
 
-DROP TABLE IF EXISTS "users";
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE "users" (
-  "id" int(10) unsigned NOT NULL,
-  "name" varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  "email" varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  "email_verified_at" timestamp NULL DEFAULT NULL,
-  "password" varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  "remember_token" varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  "created_at" timestamp NULL DEFAULT NULL,
-  "updated_at" timestamp NULL DEFAULT NULL,
-  PRIMARY KEY ("id"),
-  UNIQUE KEY "users_email_unique" ("email")
-);
-/*!40101 SET character_set_client = @saved_cs_client */;
+CREATE TABLE `password_resets` (
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table "users"
+-- Table structure for table `suburbs`
 --
 
-LOCK TABLES "users" WRITE;
-/*!40000 ALTER TABLE "users" DISABLE KEYS */;
-/*!40000 ALTER TABLE "users" ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+CREATE TABLE `suburbs` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `postalcode` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+--
+-- Dumping data for table `suburbs`
+--
 
--- Dump completed on 2018-10-27 12:50:01
+INSERT INTO `suburbs` (`id`, `name`, `postalcode`, `created_at`, `updated_at`) VALUES
+(1, 'Gosford', '2250', '2018-10-31 20:58:36', '2018-10-31 20:58:36'),
+(2, 'Mardi', '2230', '2018-10-31 20:58:36', '2018-10-31 20:58:36'),
+(3, 'Wyoming', '2200', '2018-10-31 20:58:36', '2018-10-31 20:58:36'),
+(4, 'Woy Woy', '2250', '2018-10-31 20:58:36', '2018-10-31 20:58:36');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `clubs`
+--
+ALTER TABLE `clubs`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `clubs_order_unique` (`order`);
+
+--
+-- Indexes for table `club_galleries`
+--
+ALTER TABLE `club_galleries`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `djs`
+--
+ALTER TABLE `djs`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `djs_email_unique` (`email`);
+
+--
+-- Indexes for table `events`
+--
+ALTER TABLE `events`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD KEY `password_resets_email_index` (`email`);
+
+--
+-- Indexes for table `suburbs`
+--
+ALTER TABLE `suburbs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_email_unique` (`email`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `clubs`
+--
+ALTER TABLE `clubs`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `club_galleries`
+--
+ALTER TABLE `club_galleries`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `djs`
+--
+ALTER TABLE `djs`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `events`
+--
+ALTER TABLE `events`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=306;
+--
+-- AUTO_INCREMENT for table `suburbs`
+--
+ALTER TABLE `suburbs`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
