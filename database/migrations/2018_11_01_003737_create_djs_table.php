@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEventsTable extends Migration
+class CreateDjsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,18 @@ class CreateEventsTable extends Migration
      */
     public function up()
     {
-        Schema::create('events', function (Blueprint $table) {
+        Schema::create('djs', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('club_id')->unsigned();
             $table->integer('category_id')->unsigned();
-            $table->date('date');
-            $table->time('opening');
-            $table->time('closing');
-            $table->string('picture')->default('club.jpeg');
+            $table->string('resident');
             $table->string('name');
-            $table->string('description');
-            $table->integer('price')->unsigned();
-            $table->string('ticket_link');
+            $table->string('label');
+            $table->string('mobile');
+            $table->string('email')->unique();
+            $table->text('bio');
             $table->string('facebook');
             $table->string('instagram');
+            $table->boolean('show')->default(true);
             $table->timestamps();
         });
     }
@@ -38,6 +36,6 @@ class CreateEventsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('events');
+        Schema::dropIfExists('djs');
     }
 }

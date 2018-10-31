@@ -24,6 +24,9 @@ class CreateClubsTable extends Migration
             $table->string('phone');
             $table->string('email');
             $table->string('opening_time');
+            $table->string('facebook');
+            $table->string('instagram');
+            $table->boolean('show')->default(true);
             $table->timestamps();
         });
     }

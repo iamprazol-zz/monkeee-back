@@ -14,4 +14,8 @@ class Category extends Model
     public function event(){
         return $this->hasMany('App\Event');
     }
+
+    public function dj(){
+        return $this->hasMany('App\dj');
+    }
 }

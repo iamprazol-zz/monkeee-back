@@ -16,7 +16,10 @@ class Club extends Model
         'order',
         'email',
         'phone',
-        'opening_time'
+        'opening_time',
+        'facebook',
+        'instagram',
+        'show'
     ];
 
     public function suburb() {

@@ -24,7 +24,9 @@ class EventTableSeeder extends Seeder
             'name' => ' Name 3 Event ',
             'description' => 'beautifull event of techno music tututut ',
             'price' => 0,
-            'ticket_link' => ""
+            'ticket_link' => "",
+            'facebook' => 'asasasddas',
+            'instagram' => 'sasasdfdcc'
             ];
 
         $e2 = [
@@ -38,7 +40,9 @@ class EventTableSeeder extends Seeder
             'name' => ' Name 2 event',
             'description' => 'Descripètion event club; lorem ipsum ',
             'price' => 10,
-            'ticket_link' => ""
+            'ticket_link' => "",
+            'facebook' => 'asasasddas',
+            'instagram' => 'sasasdfdcc'
         ];
 
         $e3 = [
@@ -52,7 +56,9 @@ class EventTableSeeder extends Seeder
             'name' => ' mi vida loca ',
             'description' => 'beautifull event of techno music tututut ',
             'price' => 20,
-            'ticket_link' => ""
+            'ticket_link' => "",
+            'facebook' => 'asasasddas',
+            'instagram' => 'sasasdfdcc'
         ];
 
         $e4 = [
@@ -66,7 +72,9 @@ class EventTableSeeder extends Seeder
             'name' => ' mi vida loca ',
             'description' => 'beautifull event of techno music tututut ',
             'price' => 20,
-            'ticket_link' => ""
+            'ticket_link' => "",
+            'facebook' => 'asasasddas',
+            'instagram' => 'sasasdfdcc'
         ];
 
         $e5 = [
@@ -80,7 +88,9 @@ class EventTableSeeder extends Seeder
             'name' => ' mi vida loca ',
             'description' => 'beautifull event of techno music tututut ',
             'price' => 20,
-            'ticket_link' => ""
+            'ticket_link' => "",
+            'facebook' => 'asasasddas',
+            'instagram' => 'sasasdfdcc'
         ];
 
         $e6 = [
@@ -94,7 +104,9 @@ class EventTableSeeder extends Seeder
             'name' => ' mi vida loca ',
             'description' => 'beautifull event of techno music tututut ',
             'price' => 20,
-            'ticket_link' => ""
+            'ticket_link' => "",
+            'facebook' => 'asasasddas',
+            'instagram' => 'sasasdfdcc'
         ];
 
 

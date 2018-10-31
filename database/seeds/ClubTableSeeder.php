@@ -24,6 +24,8 @@ class ClubTableSeeder extends Seeder
             'email' => 'abc@gmail.com',
             'phone' => 1245639875,
             'opening_time' => Carbon::parse('10 p.m')->format('H:i:s'),
+            'facebook' => 'asasasddas',
+            'instagram' => 'sasasdfdcc'
         ];
 
         $c2 = [
@@ -37,9 +39,28 @@ class ClubTableSeeder extends Seeder
             'email' => 'sasjsj@gmail.com',
             'phone' => 1245657875,
             'opening_time' => Carbon::parse('9 p.m')->format('H:i:s'),
+            'facebook' => 'asasasddas',
+            'instagram' => 'sasasdfdcc'
+        ];
+
+        $c3 = [
+            'id' => 3,
+            'name' => 'Club Maroon',
+            'address' => 'Nortond Driver 27',
+            'suburb_id' => 2,
+            'description' => 'We are techno  club.',
+            'cover_photo' => 'club2.jpeg',
+            'order' => 4545,
+            'email' => 'ssaaaj@gmail.com',
+            'phone' => 1245657875,
+            'opening_time' => Carbon::parse('9 p.m')->format('H:i:s'),
+            'facebook' => 'asasasddas',
+            'instagram' => 'sasasdfdcc'
         ];
 
         Club::create($c1);
         Club::create($c2);
+        Club::create($c3);
+
     }
 }

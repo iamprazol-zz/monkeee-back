@@ -18,7 +18,9 @@ class Event extends Model
         'name',
         'description',
         'price',
-        'ticket_link'
+        'ticket_link',
+        'facebook',
+        'instagram'
     ];
 
     public function club(){

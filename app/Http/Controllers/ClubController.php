@@ -15,7 +15,7 @@ class ClubController extends Controller
 {
     public function index(){
 
-        $clubs = Club::paginate(15);
+        $clubs = Club::where('show', 1)->paginate(15);
 
         $num = $clubs->count();
 
@@ -34,7 +34,9 @@ class ClubController extends Controller
 
     public function showById($id){
 
-        $club = Club::where('id' , $id)->get();
+        $club = Club::where('id' , $id)
+            ->where('show' , 1)
+            ->get();
 
         $num = $club->count();
 
@@ -54,14 +56,17 @@ class ClubController extends Controller
 
         } else {
 
-            return $this->responser($data,404,'Club with specific id is not found');
+            return $this->responser($c,404,'Club with specific id is not found');
         }
     }
 
 
+
     public function showBySuburb($id){
 
-        $clubs = Club::where('suburb_id' , $id)->get();
+        $clubs = Club::where('suburb_id' , $id)
+                    ->where('show' , 1)
+                    ->get();
 
         $num = $clubs->count();
 

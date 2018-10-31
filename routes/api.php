@@ -20,15 +20,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // List Events
 Route::get('eventlist', 'EventController@index');
 
-// List Events
-Route::get('eve', 'EventController@isClosed');
-
 // List Events in live in current date
 Route::get('live', 'EventController@liveEvent');
-
-
-// List Events in current week
-Route::get('weekevent', 'EventController@weeklyEvent');
 
 // List Events in upcoming weeks
 Route::get('upcoming', 'EventController@upComing');
