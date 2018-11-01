@@ -23,4 +23,6 @@ class ClubGalleryController extends Controller
             return $this->responser($data,404,'Clubs not found');
         }
     }
+
+    public function sh
 }

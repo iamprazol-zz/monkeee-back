@@ -24,7 +24,7 @@ class CreateEventsTable extends Migration
             $table->string('name');
             $table->string('description');
             $table->integer('price')->unsigned();
-            $table->string('ticket_link');
+            $table->string('ticket_link')->nullable();
             $table->string('facebook');
             $table->string('instagram');
             $table->timestamps();

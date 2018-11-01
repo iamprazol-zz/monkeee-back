@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Event;
+use App\Club;
+use App\Category;
 use App\Suburb;
 use App\Http\Resources\Event as EventResource;
-
+use Illuminate\Support\Facades\Session;
 use Image;
 
 class EventController extends Controller
@@ -167,6 +169,97 @@ class EventController extends Controller
         }
     }
 
+    public function home(){
+
+        return view('home');
+
+    }
+
+    public function show(){
+
+        $today = Carbon::today();
+
+        $event = Event::orderBy('id', 'asc')->where('date', '>=', $today)->get();
+
+        $club = Club::all();
+
+        $category = Category::all();
+
+        return view('event.show')->with('events', $event)->with('clubs', $club)->with('categories', $category);
+    }
+
+    public function search(Request $r){
+
+        $today = Carbon::today();
+
+        $id = $r->club_id;
+
+        $event = Event::orderBy('id', 'asc')->where('club_id', $id)->where('date', '>=', $today)->get();
+
+        $club = Club::all();
+
+        $category = Category::all();
+
+        return view('event.show')->with('events', $event)->with('clubs', $club)->with('categories', $category);
+
+    }
+
+    public function destroy($id){
+
+        $event = Event::where('id', $id);
+
+        $event->delete();
+
+        Session::flash('success', 'Event Has Been Deleted Successfully');
+
+        return redirect()->route('event.show');
+
+    }
+
+    public function create() {
+
+        $club = Club::all();
+
+        $category = Category::all();
+
+        return view('event.create')->with('clubs' , $club)->with('categories', $category);
+
+    }
+
+    public function store(){
+
+        $r = request();
+
+        $this->validate($r ,[
+            'name' => 'required|string|min:2|max:255',
+            'date' => 'required|date|after:yesterday',
+        ]);
+
+
+        $file = $r->file('pic');
+        $filename = time() . '.' . $file->getClientOriginalExtension();
+        $path = public_path('/images/'. $filename);
+        Image::make($file)->resize(300, 850)->save($path);
+
+        $event = Event::create([
+            'name' => $r->name,
+            'club_id' => $r->club_id,
+            'category_id' => $r->category_id,
+            'date' => $r->date,
+            'opening' => Carbon::parse($r->opening)->format('H:i:s'),
+            'closing' => Carbon::parse($r->closing)->format('H:i:s'),
+            'description' => $r->description,
+            'price' => $r->price,
+            'ticket_link' => $r->ticket,
+            'facebook' => $r->facebook,
+            'instagram' => $r->instagram,
+            'picture' => $filename,
+        ]);
+
+        Session::flash('success' , 'Event added successfully');
+        return redirect()->route('event.show');
+
+    }
 }
 
 

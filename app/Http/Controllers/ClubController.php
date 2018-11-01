@@ -8,8 +8,11 @@ use App\Club;
 use App\Suburb;
 use App\Event;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Session;
 use App\Http\Resources\Club as ClubResource;
 use phpDocumentor\Reflection\Types\This;
+use Intervention\Image\Facades\Image;
+
 
 class ClubController extends Controller
 {
@@ -104,4 +107,114 @@ class ClubController extends Controller
             return $this->responser($data,404,'Events in the specified club is not found');
         }
     }
+
+
+    public function show(){
+
+
+
+        $club = Club::orderBy('id', 'asc')->get();
+
+        $suburb = Suburb::all();
+
+        return view('club.show')->with('clubs', $club)->with('suburbs', $suburb);
+    }
+
+    public function search(Request $r){
+
+        $id = $r->suburb_id;
+
+        $club = Club::orderBy('id', 'asc')->where('suburb_id', $id)->where('name' ,'like' , '%'.$r->get('club').'%')->get();
+
+        $suburb = Suburb::all();
+
+
+        return view('club.show')->with('clubs', $club)->with('suburbs', $suburb);
+
+    }
+
+    public function create() {
+
+        $suburb = Suburb::all();
+
+        return view('club.create')->with('suburbs' , $suburb);
+
+    }
+
+    public function store(){
+
+        $r = request();
+
+        $this->validate($r ,[
+            'name' => 'required|string|min:2|max:255',
+            'address' => 'required|string|min:2|max:255',
+            'order' => 'required|unique:clubs',
+            'phone' => 'required|numeric|digits:10',
+            'email' => 'required|string|email|max:255|unique:users',
+            ]);
+
+
+        $file = $r->file('pic');
+        $filename = time() . '.' . $file->getClientOriginalExtension();
+        Image::make($file->getRealPath())->resize(300, 850)->save(public_path('images/' . $filename));
+
+        $club = Club::create([
+            'suburb_id' => $r->suburb_id,
+            'name' => $r->name,
+            'address' => $r->address,
+            'description' => $r->description,
+            'order' => $r->order,
+            'phone' => $r->phone,
+            'email' => $r->email,
+            'opening_time' => Carbon::parse($r->opening)->format('H:i:s'),
+            'facebook' => $r->facebook,
+            'instagram' => $r->instagram,
+            'cover_photo' => $filename,
+        ]);
+
+        Session::flash('success' , 'Club added successfully');
+        return redirect()->route('club.show');
+
+    }
+
+    public function shown($id){
+
+        $ad = Club::where('id' , $id)->first();
+
+        $ad->show = 1 ;
+
+        $ad->save();
+
+        Session::flash('success' , 'The club is set to shown successfully');
+
+        return redirect()->back();
+
+    }
+
+    public function unshown($id){
+
+        $ad = Club::where('id' , $id)->first();
+
+        $ad->show = 0 ;
+
+        $ad->save();
+
+        Session::flash('success' , 'The club is set to unshown successfully');
+
+        return redirect()->back();
+
+    }
+
+    public function destroy($id){
+
+        $club = Club::where('id', $id);
+
+        $club->delete();
+
+        Session::flash('success', 'Club Has Been Deleted Successfully');
+
+        return redirect()->route('club.show');
+
+    }
+
 }

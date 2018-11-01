@@ -34,4 +34,14 @@ class Club extends Model
         return $this->hasMany('App\Club_gallery');
     }
 
+    public function is_shown($id){
+
+        $c = Club::where('id', $id)->first();
+
+        if($c->show == 1){
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
