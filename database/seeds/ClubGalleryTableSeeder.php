@@ -15,21 +15,21 @@ class ClubGalleryTableSeeder extends Seeder
         $k1 = [
             'id' => 1,
             'club_id' => 1,
-            'picture' => 'g1.jpg' ,
+            'picture' => '/images/g1.jpg' ,
             'description' => 'Small Picure description 1'
         ];
 
         $k2 = [
             'id' => 2,
             'club_id' => 1,
-            'picture' => 'g2.jpeg' ,
+            'picture' => '/images/g2.jpeg' ,
             'description' => 'Small Picure description 2'
         ];
 
         $k3 = [
             'id' => 3,
             'club_id' => 1,
-            'picture' => 'g3.jpg' ,
+            'picture' => '/images/g3.jpg' ,
             'description' => 'Small Picure description 3'
         ];
 

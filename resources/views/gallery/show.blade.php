@@ -63,7 +63,7 @@
                         <tr>
 
                             <td>{{ $gallery->club->name }}</td>
-                            <td><div class="card-img"><img src="/images/{{ $gallery->picture }}" style="width:150px; height:150px;"/></div></td>
+                            <td><div class="card-img"><img src="{{ $gallery->picture }}" style="width:150px; height:150px;"/></div></td>
                             <td>{{ $gallery->description }}</td>
                             <td><a href="{{ route('gallery.delete', ['id' => $gallery->id]) }}" class="btn btn-sm btn-danger btn-pill ">Delete</a></td>
 

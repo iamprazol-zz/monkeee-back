@@ -20,7 +20,7 @@ class CreateEventsTable extends Migration
             $table->date('date');
             $table->time('opening');
             $table->time('closing');
-            $table->string('picture')->default('club.jpeg');
+            $table->string('picture');
             $table->string('name');
             $table->string('description');
             $table->integer('price')->unsigned();

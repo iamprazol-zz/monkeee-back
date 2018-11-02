@@ -117,7 +117,7 @@
                                 <td>{{ $club->suburb->name }}</td>
                                 <td>{{ $club->address }}</td>
                                 <td>{{ $club->description }}</td>
-                                <td><div class="card-img"><img src="/images/{{ $club->cover_photo }}" style="width:150px; height:150px;"/></div></td>
+                                <td><div class="card-img"><img src="{{ $club->cover_photo }}" style="width:150px; height:150px;"/></div></td>
                                 <td>{{ $club->order }}</td>
                                 <td>{{ $club->phone }}</td>
                                 <td>{{ $club->email }}</td>

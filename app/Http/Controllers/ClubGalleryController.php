@@ -51,13 +51,14 @@ class ClubGalleryController extends Controller
 
         $file = $r->file('pic');
         $filename = time() . '.' . $file->getClientOriginalExtension();
-        $path = public_path('/images/'. $filename);
-        Image::make($file)->save($path);
+        $path = '/images/'. $filename;
+        $public_path = public_path($path);
+        Image::make($file)->save($public_path);
 
         $event = Club_gallery::create([
             'club_id' => $r->club_id,
             'description' => $r->description,
-            'picture' => $filename,
+            'picture' => $path,
         ]);
 
         Session::flash('success' , 'Pic added successfully');

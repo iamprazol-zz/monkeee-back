@@ -155,7 +155,9 @@ class ClubController extends Controller
 
         $file = $r->file('pic');
         $filename = time() . '.' . $file->getClientOriginalExtension();
-        Image::make($file->getRealPath())->save(public_path('images/' . $filename));
+        $path = '/images/'. $filename;
+        $public_path = public_path($path);
+        Image::make($file)->save($public_path);
 
         $club = Club::create([
             'suburb_id' => $r->suburb_id,
@@ -170,7 +172,7 @@ class ClubController extends Controller
             'open' => $r->days,
             'facebook' => $r->facebook,
             'instagram' => $r->instagram,
-            'cover_photo' => $filename,
+            'cover_photo' => $path,
         ]);
 
         Session::flash('success' , 'Club added successfully');

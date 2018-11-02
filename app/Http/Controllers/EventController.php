@@ -232,8 +232,9 @@ class EventController extends Controller
 
         $file = $r->file('pic');
         $filename = time() . '.' . $file->getClientOriginalExtension();
-        $path = public_path('/images/'. $filename);
-        Image::make($file)->save($path);
+        $path = '/images/'. $filename;
+        $public_path = public_path($path);
+        Image::make($file)->save($public_path);
 
         $event = Event::create([
             'name' => $r->name,
@@ -247,7 +248,7 @@ class EventController extends Controller
             'ticket_link' => $r->ticket,
             'facebook' => $r->facebook,
             'instagram' => $r->instagram,
-            'picture' => $filename,
+            'picture' => $path,
         ]);
 
         Session::flash('success' , 'Event added successfully');
