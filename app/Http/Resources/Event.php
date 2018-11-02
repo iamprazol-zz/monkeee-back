@@ -30,7 +30,8 @@ class Event extends JsonResource
             'price' => $this->price,
             'ticket_link' => $this->ticket_link,
             'facebook' => $this->facebook,
-            'instagram' => $this->instagram
+            'instagram' => $this->instagram,
+            'expanded' => false
         ];
     }
 

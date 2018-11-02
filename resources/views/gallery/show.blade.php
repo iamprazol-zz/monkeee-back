@@ -49,10 +49,6 @@
                     </th>
 
                     <th>
-                        Description
-                    </th>
-
-                    <th>
                         Option
                     </th>
 
@@ -63,8 +59,14 @@
                         <tr>
 
                             <td>{{ $gallery->club->name }}</td>
-                            <td>{{ $gallery->picture }}</td>
-                            <td>{{ $gallery->description }}</td>
+
+                            <td><?php $array = explode("," , $gallery->picture);
+                            foreach ($array as $item){
+                                ?>
+                            <div class="card-img"><img src="/images/{{ $item }}" style="width:100px; height:100px;"/></div>&nbsp;&nbsp;
+                            <?php
+                            }?></td>
+
                             <td><a href="{{ route('gallery.delete', ['id' => $gallery->id]) }}" class="btn btn-sm btn-danger btn-pill ">Delete</a></td>
 
                         </tr>

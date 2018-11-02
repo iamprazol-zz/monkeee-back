@@ -50,25 +50,48 @@ class ClubGalleryController extends Controller
 
         $r = request();
 
-
         foreach ($r->file('pic') as $file) {
-            $filename = time() .'_'.uniqid().'.'. $file->getClientOriginalExtension();
+            $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
             $path = public_path('/images/' . $filename);
             Image::make($file)->save($path);
 
             $names[] = $filename;
         }
 
-        $fil = implode(",",$names);
+        $d = sizeof($names);
 
-        $event = Club_gallery::create([
-            'club_id' => $r->club_id,
-            'picture' => $fil,
-        ]);
+        if ($d <= 5) {
+
+            $fil = implode(",", $names);
+
+            $gallery = Club_gallery::where('club_id', $r->club_id)->get();
+            $num = $gallery->count();
+
+            if ($num == 1) {
+
+                foreach ($gallery as $gal) {
+                    $gal->picture = $gal->picture . ',' . $fil;
+
+                    $gal->save();
+                }
+
+            } else {
+
+                $event = Club_gallery::create([
+                    'club_id' => $r->club_id,
+                    'picture' => $fil,
+                ]);
+            }
 
             Session::flash('success', 'Pic added successfully');
             return redirect()->route('gallery.show', ['id' => $r->club_id]);
 
+        } else {
+
+            Session::flash('failure', 'You can add only 5 images in one time');
+            return redirect()->route('gallery.show', ['id' => $r->club_id]);
+
+        }
     }
 
     public function destroy($id){
