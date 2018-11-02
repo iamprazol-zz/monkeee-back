@@ -16,7 +16,7 @@ class CreateClubGalleriesTable extends Migration
         Schema::create('club_galleries', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('club_id')->unsigned();
-            $table->string('picture');
+            $table->text('picture');
             $table->timestamps();
         });
     }

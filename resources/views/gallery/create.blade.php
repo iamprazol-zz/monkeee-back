@@ -29,8 +29,13 @@
                         <label for="pic" class="col-md-4 col-form-label text-md-right">{{ __('Upload  pics') }}</label>
 
                         <div class="col-md-6">
-                            <input type="file" id="pic" name="pic[]" class="form-control" multiple required/>
+                            <input type="file" id="pic" name="pic[]" class="form-control{{ $errors->has('pic') ? ' is-invalid' : '' }}" multiple required/>
 
+                            @if ($errors->has('pic'))
+                                <span class="invalid-feedback">
+                                                            <strong>{{ $errors->first('pic') }}</strong>
+                                                        </span>
+                            @endif
                         </div>
                     </div>
 

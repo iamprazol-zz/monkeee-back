@@ -50,6 +50,10 @@ class ClubGalleryController extends Controller
 
         $r = request();
 
+        $this->validate($r ,[
+            'pic' => 'required|max:2048'
+        ]);
+
         foreach ($r->file('pic') as $file) {
             $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
             $path = public_path('/images/' . $filename);
