@@ -22,7 +22,7 @@ class ClubGalleryTableSeeder extends Seeder
         $k2 = [
             'id' => 2,
             'club_id' => 1,
-            'picture' => 'g2.jpg' ,
+            'picture' => 'g2.jpeg' ,
             'description' => 'Small Picure description 2'
         ];
 

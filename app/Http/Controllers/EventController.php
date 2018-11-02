@@ -239,7 +239,7 @@ class EventController extends Controller
         $file = $r->file('pic');
         $filename = time() . '.' . $file->getClientOriginalExtension();
         $path = public_path('/images/'. $filename);
-        Image::make($file)->resize(300, 850)->save($path);
+        Image::make($file)->save($path);
 
         $event = Event::create([
             'name' => $r->name,

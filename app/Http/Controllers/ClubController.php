@@ -156,7 +156,7 @@ class ClubController extends Controller
 
         $file = $r->file('pic');
         $filename = time() . '.' . $file->getClientOriginalExtension();
-        Image::make($file->getRealPath())->resize(300, 850)->save(public_path('images/' . $filename));
+        Image::make($file->getRealPath())->save(public_path('images/' . $filename));
 
         $club = Club::create([
             'suburb_id' => $r->suburb_id,

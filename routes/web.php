@@ -119,3 +119,24 @@ Route::get('event/delete/{id}', [
     'uses' => 'EventController@destroy',
     'as' => 'event.delete'
 ]);
+
+Route::get('gallery', [
+    'uses' => 'ClubGalleryController@show',
+    'as' => 'gallery.show'
+]);
+
+
+Route::get('gallery/create', [
+    'uses' => 'ClubGalleryController@create',
+    'as' => 'gallery.create'
+]);
+
+Route::post('gallery/store' , [
+    'uses' => 'ClubGalleryController@store' ,
+    'as' => 'gallery.store'
+]);
+
+Route::get('gallery/delete/{id}', [
+    'uses' => 'ClubGalleryController@destroy',
+    'as' => 'gallery.delete'
+]);

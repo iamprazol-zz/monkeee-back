@@ -33,7 +33,7 @@
             <li><a class="nav-link" href="/club">Clubs</a></li>
             <li><a class="nav-link" href="/category">Category</a></li>
             <li><a class="nav-link" href="/events">Events</a></li>
-            <li><a class="nav-link" href="/dj">Djays</a></li>
+            <li><a class="nav-link" href="/gallery">Gallery</a></li>
         </ul>
     </div>
 </nav>
