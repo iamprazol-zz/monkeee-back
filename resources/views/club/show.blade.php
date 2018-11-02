@@ -87,6 +87,14 @@
                         </th>
 
                         <th>
+                            Closing time
+                        </th>
+
+                        <th>
+                            Open
+                        </th>
+
+                        <th>
                             Facebook
                         </th>
 
@@ -113,7 +121,9 @@
                                 <td>{{ $club->order }}</td>
                                 <td>{{ $club->phone }}</td>
                                 <td>{{ $club->email }}</td>
-                                <td>{{ $club->opening_time }}</td>
+                                <td>{{ \Carbon\Carbon::parse($club->opening_time)->format('g:i A') }}</td>
+                                <td>{{ \Carbon\Carbon::parse($club->closing_time)->format('g:i A') }}</td>
+                                <td>{{ $club->open }}</td>
                                 <td>{{ $club->facebook }}</td>
                                 <td>{{ $club->instagram }}</td>
                                 <td>

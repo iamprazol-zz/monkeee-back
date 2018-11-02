@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Club;
 use App\Suburb;
 use App\Event;
+use App\Club_gallery;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
 use App\Http\Resources\Club as ClubResource;
@@ -111,8 +112,6 @@ class ClubController extends Controller
 
     public function show(){
 
-
-
         $club = Club::orderBy('id', 'asc')->get();
 
         $suburb = Suburb::all();
@@ -167,6 +166,8 @@ class ClubController extends Controller
             'phone' => $r->phone,
             'email' => $r->email,
             'opening_time' => Carbon::parse($r->opening)->format('H:i:s'),
+            'closing_time' => Carbon::parse($r->closing)->format('H:i:s'),
+            'open' => $r->days,
             'facebook' => $r->facebook,
             'instagram' => $r->instagram,
             'cover_photo' => $filename,

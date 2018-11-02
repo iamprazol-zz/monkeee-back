@@ -24,6 +24,8 @@ class ClubTableSeeder extends Seeder
             'email' => 'abc@gmail.com',
             'phone' => 1245639875,
             'opening_time' => Carbon::parse('10 p.m')->format('H:i:s'),
+            'closing_time' => Carbon::parse('4 a.m')->format('H:i:s'),
+            'open' => 'Sun to Fri',
             'facebook' => 'asasasddas',
             'instagram' => 'sasasdfdcc'
         ];
@@ -39,6 +41,8 @@ class ClubTableSeeder extends Seeder
             'email' => 'sasjsj@gmail.com',
             'phone' => 1245657875,
             'opening_time' => Carbon::parse('9 p.m')->format('H:i:s'),
+            'closing_time' => Carbon::parse('4 a.m')->format('H:i:s'),
+            'open' => 'Mon to Fri',
             'facebook' => 'asasasddas',
             'instagram' => 'sasasdfdcc'
         ];
@@ -54,6 +58,8 @@ class ClubTableSeeder extends Seeder
             'email' => 'ssaaaj@gmail.com',
             'phone' => 1245657875,
             'opening_time' => Carbon::parse('9 p.m')->format('H:i:s'),
+            'closing_time' => Carbon::parse('4 a.m')->format('H:i:s'),
+            'open' => 'Sun to Fri',
             'facebook' => 'asasasddas',
             'instagram' => 'sasasdfdcc'
         ];

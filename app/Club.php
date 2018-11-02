@@ -17,6 +17,8 @@ class Club extends Model
         'email',
         'phone',
         'opening_time',
+        'closing_time',
+        'open',
         'facebook',
         'instagram',
         'show'

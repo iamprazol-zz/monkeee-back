@@ -112,7 +112,23 @@
                             <label for="opening" class="col-md-4 col-form-label text-md-right">{{ __('Opening Time') }}</label>
 
                             <div class="col-sm-7">
-                                <input type="text" id="opening" class="form-control" name="opening">
+                                <input type="text" id="opening" class="form-control" name="opening" placeholder="time in am/pm">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="closing" class="col-md-4 col-form-label text-md-right">{{ __('Closing Time') }}</label>
+
+                            <div class="col-sm-7">
+                                <input type="text" id="closing" class="form-control" name="closing" placeholder="time in am/pm">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="days" class="col-md-4 col-form-label text-md-right">{{ __('Opening Days') }}</label>
+
+                            <div class="col-sm-7">
+                                <input type="text" id="days" class="form-control" name="days" placeholder="eg: Sun to Fri">
                             </div>
                         </div>
 

@@ -18,11 +18,11 @@ class ClubGalleryController extends Controller
 
         if ($num > 0) {
 
-            return $this->responser($data , 200 , 'All clubs are listed');
+            return $this->responser($data , 200 , 'All pictures clubs are listed');
 
         } else {
 
-            return $this->responser($data,404,'Clubs not found');
+            return $this->responser($data,404,'Pictures of the Club not found');
         }
     }
 
