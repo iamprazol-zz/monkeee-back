@@ -17,7 +17,6 @@ class CreateClubGalleriesTable extends Migration
             $table->increments('id');
             $table->integer('club_id')->unsigned();
             $table->string('picture');
-            $table->string('description');
             $table->timestamps();
         });
     }

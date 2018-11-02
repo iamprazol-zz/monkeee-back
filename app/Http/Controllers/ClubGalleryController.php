@@ -45,24 +45,29 @@ class ClubGalleryController extends Controller
 
     }
 
-    public function store(){
+    public function store()
+    {
 
         $r = request();
 
-        $file = $r->file('pic');
-        $filename = time() . '.' . $file->getClientOriginalExtension();
-        $path = '/images/'. $filename;
-        $public_path = public_path($path);
-        Image::make($file)->save($public_path);
+
+        foreach ($r->file('pic') as $file) {
+            $filename = time() .'_'.uniqid().'.'. $file->getClientOriginalExtension();
+            $path = public_path('/images/' . $filename);
+            Image::make($file)->save($path);
+
+            $names[] = $filename;
+        }
+
+        $fil = implode(",",$names);
 
         $event = Club_gallery::create([
             'club_id' => $r->club_id,
-            'description' => $r->description,
-            'picture' => $path,
+            'picture' => $fil,
         ]);
 
-        Session::flash('success' , 'Pic added successfully');
-        return redirect()->route('gallery.show', ['id' => $r->club_id]);
+            Session::flash('success', 'Pic added successfully');
+            return redirect()->route('gallery.show', ['id' => $r->club_id]);
 
     }
 

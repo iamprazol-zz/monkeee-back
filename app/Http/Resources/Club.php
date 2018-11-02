@@ -33,9 +33,21 @@ class Club extends JsonResource
             'open' => $this->open . ' from ' . Carbon::parse($this->opening)->format('g:i A') . ' to ' . Carbon::parse($this->opening)->format('g:i A'),
             'facebook' => $this->facebook,
             'instagram' => $this->instagram,
-            'gallery' => $this->club_gallery,
+            'gallery' => $this->gallery()
 
         ];
+    }
+
+    public function gallery(){
+
+        $gallery = Club_gallery::where('club_id', $this->id)->get();
+
+        foreach ($gallery as $gal){
+
+            return explode(",",$gal->picture);
+
+        }
+
     }
 
 }

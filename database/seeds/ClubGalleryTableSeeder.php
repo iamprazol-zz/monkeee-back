@@ -15,22 +15,19 @@ class ClubGalleryTableSeeder extends Seeder
         $k1 = [
             'id' => 1,
             'club_id' => 1,
-            'picture' => '/images/g1.jpg' ,
-            'description' => 'Small Picure description 1'
+            'picture' => 'g1.jpg,club.jpeg' ,
         ];
 
         $k2 = [
             'id' => 2,
-            'club_id' => 1,
-            'picture' => '/images/g2.jpeg' ,
-            'description' => 'Small Picure description 2'
+            'club_id' => 2,
+            'picture' => 'g2.jpeg,club1.jpeg' ,
         ];
 
         $k3 = [
             'id' => 3,
-            'club_id' => 1,
-            'picture' => '/images/g3.jpg' ,
-            'description' => 'Small Picure description 3'
+            'club_id' => 3,
+            'picture' => 'g3.jpg,club2.jpeg' ,
         ];
 
         Club_gallery::create($k1);
