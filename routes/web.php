@@ -15,9 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home' , [
-    'uses' => 'EventController@home' ,
-    'as' => 'event.home'
+Route::get('/' , [
+    'uses' => 'EventController@show' ,
+    'as' => 'event.show'
 ]);
 
 Route::get('/suburb' , [

@@ -20,7 +20,7 @@ class Club extends JsonResource
 
         return [
             'id' => $this->id,
-            'suburb name' => $this->suburb->name,
+            'suburb_name' => $this->suburb->name,
             'name' => $this->name,
             'address' => $this->address,
             'description' => $this->description,
@@ -33,9 +33,8 @@ class Club extends JsonResource
             'open' => $this->open . ' from ' . Carbon::parse($this->opening)->format('g:i A') . ' to ' . Carbon::parse($this->opening)->format('g:i A'),
             'facebook' => $this->facebook,
             'instagram' => $this->instagram,
-            'gallery' => [
-                'picture' => $this->club_gallery,
-                ]
+            'gallery' => $this->club_gallery,
+
         ];
     }
 

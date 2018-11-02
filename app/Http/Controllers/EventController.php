@@ -169,12 +169,6 @@ class EventController extends Controller
         }
     }
 
-    public function home(){
-
-        return view('home');
-
-    }
-
     public function show(){
 
         $today = Carbon::today();
