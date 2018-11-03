@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\Event as EventResource;
 use Illuminate\Http\Request;
 use App\Club;
 use App\Suburb;
@@ -11,6 +10,8 @@ use App\Club_gallery;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
 use App\Http\Resources\Club as ClubResource;
+use App\Http\Resources\Event as EventResource;
+use App\Http\Resources\ClubGallery as ClubGalleryResource;
 use phpDocumentor\Reflection\Types\This;
 use Intervention\Image\Facades\Image;
 
@@ -48,9 +49,12 @@ class ClubController extends Controller
 
         $e = $this->eventByClub($id);
 
+        $g = $this->galleryByClub($id);
+
         $data = [
             ['club' => $c ,
-                'events' => $e
+                'events' => $e ,
+                'gallery' => $g
             ]
         ];
 
@@ -109,6 +113,22 @@ class ClubController extends Controller
         }
     }
 
+    public function galleryByClub($id){
+
+        $gallery = Club_gallery::where('club_id' , $id)->get();
+
+        $num = $gallery->count();
+
+        $data = ClubGalleryResource::collection($gallery);
+        if ($num > 0) {
+
+            return $this->responser($data , 200 , 'All pictures clubs are listed');
+
+        } else {
+
+            return $this->responser($data,404,'Pictures of the Club not found');
+        }
+    }
 
     public function show(){
 
