@@ -140,3 +140,39 @@ Route::get('gallery/delete/{id}', [
     'uses' => 'ClubGalleryController@destroy',
     'as' => 'gallery.delete'
 ]);
+
+
+Route::get('djs', [
+    'uses' => 'DjController@show',
+    'as' => 'dj.show'
+]);
+
+Route::get('dj/search', [
+    'uses' => 'DjController@search',
+    'as' => 'dj.search'
+]);
+
+Route::get('dj/create', [
+    'uses' => 'DjController@create',
+    'as' => 'dj.create'
+]);
+
+Route::post('dj/store' , [
+    'uses' => 'DjController@store' ,
+    'as' => 'dj.store'
+]);
+
+Route::get('dj/delete/{id}', [
+    'uses' => 'DjController@destroy',
+    'as' => 'dj.delete'
+]);
+
+Route::get('dj/shown/{id}', [
+    'uses' => 'DjController@shown',
+    'as' => 'dj.shown'
+]);
+
+Route::get('dj/unshown/{id}', [
+    'uses' => 'DjController@unshown',
+    'as' => 'dj.unshown'
+]);

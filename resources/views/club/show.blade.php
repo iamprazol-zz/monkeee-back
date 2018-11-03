@@ -127,8 +127,7 @@
                                 <td>{{ $club->facebook }}</td>
                                 <td>{{ $club->instagram }}</td>
                                 <td>
-                                    <a href="{{ route('club.delete', ['id' => $club->id]) }}" class="btn btn-sm btn-danger btn-pill ">Delete</a>&nbsp;&nbsp;
-                                    <hr>
+                                    <a href="{{ route('club.delete', ['id' => $club->id]) }}" class="btn btn-sm btn-danger btn-pill ">Delete</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     @if($club->is_shown($club->id))
                                         <a href="{{ route('club.unshown' , ['id' => $club->id])  }}" class="btn btn-danger btn-sm btn-pill">UnShow</a>
                                     @else

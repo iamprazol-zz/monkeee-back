@@ -46,3 +46,9 @@ Route::get('clubbysuburb/{id}' ,'ClubController@showBySuburb');
 
 // List all the pictures in the gallery
 Route::get('gallerybyclub/{id}' , 'ClubGalleryController@showByClub');
+
+// List all the djs
+Route::get('dj' , 'DjController@index');
+
+// List the specified dj's details
+Route::get('djbyid/{id}' , 'DjController@showById');

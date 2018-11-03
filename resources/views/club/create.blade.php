@@ -42,13 +42,13 @@
                         <div class="form-group row">
                             <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
 
-                            <div class="col-sm-7">
-                                <input type="text" id="address" class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" name="address" placeholder="Enter club address" value="{{ old('address') }}" required>
+                            <div class="col-sm-6">
+                                <input id="address" type="text" class="form-control {{ $errors->has('address') ? ' is-invalid' : '' }}" name="address" placeholder="Enter the club's address" value="{{ old('resident') }}" required autofocus>
 
                                 @if ($errors->has('address'))
                                     <span class="invalid-feedback">
                                                             <strong>{{ $errors->first('address') }}</strong>
-                                    </span>
+                                                        </span>
                                 @endif
                             </div>
                         </div>

@@ -25,6 +25,7 @@ class CreateDjsTable extends Migration
             $table->string('facebook');
             $table->string('instagram');
             $table->boolean('show')->default(true);
+            $table->string('picture');
             $table->timestamps();
         });
     }
