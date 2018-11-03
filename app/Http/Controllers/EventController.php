@@ -180,7 +180,7 @@ class EventController extends Controller
 
         $today = Carbon::today();
 
-        $event = Event::orderBy('id', 'asc')->where('date', '>=', $today)->get();
+        $event = Event::where('date', '>=', $today)->orderBy('date', 'asc')->orderBy('opening', 'asc')->get();
 
         $club = Club::all();
 
@@ -195,7 +195,7 @@ class EventController extends Controller
 
         $id = $r->club_id;
 
-        $event = Event::orderBy('id', 'asc')->where('club_id', $id)->where('date', '>=', $today)->get();
+        $event = Event::orderBy('id', 'asc')->where('club_id', $id)->where('date', '>=', $today)->orderBy('date', 'asc')->orderBy('opening', 'asc')->get();
 
         $club = Club::all();
 
