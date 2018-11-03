@@ -32,7 +32,17 @@
 
             <hr>
 
-            <button class="btn btn-sm btn-outline-primary "> Total Pictures: &nbsp;&nbsp;<span class="badge-pill badge-outline-dark">{{ $galleries->count() }}</span></button>&nbsp;&nbsp;
+            <button class="btn btn-sm btn-outline-primary "> Total Pictures: &nbsp;&nbsp;<span class="badge-pill badge-outline-dark"><?php foreach($galleries as $gallery){
+                     $array = explode("," , $gallery->picture);
+
+                     $num = sizeof($array);
+
+                     echo $num;
+
+                    }
+                    ?>
+
+                    </span></button>&nbsp;&nbsp;
             <a href="{{ route('gallery.create') }}" class="btn btn-sm btn-primary btn-pill ">Add Gallery</a>
 
             <div class="card-body">
