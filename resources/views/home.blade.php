@@ -18,14 +18,11 @@
 
 <nav class="navbar navbar-expand-lg navbar-light  bg-primary mb-4">
 
-    <a href="{{ url('/') }}"> <img class="image-resize" src="/images/blood-drop-icon.png" alt="blood-drop-icon"/></a>
-    <a class="navbar-brand" href="{{ url('/events') }}">
-        Monkeee
-    </a>
+    <a href="{{ url('/events') }}"> <img class="image-resize" src="/images/logo.png" alt="monkeee_icon" style="width: 45px; height: 45px;"/></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-
+&nbsp;&nbsp;&nbsp;
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <!-- Left Side Of Navbar -->
         <ul class="navbar-nav mr-auto">

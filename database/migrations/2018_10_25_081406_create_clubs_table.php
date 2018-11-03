@@ -26,8 +26,8 @@ class CreateClubsTable extends Migration
             $table->string('opening_time');
             $table->string('closing_time');
             $table->string('open');
-            $table->string('facebook');
-            $table->string('instagram');
+            $table->string('facebook')->nullable();
+            $table->string('instagram')->nullable();
             $table->boolean('show')->default(true);
             $table->timestamps();
         });

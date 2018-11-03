@@ -15,7 +15,7 @@
                         <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                         <div class="col-md-6">
-                            <input type="text" name="name"  class="form-control d-flex ml-auto mr-auto {{ $errors->has('name') ? ' is-invalid' : '' }}" id="name">
+                            <input type="text" name="name"  class="form-control d-flex ml-auto mr-auto {{ $errors->has('name') ? ' is-invalid' : '' }}" id="name" placeholder="Enter the Suburb name" value="{{ old('name') }}"/>
 
                             @if ($errors->has('name'))
                                 <span class="invalid-feedback">
@@ -30,7 +30,7 @@
                         <label for="postal" class="col-md-4 col-form-label text-md-right">{{ __('Postal code') }}</label>
 
                         <div class="col-sm-7">
-                            <input type="text" id="postal" class="form-control{{ $errors->has('postal') ? ' is-invalid' : '' }}" name="postal">
+                            <input type="text" id="postal" class="form-control{{ $errors->has('postal') ? ' is-invalid' : '' }}" name="postal" placeholder="Enter the Suburb postal code" value="{{ old('postal') }}"/>
 
                             @if ($errors->has('postal'))
                                 <span class="invalid-feedback">
