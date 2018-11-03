@@ -22,7 +22,7 @@ class CreateEventsTable extends Migration
             $table->time('closing');
             $table->string('picture');
             $table->string('name');
-            $table->string('description');
+            $table->text('description');
             $table->integer('price')->unsigned();
             $table->string('ticket_link')->nullable();
             $table->string('facebook');

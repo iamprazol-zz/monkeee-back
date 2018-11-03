@@ -18,7 +18,7 @@ class CreateClubsTable extends Migration
             $table->integer('suburb_id')->unsigned();
             $table->string('name');
             $table->string('address');
-            $table->string('description');
+            $table->text('description');
             $table->string('cover_photo');
             $table->bigInteger('order')->unique();
             $table->string('phone');
