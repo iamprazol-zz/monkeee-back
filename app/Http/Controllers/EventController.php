@@ -20,7 +20,7 @@ class EventController extends Controller
 
         $today = Carbon::today();
 
-        $events = Event::where('date', '>=', $today)->get();
+        $events = Event::where('date', '>=', $today)->orderBy('date','asc')->get();
 
         $num = $events->count();
 
@@ -76,6 +76,8 @@ class EventController extends Controller
 
         $live = Event::where('date', $today)->where('opening', '<', $time)
             ->where('closing', '>', $time)
+            ->orderBy('date','asc')
+            ->orderBy('opening', 'asc')
             ->get();
 
         $num = $live->count();
@@ -100,9 +102,14 @@ class EventController extends Controller
 
         $time = Carbon::now()->format('H:i:s');
 
-        $nolive = Event::where('date', $today)->where('opening', '>', $time)->get();
+        $nolive = Event::where('date', $today)
+            ->where('opening', '>', $time)
+            ->get();
 
-        $events = Event::where('date', '>', $today)->get();
+        $events = Event::where('date', '>', $today)
+            ->orderBy('date','asc')
+            ->orderBy('opening', 'asc')
+            ->get();
 
         $kk = $nolive->merge($events);
 
@@ -248,6 +255,7 @@ class EventController extends Controller
             'facebook' => $r->facebook,
             'instagram' => $r->instagram,
             'picture' => $filename,
+
         ]);
 
         Session::flash('success' , 'Event added successfully');

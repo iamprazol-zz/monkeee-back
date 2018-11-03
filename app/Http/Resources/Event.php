@@ -31,6 +31,7 @@ class Event extends JsonResource
             'ticket_link' => $this->ticket_link,
             'facebook' => $this->facebook,
             'instagram' => $this->instagram,
+            'address' => $this->club->address,
             'expanded' => false
         ];
     }

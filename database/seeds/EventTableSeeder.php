@@ -14,10 +14,10 @@ class EventTableSeeder extends Seeder
     public function run()
     {
         $e1 = [
-            'id' => 3,
+            'id' => 1,
             'club_id' => 1,
             'category_id' => 2 ,
-            'date' => Carbon::createFromDate(2018, 10,30),
+            'date' => Carbon::createFromDate(2018, 11,03),
             'opening' => Carbon::parse('1 p.m'),
             'closing' => Carbon::parse('11 p.m') ,
             'picture' => 'club.jpeg' ,
@@ -33,9 +33,9 @@ class EventTableSeeder extends Seeder
             'id' => 2,
             'club_id' => 2,
             'category_id' => 1 ,
-            'date' => Carbon::createFromDate(2018,10,30),
-            'opening' => Carbon::parse('12 p.m'),
-            'closing' => Carbon::parse('6 a.m') ,
+            'date' => Carbon::createFromDate(2018,11,03),
+            'opening' => Carbon::parse('2 p.m'),
+            'closing' => Carbon::parse('11 p.m') ,
             'picture' => 'club.jpeg' ,
             'name' => ' Name 2 event',
             'description' => 'Descripètion event club; lorem ipsum ',
@@ -46,12 +46,12 @@ class EventTableSeeder extends Seeder
         ];
 
         $e3 = [
-            'id' => 1,
-            'club_id' => 2,
+            'id' => 3,
+            'club_id' => 3,
             'category_id' => 2 ,
-            'date' => Carbon::createFromDate(2018,11-01),
-            'opening' => Carbon::parse('2 a.m'),
-            'closing' => Carbon::parse('7 a.m') ,
+            'date' => Carbon::createFromDate(2018,11,04),
+            'opening' => Carbon::parse('10 pm'),
+            'closing' => Carbon::parse('4 a.m') ,
             'picture' => 'club.jpeg' ,
             'name' => ' mi vida loca ',
             'description' => 'beautifull event of techno music tututut ',
@@ -65,9 +65,9 @@ class EventTableSeeder extends Seeder
             'id' => 4,
             'club_id' => 2,
             'category_id' => 1 ,
-            'date' => Carbon::createFromDate(2018,11,19),
-            'opening' => Carbon::parse('10 p.m'),
-            'closing' => Carbon::parse('4 a.m') ,
+            'date' => Carbon::createFromDate(2018,11,04),
+            'opening' => Carbon::parse('2 a.m'),
+            'closing' => Carbon::parse('7 a.m') ,
             'picture' => 'club.jpeg' ,
             'name' => ' mi vida loca ',
             'description' => 'beautifull event of techno music tututut ',
@@ -78,10 +78,10 @@ class EventTableSeeder extends Seeder
         ];
 
         $e5 = [
-            'id' => 6,
-            'club_id' => 2,
+            'id' => 5,
+            'club_id' => 3,
             'category_id' => 3 ,
-            'date' => Carbon::createFromDate(2018,11,02),
+            'date' => Carbon::createFromDate(2018,11,15),
             'opening' => Carbon::parse('10 p.m'),
             'closing' => Carbon::parse('4 a.m') ,
             'picture' => 'club.jpeg' ,
@@ -94,10 +94,10 @@ class EventTableSeeder extends Seeder
         ];
 
         $e6 = [
-            'id' => 5,
+            'id' => 6,
             'club_id' => 1,
             'category_id' => 1 ,
-            'date' => Carbon::createFromDate(2018,11,10),
+            'date' => Carbon::createFromDate(2018,11,07),
             'opening' => Carbon::parse('10 p.m'),
             'closing' => Carbon::parse('4 a.m') ,
             'picture' => 'club.jpeg' ,
