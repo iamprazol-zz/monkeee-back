@@ -11,12 +11,16 @@
 |
 */
 
+Auth::routes();
+
 Route::get('/', function () {
-    return view('auth.login');
+    return view('home');
 });
 
+
 Route::group(['middleware' => 'auth'] , function () {
-    Route::get('/suburb', [
+
+    Route::get('suburb', [
         'uses' => 'SuburbController@index',
         'as' => 'suburb.index'
     ]);
@@ -175,6 +179,3 @@ Route::group(['middleware' => 'auth'] , function () {
 
 });
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

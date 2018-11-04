@@ -18,7 +18,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light  bg-primary mb-4">
 
-    <a href="{{ url('/events') }}"> <img class="image-resize" src="/images/logo.png" alt="monkeee_icon" style="width: 45px; height: 45px;"/></a>
+    <a href="{{ url('/') }}"> <img class="image-resize" src="/images/logo.png" alt="monkeee_icon" style="width: 45px; height: 45px;"/></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -36,10 +36,7 @@
 
         <ul class="navbar-nav ml-auto">
             <!-- Authentication Links -->
-            @guest
-                <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
-                <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
-            @else
+            @auth
                 <li class="nav-item dropdown">
 
                     <a id="navbarDropdownMenuLink-5" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -62,36 +59,16 @@
 
 
                 </li>
-            @endguest
+
+            @else
+                <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
+                <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
+            @endauth
         </ul>
     </div>
 </nav>
 
-
-@if(Session::has('success'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-        <strong>Success:</strong>{{ Session::get('success') }}
-    </div>
-@endif
-
-@if(Session::has('failure'))
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-        <strong>Oh!! </strong>{{ Session::get('failure') }}
-    </div>
-@endif
-
-
-    @yield('content')
-
-
-<br>
-
+<img src="/images/logo.png" style="margin-left: 200px; width:65%; height: 85%;">
 
 
 
