@@ -51,7 +51,7 @@ class ClubGalleryController extends Controller
         $r = request();
 
         $this->validate($r ,[
-            'pic' => 'required|max:2048'
+            'pic.*' =>'required|max:15360'
         ]);
 
         foreach ($r->file('pic') as $file) {
@@ -64,7 +64,7 @@ class ClubGalleryController extends Controller
 
         $d = sizeof($names);
 
-        if ($d <= 5) {
+        if ($d <= 3) {
 
             $fil = implode(",", $names);
 
@@ -92,7 +92,7 @@ class ClubGalleryController extends Controller
 
         } else {
 
-            Session::flash('failure', 'You can add only 5 images in one time');
+            Session::flash('failure', 'You can add only 3 images in one time');
             return redirect()->route('gallery.show', ['id' => $r->club_id]);
 
         }

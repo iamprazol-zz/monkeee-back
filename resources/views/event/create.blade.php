@@ -128,8 +128,12 @@
                         <label for="pic" class="col-md-4 col-form-label text-md-right" >{{ __('Upload a pic') }}</label>
 
                         <div class="col-md-6">
-                            <input type="file" id="pic" name="pic" class="form-control" placeholder="Choose a event pic to upload" value="{{ old('pic') }}" required/>
-
+                            <input type="file" id="pic" name="pic" class="form-control{{ $errors->has('pic') ? ' is-invalid' : '' }}" placeholder="Choose a event pic to upload" value="{{ old('pic') }}" required/>
+                            @if ($errors->has('pic'))
+                                <span class="invalid-feedback">
+                                                            <strong>{{ $errors->first('pic', 'Image size must be less than 15 MB')}}</strong>
+                                                        </span>
+                            @endif
                         </div>
                     </div>
 
