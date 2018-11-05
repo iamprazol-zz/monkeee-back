@@ -170,7 +170,8 @@ class ClubController extends Controller
             'order' => 'required|unique:clubs',
             'phone' => 'required|numeric|digits:10',
             'email' => 'required|string|email|max:255|unique:users',
-            ]);
+            'pic' => 'required|max:15360'
+        ]);
 
 
         $file = $r->file('pic');

@@ -43,7 +43,7 @@
                             <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
 
                             <div class="col-sm-6">
-                                <input id="address" type="text" class="form-control {{ $errors->has('address') ? ' is-invalid' : '' }}" name="address" placeholder="Enter the club's address" value="{{ old('resident') }}" required autofocus>
+                                <input id="address" type="text" class="form-control {{ $errors->has('address') ? ' is-invalid' : '' }}" name="address" placeholder="Enter the club's address" value="{{ old('address') }}" required autofocus>
 
                                 @if ($errors->has('address'))
                                     <span class="invalid-feedback">
@@ -151,11 +151,15 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="pic" class="col-md-4 col-form-label text-md-right">{{ __('Upload a cover pic') }}</label>
+                            <label for="pic" class="col-md-4 col-form-label text-md-right" >{{ __('Upload a cover pic') }}</label>
 
                             <div class="col-md-6">
-                                <input type="file" id="pic" name="pic" class="form-control" required/>
-
+                                <input type="file" id="pic" name="pic" class="form-control{{ $errors->has('pic') ? ' is-invalid' : '' }}" placeholder="Choose a event pic to upload" value="{{ old('pic') }}" required/>
+                                @if ($errors->has('pic'))
+                                    <span class="invalid-feedback">
+                                                            <strong>{{ $errors->first('pic', 'Image size must be less than 15 MB')}}</strong>
+                                                        </span>
+                                @endif
                             </div>
                         </div>
 
