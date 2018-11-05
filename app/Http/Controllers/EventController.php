@@ -76,7 +76,6 @@ class EventController extends Controller
 
         $live = Event::where('date', $today)->where('opening', '<', $time)
             ->where('closing', '>', $time)
-            ->orderBy('date','asc')
             ->orderBy('opening', 'asc')
             ->get();
 
