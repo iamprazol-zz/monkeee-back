@@ -76,8 +76,8 @@ Route::group(['middleware' => 'auth'] , function () {
     ]);
 
     Route::get('/category', [
-        'uses' => 'CategoryController@index',
-        'as' => 'category.index'
+        'uses' => 'CategoryController@show',
+        'as' => 'category.show'
     ]);
 
     Route::get('category/create', [

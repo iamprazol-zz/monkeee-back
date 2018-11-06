@@ -32,6 +32,9 @@ Route::get('eventbyclick/{id}', 'EventController@showById');
 // List all the events in a club
 Route::get('eventbyclub/{id}', 'EventController@showByClub');
 
+//List all the Category
+Route::get('category', 'CategoryController@index');
+
 // List all the events in a category
 Route::get('eventbycategory/{id}', 'EventController@showByCategory');
 

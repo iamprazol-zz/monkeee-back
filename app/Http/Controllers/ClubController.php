@@ -100,7 +100,6 @@ class ClubController extends Controller
 
         $num = $event->count();
 
-
         $data = EventResource::collection($event);
 
         if ($num > 0) {

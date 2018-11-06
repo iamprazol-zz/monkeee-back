@@ -163,7 +163,33 @@ class EventController extends Controller
 
         $num = $event->count();
 
-        $data = EventResource::collection($event);
+        $time = Carbon::now()->format('H:i:s');
+
+        $live = Event::where('category_id', $id)
+            ->where('date', $today)
+            ->where('opening', '<', $time)
+            ->where('closing', '>', $time)
+            ->orderBy('opening', 'asc')
+            ->get();
+
+        $nolive = Event::where('date', $today)
+            ->where('category_id', $id)
+            ->where('opening', '>', $time)
+            ->get();
+
+        $events = Event::where('date', '>', $today)
+            ->where('category_id', $id)
+            ->orderBy('date','asc')
+            ->orderBy('opening', 'asc')
+            ->get();
+
+        $kk = $nolive->merge($events);
+
+
+        $data = [
+            'live' => $live,
+            'upcoming' => $kk,
+        ];
 
         if ($num > 0) {
 
