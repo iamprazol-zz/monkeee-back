@@ -104,7 +104,7 @@ class CategoryController extends Controller
         ]);
 
         Session::flash('success' , 'Category added successfully');
-        return redirect()->route('category.index');
+        return redirect()->route('category.show');
 
     }
 
@@ -116,7 +116,7 @@ class CategoryController extends Controller
 
         Session::flash('success', 'Category Has Been Deleted Successfully');
 
-        return redirect()->route('category.index');
+        return redirect()->route('category.show');
 
     }
 

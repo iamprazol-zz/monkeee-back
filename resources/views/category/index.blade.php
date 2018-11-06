@@ -12,7 +12,7 @@
             <div class="card-body">
 
 
-                <form action="{{ route('category.index') }}" method="get">
+                <form action="{{ route('category.show') }}" method="get">
                     @csrf
                     <div class="row">
                         <div class="col-md-6 col-sm-10 justify-content-center">
