@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Event;
+use App\dj;
 use Carbon\Carbon;
 use Session;
 use App\Http\Resources\Event as EventResource;
@@ -112,9 +113,17 @@ class CategoryController extends Controller
 
         $category = Category::where('id', $id);
 
+        $events = Event::where('category_id', $id);
+
+        $djs = dj::where('category_id', $id);
+
         $category->delete();
 
-        Session::flash('success', 'Category Has Been Deleted Successfully');
+        $events->delete();
+
+        $djs->delete();
+
+        Session::flash('success', 'Category and its associated djs and events has been deleted successfully');
 
         return redirect()->route('category.show');
 

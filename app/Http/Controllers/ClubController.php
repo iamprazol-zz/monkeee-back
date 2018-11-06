@@ -230,9 +230,17 @@ class ClubController extends Controller
 
         $club = Club::where('id', $id);
 
+        $event = Event::where('club_id', $id);
+
+        $gallery = Club_gallery::where('club_id', $id);
+
         $club->delete();
 
-        Session::flash('success', 'Club Has Been Deleted Successfully');
+        $event->delete();
+
+        $gallery->delete();
+
+        Session::flash('success', 'Club and its associated events and gallery has been deleted successfully');
 
         return redirect()->route('club.show');
 

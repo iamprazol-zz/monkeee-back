@@ -45,9 +45,6 @@
                             Postal code
                         </th>
 
-                        <th>
-                            Option
-                        </th>
 
                         </thead>
 
@@ -57,7 +54,6 @@
 
                                 <td>{{ $suburb->name }}</td>
                                 <td>{{ $suburb->postalcode }}</td>
-                                <td><a href="{{ route('suburb.delete', ['id' => $suburb->id]) }}" class="btn btn-sm btn-danger btn-pill ">Delete</a></td>
 
                             </tr>
                         @endforeach

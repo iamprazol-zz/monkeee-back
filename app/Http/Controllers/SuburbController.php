@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Suburb;
+use App\Club;
+use App\Club_gallery;
+use App\Event;
 use Illuminate\Support\Facades\Session;
 
 class SuburbController extends Controller
@@ -38,19 +41,6 @@ class SuburbController extends Controller
         return redirect()->route('suburb.index');
 
     }
-
-    public function destroy($id){
-
-        $suburb = Suburb::where('id', $id);
-
-        $suburb->delete();
-
-        Session::flash('success', 'Suburb Has Been Deleted Successfully');
-
-        return redirect()->route('suburb.index');
-
-    }
-
 
 }
 ?>
