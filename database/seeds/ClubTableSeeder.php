@@ -34,7 +34,7 @@ class ClubTableSeeder extends Seeder
             'id' => 2,
             'name' => 'Club Margot',
             'address' => 'Nortond Driver 27',
-            'suburb_id' => 2,
+            'suburb_id' => 3,
             'description' => 'We are techno  club. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio',
             'cover_photo' => 'club2.jpeg',
             'order' => 4562,
