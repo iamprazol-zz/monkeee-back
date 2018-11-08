@@ -74,14 +74,19 @@ class EventController extends Controller
 
         $today = Carbon::today();
 
-        $live = Event::where('date', $today)->where('opening', '<', $time)
-            ->where('closing', '>', $time)
+        $liveo = Event::where('date', $today)->where('opening', '<', $time)->where('closing','>' ,$time)
             ->orderBy('opening', 'asc')
             ->get();
 
-        $num = $live->count();
+        $livec = Event::where('date', $today)->where('opening', '<', $time)->where('closing' ,'<', $this->closing('closing'))
+            ->orderBy('opening', 'asc')
+            ->get();
 
-        $data = EventResource::collection($live);
+        $kk = $liveo->merge($livec)->sortBy('opening');
+
+        $num = $kk->count();
+
+        $data = EventResource::collection($kk);
 
         if ($num > 0) {
 
@@ -110,7 +115,7 @@ class EventController extends Controller
             ->orderBy('opening', 'asc')
             ->get();
 
-        $kk = $nolive->merge($events);
+        $kk = $nolive->merge($events)->sortby('opening');
 
         $num = $kk->count();
 
@@ -165,12 +170,15 @@ class EventController extends Controller
 
         $time = Carbon::now()->format('H:i:s');
 
-        $live = Event::where('category_id', $id)
-            ->where('date', $today)
-            ->where('opening', '<', $time)
-            ->where('closing', '>', $time)
+        $liveo = Event::where('date', $today)->where('opening', '<', $time)->where('closing','>' ,$time)
             ->orderBy('opening', 'asc')
             ->get();
+
+        $livec = Event::where('date', $today)->where('opening', '<', $time)->where('closing' ,'<', $this->closing('closing'))
+            ->orderBy('opening', 'asc')
+            ->get();
+
+        $ll = $liveo->merge($livec)->sortBy('opening');
 
         $nolive = Event::where('date', $today)
             ->where('category_id', $id)
@@ -183,11 +191,11 @@ class EventController extends Controller
             ->orderBy('opening', 'asc')
             ->get();
 
-        $kk = $nolive->merge($events);
+        $kk = $nolive->merge($events)->sortBy('opening');
 
 
         $data = [
-            'live' => $live,
+            'live' => $ll,
             'upcoming' => $kk,
         ];
 
@@ -287,6 +295,32 @@ class EventController extends Controller
         Session::flash('success' , 'Event added successfully');
         return redirect()->route('event.show');
 
+    }
+
+    public function closing($c)
+    {
+
+        $time = Carbon::now()->format('H:i:s');
+
+        $today = Carbon::today();
+
+        $live = Event::where('date', $today)->where('opening', '<', $time)->get();
+
+        foreach ($live as $l) {
+
+            $c = $l->closing;
+
+            if ($c > $time) {
+
+                return $c;
+
+            } else {
+
+                $k = Carbon::parse($c)->addHours($c)->format('H:i:s');
+
+                return $k;
+            }
+        }
     }
 }
 
