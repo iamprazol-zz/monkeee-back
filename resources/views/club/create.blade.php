@@ -82,13 +82,7 @@
                             <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Phone') }}</label>
 
                             <div class="col-sm-7">
-                                <input type="tel" id="phone" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" placeholder="Enter the club's contact number " value="{{ old('phone') }}" required>
-
-                                @if ($errors->has('phone'))
-                                    <span class="invalid-feedback">
-                                                            <strong>{{ $errors->first('phone') }}</strong>
-                                                        </span>
-                                @endif
+                                <input type="tel" id="phone" class="form-control" name="phone" placeholder="Enter the club's contact number " value="{{ old('phone') }}">
                             </div>
                         </div>
 
@@ -97,13 +91,8 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Email') }}</label>
 
                             <div class="col-sm-7">
-                                <input type="text" id="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" placeholder="eg. club@gmail.com" value="{{ old('email') }}" required>
+                                <input type="text" id="email" class="form-control" name="email" placeholder="eg. club@gmail.com" value="{{ old('email') }}">
 
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback">
-                                                            <strong>{{ $errors->first('email') }}</strong>
-                                                        </span>
-                                @endif
                             </div>
                         </div>
 

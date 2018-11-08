@@ -167,8 +167,6 @@ class ClubController extends Controller
             'name' => 'required|string|min:2|max:255',
             'address' => 'required|string|min:2|max:255',
             'order' => 'required|unique:clubs',
-            'phone' => 'required|numeric|digits:10',
-            'email' => 'required|string|email|max:255|unique:users',
             'pic' => 'required|max:15360'
         ]);
 

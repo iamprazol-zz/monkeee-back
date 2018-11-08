@@ -21,8 +21,8 @@ class CreateClubsTable extends Migration
             $table->text('description');
             $table->string('cover_photo');
             $table->bigInteger('order')->unique();
-            $table->string('phone');
-            $table->string('email');
+            $table->string('phone')->nullable();
+            $table->string('email')->nullable();
             $table->string('opening_time');
             $table->string('closing_time');
             $table->string('open');
