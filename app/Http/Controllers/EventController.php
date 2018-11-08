@@ -82,6 +82,18 @@ class EventController extends Controller
             ->orderBy('opening', 'asc')
             ->get();
 
+        $gone = Event::where('date', $today)->where('opening', '<', $time)->where('closing' ,'>', $this->closing('closing'))
+            ->orderBy('opening', 'asc')
+            ->get();
+
+        foreach ($gone as $g){
+
+            $g->islive = 0;
+
+            $g->save();
+
+        }
+
         $kk = $liveo->merge($livec)->sortBy('opening');
 
         foreach ($kk as $k){
@@ -171,29 +183,46 @@ class EventController extends Controller
 
         $today = Carbon::today();
 
-        $event = Event::where('category_id', $id)->where('date', '>=', $today)
-            ->get();
-
-        $num = $event->count();
-
         $time = Carbon::now()->format('H:i:s');
 
-        $liveo = Event::where('date', $today)->where('opening', '<', $time)->where('closing','>' ,$time)
+        $liveo = Event::where('category_id', $id)->where('date', $today)->where('opening', '<', $time)->where('closing','>' ,$time)
             ->orderBy('opening', 'asc')
             ->get();
 
-        $livec = Event::where('date', $today)->where('opening', '<', $time)->where('closing' ,'<', $this->closing('closing'))
+        $livec = Event::where('category_id', $id)->where('date', $today)->where('opening', '<', $time)->where('closing' ,'<', $this->closing('closing'))
             ->orderBy('opening', 'asc')
             ->get();
+
+        $gone = Event::where('category_id', $id)->where('date', $today)->where('opening', '<', $time)->where('closing' ,'>', $this->closing('closing'))
+            ->orderBy('opening', 'asc')
+            ->get();
+
+        foreach ($gone as $g){
+
+            $g->islive = 0;
+
+            $g->save();
+
+        }
 
         $ll = $liveo->merge($livec)->sortBy('opening');
 
-        $nolive = Event::where('date', $today)
+        foreach ($ll as $k){
+
+            $k->islive = 1;
+
+            $k ->save();
+
+        }
+
+        $num = $ll->count();
+
+        $nolive = Event::where('category_id', $id)->where('date', $today)
             ->where('category_id', $id)
             ->where('opening', '>', $time)
             ->get();
 
-        $events = Event::where('date', '>', $today)
+        $events = Event::where('category_id', $id)->where('date', '>', $today)
             ->where('category_id', $id)
             ->orderBy('date','asc')
             ->orderBy('opening', 'asc')
