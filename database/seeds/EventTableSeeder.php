@@ -99,7 +99,7 @@ class EventTableSeeder extends Seeder
             'category_id' => 1 ,
             'date' => Carbon::createFromDate(2018,11,8),
             'opening' => Carbon::parse('1 p.m'),
-            'closing' => Carbon::parse('7 p.m') ,
+            'closing' => Carbon::parse('8 p.m') ,
             'picture' => 'g3.jpg' ,
             'name' => ' mi vida loca ',
             'description' => 'beautifull event of techno music tututut At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio',

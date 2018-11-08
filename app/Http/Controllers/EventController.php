@@ -84,6 +84,14 @@ class EventController extends Controller
 
         $kk = $liveo->merge($livec)->sortBy('opening');
 
+        foreach ($kk as $k){
+
+            $k->islive = 1;
+
+            $k ->save();
+
+        }
+
         $num = $kk->count();
 
         $data = EventResource::collection($kk);

@@ -22,7 +22,7 @@ class Event extends JsonResource
             'category' => $this->category->name,
             'club' => $this->club->name,
             'suburb' => $this->club->suburb->name,
-            'date' => $this->date,
+            'date' => Carbon::parse($this->date)->format('d/m/Y'),
             'opening' =>  Carbon::parse($this->opening)->format('g:i A'),
             'closing' =>  Carbon::parse($this->closing)->format('g:i A'),
             'picture' => $this->picture,
@@ -33,7 +33,8 @@ class Event extends JsonResource
             'facebook' => $this->facebook,
             'instagram' => $this->instagram,
             'address' => $this->club->address,
-            'expanded' => false
+            'expanded' => false,
+            'islive' => $this->islive
         ];
     }
 
