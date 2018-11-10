@@ -20,7 +20,7 @@ class EventController extends Controller
 
         $today = Carbon::today();
 
-        $events = Event::where('date', '>=', $today)->orderBy('date','asc')->get();
+        $events = Event::where('date', '>=', $today)->orderBy('date', 'asc')->get();
 
         $num = $events->count();
 
@@ -31,20 +31,19 @@ class EventController extends Controller
         $data = [
             'live' => $l,
             'upcoming' => $u,
-            ];
+        ];
 
         if ($num > 0) {
 
-            return $this->responser($data , 200 , 'All Events in this week are listed');
+            return $this->responser($data, 200, 'All Events are listed');
 
         } else {
 
-            return $this->responser($data,404,'Events in this week not found');
+            return $this->responser($data, 404, 'Events not found');
         }
 
 
     }
-
 
 
     public function showById($id)
@@ -58,11 +57,11 @@ class EventController extends Controller
 
         if ($num > 0) {
 
-            return $this->responser($data , 200 , 'The event with specific id is shown');
+            return $this->responser($data, 200, 'The event with specific id is shown');
 
         } else {
 
-            return $this->responser($data,404,'The event with specific id is no found');
+            return $this->responser($data, 404, 'The event with specific id is no found');
         }
     }
 
@@ -74,11 +73,11 @@ class EventController extends Controller
 
         $today = Carbon::today();
 
-        $liveo = Event::where('date', $today)->where('opening', '<', $time)->where('closing','>' ,$time)
+        $liveo = Event::where('date', $today)->where('opening', '<', $time)->where('closing', '>', $time)
             ->orderBy('opening', 'asc')
             ->get();
 
-        $livec = Event::where('date', $today)->where('opening', '<', $time)->where('closing' ,'<', $this->closing('closing'))
+        $livec = Event::where('date', $today)->where('opening', '<', $time)->where('closing', '<', $this->closing('closing'))
             ->orderBy('opening', 'asc')
             ->get();
 
@@ -110,11 +109,11 @@ class EventController extends Controller
 
         if ($num > 0) {
 
-            return $this->responser($data , 200 , 'Live Events shown successfully');
+            return $this->responser($data, 200, 'Live Events shown successfully');
 
         } else {
 
-            return $this->responser($data,404,'Sorry no live event');
+            return $this->responser($data, 404, 'Sorry no live event');
         }
     }
 
@@ -131,7 +130,7 @@ class EventController extends Controller
             ->get();
 
         $events = Event::where('date', '>', $today)
-            ->orderBy('date','asc')
+            ->orderBy('date', 'asc')
             ->orderBy('opening', 'asc')
             ->get();
 
@@ -153,7 +152,6 @@ class EventController extends Controller
     }
 
 
-
     public function showByClub($id)
     {
 
@@ -169,11 +167,11 @@ class EventController extends Controller
 
         if ($num > 0) {
 
-            return $this->responser($data , 200 , 'All Event in specified club are listed');
+            return $this->responser($data, 200, 'All Event in specified club are listed');
 
         } else {
 
-            return $this->responser($data,404,'Events in the specified club is not found');
+            return $this->responser($data, 404, 'Events in the specified club is not found');
         }
     }
 
@@ -185,19 +183,19 @@ class EventController extends Controller
 
         $time = Carbon::now()->format('H:i:s');
 
-        $liveo = Event::where('category_id', $id)->where('date', $today)->where('opening', '<', $time)->where('closing','>' ,$time)
+        $liveo = Event::where('category_id', $id)->where('date', $today)->where('opening', '<', $time)->where('closing', '>', $time)
             ->orderBy('opening', 'asc')
             ->get();
 
-        $livec = Event::where('category_id', $id)->where('date', $today)->where('opening', '<', $time)->where('closing' ,'<', $this->closing('closing'))
+        $livec = Event::where('category_id', $id)->where('date', $today)->where('opening', '<', $time)->where('closing', '<', $this->closing('closing'))
             ->orderBy('opening', 'asc')
             ->get();
 
-        $gone = Event::where('category_id', $id)->where('date', $today)->where('opening', '<', $time)->where('closing' ,'>', $this->closing('closing'))
+        $gone = Event::where('category_id', $id)->where('date', $today)->where('opening', '<', $time)->where('closing', '>', $this->closing('closing'))
             ->orderBy('opening', 'asc')
             ->get();
 
-        foreach ($gone as $g){
+        foreach ($gone as $g) {
 
             $g->islive = 0;
 
@@ -207,11 +205,11 @@ class EventController extends Controller
 
         $ll = $liveo->merge($livec)->sortBy('opening');
 
-        foreach ($ll as $k){
+        foreach ($ll as $k) {
 
             $k->islive = 1;
 
-            $k ->save();
+            $k->save();
 
         }
 
@@ -224,7 +222,7 @@ class EventController extends Controller
 
         $events = Event::where('category_id', $id)->where('date', '>', $today)
             ->where('category_id', $id)
-            ->orderBy('date','asc')
+            ->orderBy('date', 'asc')
             ->orderBy('opening', 'asc')
             ->get();
 
@@ -238,15 +236,16 @@ class EventController extends Controller
 
         if ($num > 0) {
 
-            return $this->responser($data , 200 , 'All Event in specified category are listed');
+            return $this->responser($data, 200, 'All Event in specified category are listed');
 
         } else {
 
-            return $this->responser($data,404,'Events in the specified category not found');
+            return $this->responser($data, 404, 'Events in the specified category not found');
         }
     }
 
-    public function show(){
+    public function show()
+    {
 
         $today = Carbon::today();
 
@@ -259,7 +258,8 @@ class EventController extends Controller
         return view('event.show')->with('events', $event)->with('clubs', $club)->with('categories', $category);
     }
 
-    public function search(Request $r){
+    public function search(Request $r)
+    {
 
         $today = Carbon::today();
 
@@ -275,7 +275,8 @@ class EventController extends Controller
 
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
 
         $event = Event::where('id', $id);
 
@@ -287,21 +288,23 @@ class EventController extends Controller
 
     }
 
-    public function create() {
+    public function create()
+    {
 
         $club = Club::all();
 
         $category = Category::all();
 
-        return view('event.create')->with('clubs' , $club)->with('categories', $category);
+        return view('event.create')->with('clubs', $club)->with('categories', $category);
 
     }
 
-    public function store(){
+    public function store()
+    {
 
         $r = request();
 
-        $this->validate($r ,[
+        $this->validate($r, [
             'name' => 'required|string|min:2|max:255',
             'date' => 'required|date|after:yesterday',
             'pic' => 'required|max:15360'
@@ -310,7 +313,7 @@ class EventController extends Controller
 
         $file = $r->file('pic');
         $filename = time() . '.' . $file->getClientOriginalExtension();
-        $path = public_path('/images/'. $filename);
+        $path = public_path('/images/' . $filename);
         Image::make($file)->save($path);
 
         $event = Event::create([
@@ -329,7 +332,7 @@ class EventController extends Controller
 
         ]);
 
-        Session::flash('success' , 'Event added successfully');
+        Session::flash('success', 'Event added successfully');
         return redirect()->route('event.show');
 
     }
@@ -343,20 +346,26 @@ class EventController extends Controller
 
         $live = Event::where('date', $today)->where('opening', '<', $time)->get();
 
-        foreach ($live as $l) {
+        $n = $live->count();
 
-            $c = $l->closing;
+        if ($n > 0) {
+            foreach ($live as $l) {
 
-            if ($c > $time) {
+                $c = $l->closing;
 
-                return $c;
+                if ($c > $time) {
 
-            } else {
+                    return $c;
 
-                $k = Carbon::parse($c)->addHours($c)->format('H:i:s');
+                } else {
 
-                return $k;
+                    $k = Carbon::parse($c)->addHours($c)->format('H:i:s');
+
+                    return $k;
+                }
             }
+        } else {
+            return false;
         }
     }
 }

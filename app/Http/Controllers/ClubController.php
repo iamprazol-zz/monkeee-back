@@ -51,11 +51,10 @@ class ClubController extends Controller
 
         $g = $this->galleryByClub($id);
 
-        $data = [
+        $data =
             ['club' => $c ,
                 'events' => $e ,
                 'gallery' => $g
-            ]
         ];
 
         if ($num > 0) {
