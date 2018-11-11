@@ -15,7 +15,7 @@ class ClubTableSeeder extends Seeder
     {
         $c1 = [
             'id' => 1,
-            'name' => 'Club Doroty',
+            'name' => 'Woroty',
             'address' => 'Valley View Road 26',
             'suburb_id' => 1,
             'description' => 'Super Beautiful club. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio',
@@ -32,7 +32,7 @@ class ClubTableSeeder extends Seeder
 
         $c2 = [
             'id' => 2,
-            'name' => 'Club Margot',
+            'name' => 'Xargot',
             'address' => 'Nortond Driver 27',
             'suburb_id' => 3,
             'description' => 'We are techno  club. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio',
@@ -49,7 +49,7 @@ class ClubTableSeeder extends Seeder
 
         $c3 = [
             'id' => 3,
-            'name' => 'Club Maroon',
+            'name' => ' Maroon',
             'address' => 'Nortond Driver 27',
             'suburb_id' => 2,
             'description' => 'We are techno  club. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio',

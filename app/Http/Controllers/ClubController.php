@@ -20,7 +20,7 @@ class ClubController extends Controller
 {
     public function index(){
 
-        $clubs = Club::where('show', 1)->paginate(15);
+        $clubs = Club::where('show', 1)->orderBy('name', 'asc')->paginate(15);
 
         $num = $clubs->count();
 
@@ -41,6 +41,7 @@ class ClubController extends Controller
 
         $club = Club::where('id' , $id)
             ->where('show' , 1)
+            ->orderBy('name', 'asc')
             ->get();
 
         $num = $club->count();
@@ -73,6 +74,7 @@ class ClubController extends Controller
 
         $clubs = Club::where('suburb_id' , $id)
                     ->where('show' , 1)
+                    ->orderBy('name', 'asc')
                     ->get();
 
         $num = $clubs->count();
@@ -95,6 +97,7 @@ class ClubController extends Controller
         $today = Carbon::today();
 
         $event = Event::where('club_id', $id)->where('date', '>=', $today)
+            ->orderBy('name', 'asc')
             ->get();
 
         $num = $event->count();
@@ -113,7 +116,8 @@ class ClubController extends Controller
 
     public function galleryByClub($id){
 
-        $gallery = Club_gallery::where('club_id' , $id)->get();
+        $gallery = Club_gallery::where('club_id' , $id)
+            ->get();
 
         $num = $gallery->count();
 
@@ -130,7 +134,7 @@ class ClubController extends Controller
 
     public function show(){
 
-        $club = Club::orderBy('id', 'asc')->get();
+        $club = Club::orderBy('name', 'asc')->get();
 
         $suburb = Suburb::all();
 
@@ -141,7 +145,7 @@ class ClubController extends Controller
 
         $id = $r->suburb_id;
 
-        $club = Club::orderBy('id', 'asc')->where('suburb_id', $id)->where('name' ,'like' , '%'.$r->get('club').'%')->get();
+        $club = Club::orderBy('name', 'asc')->where('suburb_id', $id)->where('name' ,'like' , '%'.$r->get('club').'%')->get();
 
         $suburb = Suburb::all();
 
