@@ -47,6 +47,10 @@ body {
   font-weight: 300;
   color: #5A6169;
   background-color: #e3e3e3;
+  height:100%;
+  width:100%;
+  padding:0;
+  margin:0;
 }
 
 a {
@@ -229,6 +233,7 @@ pre {
 
 .table {
   background-color: transparent;
+  table-layout: fixed;
 }
 
 .table th,
@@ -245,6 +250,9 @@ pre {
   margin-right: 50px;
   padding: 0.05rem;
   border-right: 5px solid #ffffff ;
+  overflow: none;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
 }
 
 .table-primary,

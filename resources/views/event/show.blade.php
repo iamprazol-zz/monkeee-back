@@ -97,7 +97,7 @@
 
                     </thead>
 
-                    <tbody>
+                    <tbody style="width: 100%;">
                     @foreach($events as $event)
                         <tr>
 
@@ -107,7 +107,7 @@
                             <td>{{ $event->date }}</td>
                             <td>{{ $event->opening }}</td>
                             <td>{{ $event->closing }}</td>
-                            <td><div class="card-img"><img src="/images/{{ $event->picture }}" style="width:150px; height:150px;"/></div></td>
+                            <td><div class="card-img"><img src="/images/{{ $event->picture }}" style="width:90px; height:90px;"/></div></td>
                             <td>{{ $event->description }}</td>
                             <td>{{ $event->price }}</td>
                             <td>{{ $event->ticket_link }}</td>
