@@ -26,12 +26,17 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <!-- Left Side Of Navbar -->
         <ul class="navbar-nav mr-auto">
-            <li><a class="nav-link" href="/suburb">Suburb</a></li>
-            <li><a class="nav-link" href="/club">Clubs</a></li>
-            <li><a class="nav-link" href="/category">Category</a></li>
-            <li><a class="nav-link" href="/events">Events</a></li>
-            <li><a class="nav-link" href="/gallery">Gallery</a></li>
-            <li><a class="nav-link" href="/djs">Djays</a></li>
+            @if(Auth::check())
+                @if(Auth::user()->admin)
+                    <li><a class="nav-link" href="/suburb">Suburb</a></li>
+                    <li><a class="nav-link" href="/club">Clubs</a></li>
+                    <li><a class="nav-link" href="/category">Category</a></li>
+                    <li><a class="nav-link" href="/events">Events</a></li>
+                    <li><a class="nav-link" href="/gallery">Gallery</a></li>
+                    <li><a class="nav-link" href="/djs">Djays</a></li>
+                @endif
+            @endif
+
         </ul>
 
         <ul class="navbar-nav ml-auto">

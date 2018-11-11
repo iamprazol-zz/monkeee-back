@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 
 
-Route::group(['middleware' => 'auth'] , function () {
+Route::group(['middleware' => 'admin'] , function () {
 
     Route::get('suburb', [
         'uses' => 'SuburbController@index',

@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','admin'
     ];
 
     /**
@@ -27,4 +27,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function is_admin($id){
+        $user = User::where('id' , $id)->first();
+
+        if($user->admin == 1){
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

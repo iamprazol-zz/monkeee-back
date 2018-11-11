@@ -18,10 +18,22 @@ class UsersTableSeeder extends Seeder
             'name' => 'admin',
             'email' => 'admin@gmail.com' ,
             'password' => bcrypt('admin'),
+            'admin' => 1
+
+        ];
+
+        $u2 = [
+
+            'id' => 2,
+            'name' => 'hello',
+            'email' => 'hello@gmail.com' ,
+            'password' => bcrypt('hello'),
 
         ];
 
 
         User::create($u1);
+        User::create($u2);
+
     }
 }
