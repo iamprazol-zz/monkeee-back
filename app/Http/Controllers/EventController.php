@@ -75,13 +75,20 @@ class EventController extends Controller
 
         $yesterday = Carbon::yesterday();
 
+        $tomorrow = Carbon::tomorrow();
+
         $livetoday = Event::where('opening_date', $today)->where('opening', '<', $time)->where('closing_date', $today)->where('closing', '>', $time)
+            ->orderBy('opening', 'asc')
+            ->get();
+
+        $livetomorrow = Event::where('opening_date', $today)->where('opening', '<', $time)->where('closing_date', $tomorrow)->where('closing', '<', $time)
             ->orderBy('opening', 'asc')
             ->get();
 
         $liveyesterday = Event::where('opening_date', $yesterday)->where('opening', '>', $time)->where('closing_date', $today)->where('closing', '>', $time)
             ->orderBy('opening', 'asc')
             ->get();
+
 
         /*$livec = Event::where('date', $today)->where('opening', '<', $time)->where('closing', '<', $this->closing('closing'))
             ->orderBy('opening', 'asc')
@@ -99,7 +106,7 @@ class EventController extends Controller
 
         }
 
-        $kk = $livetoday->merge($liveyesterday)->sortBy('opening')->sortBy('opening_date');
+        $kk = $livetoday->merge($livetomorrow)->merge($liveyesterday)->sortBy('opening')->sortBy('opening_date');
 
         foreach ($kk as $k){
 
@@ -191,7 +198,13 @@ class EventController extends Controller
 
         $yesterday = Carbon::yesterday();
 
+        $tomorrow = Carbon::tomorrow();
+
         $livetoday = Event::where('category_id', $id)->where('opening_date', $today)->where('opening', '<', $time)->where('closing_date', $today)->where('closing', '>', $time)
+            ->orderBy('opening', 'asc')
+            ->get();
+
+        $livetomorrow = Event::where('opening_date', $today)->where('opening', '<', $time)->where('closing_date', $tomorrow)->where('closing', '<', $time)
             ->orderBy('opening', 'asc')
             ->get();
 
@@ -211,7 +224,7 @@ class EventController extends Controller
 
         }
 
-        $ll = $livetoday->merge($liveyesterday)->sortBy('opening')->sortBy('opening_date');
+        $kk = $livetoday->merge($livetomorrow)->merge($liveyesterday)->sortBy('opening')->sortBy('opening_date');
 
         foreach ($ll as $k) {
 
