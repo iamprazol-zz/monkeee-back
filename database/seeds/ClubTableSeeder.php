@@ -50,7 +50,6 @@ class ClubTableSeeder extends Seeder
 
         Club::create($c1);
         Club::create($c2);
-        Club::create($c3);
 
     }
 }

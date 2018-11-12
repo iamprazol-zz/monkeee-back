@@ -55,11 +55,15 @@
                     </th>
 
                     <th>
-                        Date
+                        Opening Date
                     </th>
 
                     <th>
                         Opening
+                    </th>
+
+                    <th>
+                        Closing Date
                     </th>
 
                     <th>
@@ -104,10 +108,11 @@
                             <td>{{ $event->name }}</td>
                             <td>{{ $event->club->name }}</td>
                             <td>{{ $event->category->name }}</td>
-                            <td>{{ $event->date }}</td>
+                            <td>{{ $event->opening_date }}</td>
                             <td>{{ $event->opening }}</td>
+                            <td>{{ $event->closing_date }}</td>
                             <td>{{ $event->closing }}</td>
-                            <td><div class="card-img"><img src="/images/{{ $event->picture }}" style="width:85px; height:85px;"/></div></td>
+                            <td><div class="card-img"><img src="/images/{{ $event->picture }}" style="width:80px; height:80px;"/></div></td>
                             <td>{{ $event->description }}</td>
                             <td>{{ $event->price }}</td>
                             <td>{{ $event->ticket_link }}</td>

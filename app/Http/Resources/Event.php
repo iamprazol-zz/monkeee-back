@@ -24,7 +24,7 @@ class Event extends JsonResource
             'club_id' => $this->club_id,
             'suburb' => $this->club->suburb->name,
             'postal_code' => $this->club->suburb->postalcode,
-            'date' => Carbon::parse($this->date)->format('d/m/Y'),
+            'date' => Carbon::parse($this->opening_date)->format('d/m/Y'),
             'opening' =>  Carbon::parse($this->opening)->format('g:i A'),
             'closing' =>  Carbon::parse($this->closing)->format('g:i A'),
             'picture' => $this->picture,

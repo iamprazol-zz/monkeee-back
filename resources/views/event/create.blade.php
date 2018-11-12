@@ -52,14 +52,14 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="date" class="col-md-4 col-form-label text-md-right">{{ __('Date') }}</label>
+                        <label for="odate" class="col-md-4 col-form-label text-md-right">{{ __('Opening Date') }}</label>
 
                         <div class="col-sm-6">
-                            <input id="date" type="date" class="form-control{{ $errors->has('date') ? ' is-invalid' : '' }}" name="date" placeholder="Enter the event date" value="{{ old('date') }}" required autofocus>
+                            <input id="odate" type="date" class="form-control{{ $errors->has('odate') ? ' is-invalid' : '' }}" name="odate" placeholder="Enter the event date" value="{{ old('odate') }}" required autofocus>
 
-                            @if ($errors->has('date'))
+                            @if ($errors->has('odate'))
                                 <span class="invalid-feedback">
-                                                            <strong>{{ $errors->first('date' , 'Entered date is invalid') }}</strong>
+                                                            <strong>{{ $errors->first('odate' , 'Entered date is invalid') }}</strong>
                                                         </span>
                             @endif
                         </div>
@@ -74,6 +74,19 @@
                         </div>
                     </div>
 
+                    <div class="form-group row">
+                        <label for="cdate" class="col-md-4 col-form-label text-md-right">{{ __('Closing Date') }}</label>
+
+                        <div class="col-sm-6">
+                            <input id="cdate" type="date" class="form-control{{ $errors->has('cdate') ? ' is-invalid' : '' }}" name="cdate" placeholder="Enter the event date" value="{{ old('cdate') }}" required autofocus>
+
+                            @if ($errors->has('cdate'))
+                                <span class="invalid-feedback">
+                                                            <strong>{{ $errors->first('cdate' , 'Entered date is invalid') }}</strong>
+                                                        </span>
+                            @endif
+                        </div>
+                    </div>
 
                     <div class="form-group row">
                         <label for="closing" class="col-md-4 col-form-label text-md-right">{{ __('Closing Time') }}</label>

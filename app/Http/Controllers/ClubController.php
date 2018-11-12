@@ -96,7 +96,7 @@ class ClubController extends Controller
 
         $today = Carbon::today();
 
-        $event = Event::where('club_id', $id)->where('date', '>=', $today)
+        $event = Event::where('club_id', $id)->where('opening_date', '>=', $today)
             ->orderBy('name', 'asc')
             ->get();
 

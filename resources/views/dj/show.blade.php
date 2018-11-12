@@ -102,7 +102,7 @@
                             <td>{{ $dj->bio }}</td>
                             <td>{{ $dj->facebook }}</td>
                             <td>{{ $dj->instagram }}</td>
-                            <td><div class="card-img"><img src="/images/{{ $dj->picture }}" style="width:150px; height:150px;"/></div></td>
+                            <td><div class="card-img"><img src="/images/{{ $dj->picture }}" style="width:100px; height:100px;"/></div></td>
 
                             <td>
                                 <a href="{{ route('dj.delete', ['id' => $dj->id]) }}" class="btn btn-sm btn-danger btn-pill ">Delete</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

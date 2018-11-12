@@ -17,8 +17,9 @@ class CreateEventsTable extends Migration
             $table->increments('id');
             $table->integer('club_id')->unsigned();
             $table->integer('category_id')->unsigned();
-            $table->date('date');
+            $table->date('opening_date');
             $table->time('opening');
+            $table->date('closing_date');
             $table->time('closing');
             $table->string('picture');
             $table->string('name');
