@@ -134,7 +134,7 @@ class EventController extends Controller
             ->orderBy('opening', 'asc')
             ->get();
 
-        $kk = $nolive->merge($events)->sortby('opening');
+        $kk = $nolive->merge($events)->sortby('opening')->sortby('date');
 
         $num = $kk->count();
 
@@ -226,7 +226,7 @@ class EventController extends Controller
             ->orderBy('opening', 'asc')
             ->get();
 
-        $kk = $nolive->merge($events)->sortBy('opening');
+        $kk = $nolive->merge($events)->sortBy('opening')->sortby('date');
 
 
         $data = [
@@ -249,7 +249,7 @@ class EventController extends Controller
 
         $today = Carbon::today();
 
-        $event = Event::where('date', '>=', $today)->orderBy('date', 'asc')->orderBy('opening', 'asc')->get();
+        $event = Event::orderBy('date', 'asc')->where('date', '>=', $today)->orderBy('opening', 'asc')->get();
 
         $club = Club::all();
 

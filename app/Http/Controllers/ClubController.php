@@ -20,7 +20,7 @@ class ClubController extends Controller
 {
     public function index(){
 
-        $clubs = Club::where('show', 1)->orderBy('name', 'asc')->paginate(15);
+        $clubs = Club::where('show', 1)->orderBy('name', 'asc')->paginate(10);
 
         $num = $clubs->count();
 
@@ -134,7 +134,7 @@ class ClubController extends Controller
 
     public function show(){
 
-        $club = Club::orderBy('name', 'asc')->get();
+        $club = Club::orderBy('name','ASC')->get();
 
         $suburb = Suburb::all();
 

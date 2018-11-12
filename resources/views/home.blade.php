@@ -1,84 +1,117 @@
-<html class="no-js" lang="en">
-
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Monkeee</title>
-    <meta name="description" content="A free and modern UI toolkit for web makers based on the popular Bootstrap 4 framework.">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-          crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/css/shards.css">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Monkee - In Music We Trust </title>
+
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/coming-sssoon.css" rel="stylesheet" />
+
+    <!--     Fonts     -->
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Grand+Hotel' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
 
 
 </head>
+
 <body>
+<nav class="navbar navbar-transparent navbar-fixed-top" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
 
-<nav class="navbar navbar-expand-lg navbar-light  bg-primary mb-4">
-
-    <a href="{{ url('/') }}"> <img class="image-resize" src="/images/logo.png" alt="monkeee_icon" style="width: 45px; height: 45px;"/></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-&nbsp;&nbsp;&nbsp;
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <!-- Left Side Of Navbar -->
-        <ul class="navbar-nav mr-auto">
-            @if(Auth::check())
-                @if(Auth::user()->admin)
-                    <li><a class="nav-link" href="/suburb">Suburb</a></li>
-                    <li><a class="nav-link" href="/club">Clubs</a></li>
-                    <li><a class="nav-link" href="/category">Category</a></li>
-                    <li><a class="nav-link" href="/events">Events</a></li>
-                    <li><a class="nav-link" href="/gallery">Gallery</a></li>
-                    <li><a class="nav-link" href="/djs">Djays</a></li>
-                @endif
-            @endif
-
-        </ul>
-
-        <ul class="navbar-nav ml-auto">
-            <!-- Authentication Links -->
-            @auth
-                <li class="nav-item dropdown">
-
-                    <a id="navbarDropdownMenuLink-5" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{ Auth::user()->name }} <span class=""></span>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                @guest
+                    <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
+                    <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
+                @else
+               <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        {{ Auth::user()->name }}
                     </a>
 
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-
-                        <a class="dropdown-item" href="{{ route('logout') }}"
+                    <ul class="dropdown-menu">
+                      <li> <a class="dropdown-item" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
-                        </a>
+                    </a>
 
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
-                        </form>
+                    </form></li>
+                 </ul>
+          </li>
+                    @endguest
 
-                    </div>
-
-
-                </li>
-
-            @else
-                <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
-                <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
-            @endauth
         </ul>
-    </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="https://www.facebook.com/Monkeee-273157566551238/?ref=br_rs">
+                        <i class="fa fa-facebook-square"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.instagram.com/monkeee_au/">
+                        <i class="fa fa-instagram"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="mailto:monkeee92@gmail.com">
+                        <i class="fa fa-envelope-o"></i>
+                    </a>
+                </li>
+            </ul>
+
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container -->
 </nav>
+<div class="main" style="background-color: #f9ed75;">
+    <!--<div class="main" style="background-image: url('images/bg_monkee.jpg'">-->
 
-<img src="/images/logo.png" style="margin-left: 200px; width:65%; height: 85%;">
+    <!--    Change the image source '/images/default.jpg' with your favourite image.     -->
 
+    <!--    <div class="cover black" data-color="black"></div>-->
 
+    <!--   You can change the black color for the filter with those colors: blue, green, red, orange       -->
 
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <script src="/js/shards.js"></script>
+    <div class="container">
+        <div class="logo-box">
+            <img style="width:100%;" src="images/Logo.svg">
+            <div class="divider-2">
+            </div>
+        </div>
+
+        <!--  H1 can have 2 designs: "logo" and "logo cursive"           -->
+
+        <div class="content">
+            <h4 class="motto">"FIRST EVENTS APP IN MELBOURNE"</h4>
+        </div>
+        <img src="images/coming-soon.png">
+    </div>
+    <div class="footer">
+        <div class="container" style="color: #2d2d2d; text-align: center;">
+            Made with <i class="fa fa-heart heart"></i> by <a style="color: #2d2d2d;" href="http://www.simonedistefano..com">Simone Di Stefano</a>.
+        </div>
+    </div>
+</div>
 </body>
+<script src="js/jquery-1.10.2.js" type="text/javascript"></script>
+<script src="js/bootstrap.min.js" type="text/javascript"></script>
+
+</html>
