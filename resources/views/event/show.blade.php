@@ -103,6 +103,7 @@
 
                     <tbody style="width: 100%;">
                     @foreach($events as $event)
+                        @if($event->club->show == 1)
                         <tr>
 
                             <td>{{ $event->name }}</td>
@@ -123,6 +124,7 @@
                             </td>
 
                         </tr>
+                        @endif
                     @endforeach
                     </tbody>
 
