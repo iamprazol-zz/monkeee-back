@@ -120,7 +120,8 @@
                             <td>{{ $event->facebook }}</td>
                             <td>{{ $event->instagram }}</td>
                             <td>
-                                <a href="{{ route('event.delete', ['id' => $event->id]) }}" class="btn btn-sm btn-danger btn-pill ">Delete</a>&nbsp;&nbsp;
+                                <a href="{{ route('event.delete', ['id' => $event->id]) }}" class="btn btn-sm btn-danger btn-pill ">Delete</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="{{ route('event.edit', ['id' => $event->id]) }}" class="btn btn-sm btn-primary btn-pill ">Edit</a>&nbsp;&nbsp;
                             </td>
 
                         </tr>

@@ -30,13 +30,16 @@ Route::get('upcoming', 'EventController@upComing');
 Route::get('eventbyclick/{id}', 'EventController@showById');
 
 // List all the events in a club
-Route::get('eventbyclub/{id}', 'EventController@showByClub');
+Route::get('eventbyclub/{id}', 'EventController@eventByClub');
+
+// List all the events in a suburb
+Route::get('eventbysuburb/{id}', 'EventController@eventBySuburb');
+
+// List all the events in a category
+Route::get('eventbycategory/{id}', 'EventController@eventByCategory');
 
 //List all the Category
 Route::get('category', 'CategoryController@index');
-
-// List all the events in a category
-Route::get('eventbycategory/{id}', 'EventController@showByCategory');
 
 // List all clubs
 Route::get('club' , 'ClubController@index');

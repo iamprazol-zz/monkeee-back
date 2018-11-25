@@ -83,14 +83,17 @@ class EventController extends Controller
             ->orderBy('opening', 'asc')
             ->get();
 
-        $liveyesterday = Event::where('opening_date', $yesterday)->where('closing_date','>=', $today)->where('closing', '>', $time)
+        $liveyesterday = Event::where('opening_date', $yesterday)->where('closing_date', $today)->where('closing', '>', $time)
             ->orderBy('opening', 'asc')
             ->get();
 
-
-        /*$livec = Event::where('date', $today)->where('opening', '<', $time)->where('closing', '<', $this->closing('closing'))
+        $livefrommany = Event::where('opening_date','<', $yesterday)->where('closing_date', $today)->where('closing','>',$time)
             ->orderBy('opening', 'asc')
-            ->get();*/
+            ->get();
+
+        $liveformany = Event::where('opening_date','<=', $yesterday)->where('closing_date','>', $today)
+            ->orderBy('opening', 'asc')
+            ->get();
 
         $gone = Event::where('opening_date', $today)->where('opening', '<', $time)->where('closing_date', $today)->where('closing', '<', $time)
             ->orderBy('opening', 'asc')
@@ -104,7 +107,7 @@ class EventController extends Controller
 
         }
 
-        $kk = $livetoday->merge($livetomorrow)->merge($liveyesterday)->sortBy('opening')->sortBy('opening_date');
+        $kk = $livetoday->merge($livetomorrow)->merge($liveyesterday)->merge($livefrommany)->merge($liveformany)->sortBy('opening')->sortBy('opening_date');
 
         $num = count($kk);
 
@@ -197,104 +200,224 @@ class EventController extends Controller
 
     }
 
-
-    public function showByClub($id)
+    public function liveByCategory($parameter ,$id)
     {
 
-        $today = Carbon::today();
+        $live = $this->liveEvent();
 
-        $event = Event::where('club_id', $id)->where('opening_date', '>=', $today)
-            ->get();
+        $livetojson = json_encode($live);
 
-        $num = $event->count();
+        $livetoarray = json_decode($livetojson);
 
+        foreach ($livetoarray as $k=>$v){
+            $liveelementtoarray[] = $v;
+        }
 
-        $data = EventResource::collection($event);
+        foreach ($liveelementtoarray[1] as $liveelement){
+            $eachelementtoarray[] = $liveelement;
+        }
+
+        $num = sizeof($eachelementtoarray[0]);
 
         if ($num > 0) {
 
-            return $this->responser($data, 200, 'All Event in specified club are listed');
+            foreach ($eachelementtoarray[0] as $eachelement) {
+
+                $checkparameter = $eachelement->$parameter;
+
+                if ($checkparameter == $id) {
+
+                    $filtered[] = $eachelement;
+
+                }
+                    if (empty($filtered)) {
+                        $filteredliveelement = null;
+                    } else {
+                        $filteredliveelement = $filtered;
+                    }
+                }
+            } else {
+        $filteredliveelement = null;
+    }
+
+        $data = $filteredliveelement;
+
+        if (empty($filteredliveelement)) {
+
+            return $this->responser($data, 404, 'Sorry no live event');
 
         } else {
 
-            return $this->responser($data, 404, 'Events in the specified club is not found');
+            return $this->responser($data, 200, 'Live Events shown successfully');
         }
+
     }
 
+    public function upcomingByCategory($parameter, $id){
 
-    public function showByCategory($id)
+
+        $up = $this->upComing();
+
+        $uptojson = json_encode($up);
+
+        $uptoarray = json_decode($uptojson);
+
+        foreach ($uptoarray as $k=>$v){
+            $upelementtoarray[] = $v;
+        }
+
+        foreach ($upelementtoarray[1] as $upelement){
+            $eachelementtoarray[] = $upelement;
+        }
+
+        $num = sizeof($eachelementtoarray[0]);
+
+        if ($num > 0) {
+
+            foreach ($eachelementtoarray[0] as $eachelement) {
+
+                $checkparameter = $eachelement->$parameter;
+
+                if ($checkparameter == $id) {
+
+                    $filtered[] = $eachelement;
+
+                }
+                if (empty($filtered)) {
+                    $filteredupelement = null;
+                } else {
+                    $filteredupelement = $filtered;
+                }
+            }
+        } else {
+            $filteredupelement = null;
+        }
+
+        $data = $filteredupelement;
+
+        if (empty($filteredupelement)) {
+
+            return $this->responser($data, 404, 'Sorry no upcoming event');
+
+        } else {
+
+            return $this->responser($data, 200, 'Upcoming Events shown successfully');
+        }
+
+    }
+
+    public function eventByClub($id)
     {
 
         $today = Carbon::today();
 
-        $time = Carbon::now()->format('H:i:s');
+        $events = Event::where('club_id', $id)->where('opening_date', '>=', $today)->orderBy('opening_date', 'asc')->get();
+
+        $num = $events->count();
+
+        $l = $this->liveByCategory('club_id',$id);
+
+        $u = $this->upcomingByCategory('club_id', $id);
+
+        $data = [
+            'live' => $l,
+            'upcoming' => $u,
+        ];
+
+        if ($num > 0) {
+
+            return $this->responser($data, 200, 'All Events in specified club are listed');
+
+        } else {
+
+            return $this->responser($data, 404, 'Events in specified club not found');
+        }
+
+    }
+
+    public function eventByCategory($id){
+
+        $today = Carbon::today();
+
+        $events = Event::where('category_id', $id)->where('opening_date', '>=', $today)->orderBy('opening_date', 'asc')->get();
+
+        $num = $events->count();
+
+        $l = $this->liveByCategory('category_id',$id);
+
+        $u = $this->upcomingByCategory('category_id', $id);
+
+        $data = [
+            'live' => $l,
+            'upcoming' => $u,
+        ];
+
+        if ($num > 0) {
+
+            return $this->responser($data, 200, 'All Events in specified category are listed');
+
+        } else {
+
+            return $this->responser($data, 404, 'Events in specified category not found');
+        }
+
+    }
+
+    public function eventBySuburb($id){
+
+        $today = Carbon::today();
 
         $yesterday = Carbon::yesterday();
 
-        $tomorrow = Carbon::tomorrow();
+        $club = Club::where('suburb_id', $id)->where('show', 1)->get();
 
-        $livetoday = Event::where('opening_date', $today)->where('opening', '<', $time)->where('closing_date', $today)->where('closing', '>', $time)
-            ->orderBy('opening', 'asc')
-            ->get();
+        $number = $club->count();
 
-        $livetomorrow = Event::where('opening_date', $today)->where('opening', '<', $time)->where('closing_date', $tomorrow)
-            ->orderBy('opening', 'asc')
-            ->get();
+        if($number >0) {
 
-        $liveyesterday = Event::where('opening_date', $yesterday)->where('closing_date', $today)->where('closing', '>', $time)
-            ->orderBy('opening', 'asc')
-            ->get();
+            foreach ($club as $c) {
 
-        $gone = Event::where('category_id', $id)->where('opening_date', $today)->where('opening', '<', $time)->where('closing_date', $today)->where('closing' ,'<', $time)
-            ->orderBy('opening', 'asc')
-            ->get();
+                $events = Event::where('club_id', $c->id)->where('opening_date', '>=', $yesterday->addDays(-2))->where('closing_date','>=', $today)->get();
 
-        foreach ($gone as $g){
+            }
 
-            $g->islive = 0;
+            $count = $events->count();
 
-            $g->save();
+            if($count > 0){
 
-        }
+                $l = $count;
 
-        $ll = $livetoday->merge($livetomorrow)->merge($liveyesterday)->sortBy('opening')->sortBy('opening_date');
+            } else {
 
-        foreach ($ll as $l) {
+                $l = 0;
 
-            $l->islive = 1;
+            }
+        } else {
 
-            $l->save();
+            $l = 0;
 
         }
 
-        $nolive = Event::where('category_id', $id)->where('opening_date', $today)
-            ->where('opening', '>', $time)
-            ->get();
+        $live = $this->liveByCategory('suburb_id', $id);
 
-        $events = Event::where('category_id', $id)->where('opening_date', '>', $today)
-            ->orderBy('opening_date', 'asc')
-            ->orderBy('opening', 'asc')
-            ->get();
-
-        $kk = $nolive->merge($events)->sortBy('opening');
-
+        $upcoming = $this->upcomingByCategory('suburb_id', $id);
 
         $data = [
-            'live' => $ll,
-            'upcoming' => $kk,
+            'live' => $live,
+            'upcoming' => $upcoming,
         ];
 
-        $num = sizeof($data);
+        if ($l > 0) {
 
-        if ($num > 0) {
-
-            return $this->responser($data, 200, 'All Event in specified category are listed');
+            return $this->responser($data, 200, 'All Events in specified suburb are listed');
 
         } else {
 
-            return $this->responser($data, 404, 'Events in the specified category not found');
+            return $this->responser($data, 404, 'Events in specified suburb not found');
         }
+
     }
+
 
     public function show()
     {
@@ -303,7 +426,7 @@ class EventController extends Controller
 
         $yesterday = Carbon::yesterday();
 
-        $event = Event::orderBy('opening_date', 'asc')->where('opening_date', '>=', $yesterday)->where('closing_date','>=', $today)->orderBy('opening', 'asc')->get();
+        $event = Event::orderBy('opening_date', 'asc')->where('opening_date', '>=', $yesterday->addDays(-2))->where('closing_date','>=', $today)->orderBy('opening', 'asc')->get();
 
         $club = Club::all();
 
@@ -321,7 +444,7 @@ class EventController extends Controller
 
         $id = $r->club_id;
 
-        $event = Event::orderBy('id', 'asc')->where('club_id', $id)->where('opening_date', '>=', $yesterday)->where('closing_date','>=', $today)->orderBy('opening_date', 'asc')->orderBy('opening', 'asc')->get();
+        $event = Event::orderBy('id', 'asc')->where('club_id', $id)->where('opening_date', '>=', $yesterday->addDays(-2))->where('closing_date','>=', $today)->orderBy('opening_date', 'asc')->orderBy('opening', 'asc')->get();
 
         $club = Club::all();
 
@@ -395,6 +518,59 @@ class EventController extends Controller
 
     }
 
+    public function edit($id){
+
+        $event = Event::where('id', $id)->first();
+
+        $club = Club::all();
+
+        $category = Category::all();
+
+        return view('event.edit')->with('events', $event)->with('clubs', $club)->with('categories', $category);
+
+    }
+
+    public function update($id){
+
+        $r = request();
+
+        $this->validate($r, [
+            'name' => 'required|string|min:2|max:255',
+            'odate' => 'required|date|after:yesterday',
+            'cdate' => 'required|date|after:yesterday',
+            'pic' => 'required|max:15360'
+        ]);
+
+
+        $file = $r->file('pic');
+        $filename = time() . '.' . $file->getClientOriginalExtension();
+        $path = public_path('/images/' . $filename);
+        Image::make($file)->save($path);
+
+        $event = Event::find($id);
+
+        $event->name = $r->name;
+        $event->club_id = $r->club_id;
+        $event->category_id = $r->category_id;
+        $event->opening_date = $r->odate;
+        $event->opening = Carbon::parse($r->opening)->format('H:i:s');
+        $event->closing_date = $r->cdate;
+        $event->closing = Carbon::parse($r->closing)->format('H:i:s');
+        $event->description = $r->description;
+        $event->price = $r->price;
+        $event->ticket_link = $r->ticket;
+        $event->facebook = $r->facebook;
+        $event->instagram = $r->instagram;
+        $event->picture = $filename;
+
+        $event->save();
+
+        Session::flash('success', 'Event updated successfully');
+
+        return redirect()->route('event.show');
+
+    }
+
     /*public function closing($c)
     {
 
@@ -426,6 +602,7 @@ class EventController extends Controller
             return false;
         }
     }*/
+
 }
 
 

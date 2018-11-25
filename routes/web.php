@@ -70,6 +70,16 @@ Route::group(['middleware' => 'admin'] , function () {
         'as' => 'club.unshown'
     ]);
 
+    Route::get('club/edit/{id}', [
+        'uses' => 'ClubController@edit',
+        'as' => 'club.edit'
+    ]);
+
+    Route::post('club/update/{id}', [
+        'uses' => 'ClubController@update',
+        'as' => 'club.update'
+    ]);
+
     Route::get('club/delete/{id}', [
         'uses' => 'ClubController@destroy',
         'as' => 'club.delete'
@@ -113,6 +123,16 @@ Route::group(['middleware' => 'admin'] , function () {
     Route::post('event/store', [
         'uses' => 'EventController@store',
         'as' => 'event.store'
+    ]);
+
+    Route::get('event/edit/{id}', [
+        'uses' => 'EventController@edit',
+        'as' => 'event.edit'
+    ]);
+
+    Route::post('event/update/{id}', [
+        'uses' => 'EventController@update',
+        'as' => 'event.update'
     ]);
 
     Route::get('event/delete/{id}', [

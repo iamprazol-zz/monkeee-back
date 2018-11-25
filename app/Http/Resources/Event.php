@@ -20,9 +20,11 @@ class Event extends JsonResource
         return [
             'id' => $this->id,
             'category' => $this->category->name,
+            'category_id' => $this->category_id,
             'club' => $this->club->name,
             'club_id' => $this->club_id,
             'suburb' => $this->club->suburb->name,
+            'suburb_id' => $this->club->suburb->id,
             'postal_code' => $this->club->suburb->postalcode,
             'date' => Carbon::parse($this->opening_date)->format('d/m/Y'),
             'opening' =>  Carbon::parse($this->opening)->format('g:i A'),

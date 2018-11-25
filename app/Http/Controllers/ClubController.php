@@ -247,4 +247,54 @@ class ClubController extends Controller
 
     }
 
+    public function edit($id){
+
+        $club = Club::where('id', $id)->first();
+
+        $suburb = Suburb::all();
+
+        return view('club.edit')->with('clubs', $club)->with('suburbs', $suburb);
+
+    }
+
+    public function update($id){
+
+        $r = request();
+
+        $this->validate($r ,[
+            'name' => 'required|string|min:2|max:255',
+            'address' => 'required|string|min:2|max:255',
+            'order' => 'required|unique:clubs',
+            'pic' => 'required|max:15360'
+        ]);
+
+
+        $file = $r->file('pic');
+        $filename = time() . '.' . $file->getClientOriginalExtension();
+        Image::make($file->getRealPath())->save(public_path('images/' . $filename));
+
+        $c = Club::find($id);
+
+        $c->suburb_id = $r->suburb_id;
+        $c->name = $r->name;
+        $c->address = $r->address;
+        $c->description = $r->description;
+        $c->order = $r->order;
+        $c->phone = $r->phone;
+        $c->email = $r->email;
+        $c->opening_time = Carbon::parse($r->opening)->format('H:i:s');
+        $c->closing_time = Carbon::parse($r->closing)->format('H:i:s');
+        $c->open = $r->days;
+        $c->facebook = $r->facebook;
+        $c->instagram = $r->instagram;
+        $c->cover_photo = $filename;
+
+        $c->save();
+
+        Session::flash('success' , 'Club Edited successfully');
+        return redirect()->route('club.show');
+
+
+    }
+
 }
