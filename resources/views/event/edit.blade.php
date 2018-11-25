@@ -32,7 +32,7 @@
                             <select name="club_id" class="custom-select" id="club_id" required>
                                 <option value="" selected="">Choose One</option>
                                 @foreach($clubs as $club)
-                                    <option value="{{ $club->id }}">{{ $club->name }}</option>
+                                    <option value="{{ $club->id }}" @if($club->id == $events->club_id) selected="selected" @endif >{{ $club->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -45,7 +45,7 @@
                             <select name="category_id" class="custom-select" id="category_id" required>
                                 <option value="" selected="">Choose One</option>
                                 @foreach($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    <option value="{{ $category->id }}" @if($category->id == $events->category_id) selected="selected" @endif >{{ $category->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -141,12 +141,17 @@
                         <label for="pic" class="col-md-4 col-form-label text-md-right" >{{ __('Upload a pic') }}</label>
 
                         <div class="col-md-6">
-                            <input type="file" id="pic" name="pic" class="form-control{{ $errors->has('pic') ? ' is-invalid' : '' }}" required/>
+                            @if($events->picture)
+                                <img src="/images/{{ $events->picture }}" style="width:150px; height:150px;">
+                            @else
+                                <p>No image found</p>
+                            @endif
                             @if ($errors->has('pic'))
                                 <span class="invalid-feedback">
                                                             <strong>{{ $errors->first('pic', 'Image size must be less than 15 MB')}}</strong>
                                                         </span>
                             @endif
+                            <input type="file" id="pic" name="pic" class="form-control{{ $errors->has('pic') ? ' is-invalid' : '' }}" value="{{ $events->picture }}"  required/>
                         </div>
                     </div>
 

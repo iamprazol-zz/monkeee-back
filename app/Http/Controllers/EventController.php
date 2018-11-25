@@ -536,8 +536,8 @@ class EventController extends Controller
 
         $this->validate($r, [
             'name' => 'required|string|min:2|max:255',
-            'odate' => 'required|date|after:yesterday',
-            'cdate' => 'required|date|after:yesterday',
+            'odate' => 'required|date',
+            'cdate' => 'required|date',
             'pic' => 'required|max:15360'
         ]);
 

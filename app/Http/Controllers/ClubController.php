@@ -264,7 +264,7 @@ class ClubController extends Controller
         $this->validate($r ,[
             'name' => 'required|string|min:2|max:255',
             'address' => 'required|string|min:2|max:255',
-            'order' => 'required|unique:clubs',
+            'order' => 'required|unique:clubs,order,'.$id.'club_id',
             'pic' => 'required|max:15360'
         ]);
 

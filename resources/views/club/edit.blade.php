@@ -32,7 +32,7 @@
                             <select name="suburb_id" class="custom-select" id="suburb_id" required>
                                 <option value="" selected="">Choose One</option>
                                 @foreach($suburbs as $suburb)
-                                    <option value="{{ $suburb->id }}">{{ $suburb->name }}</option>
+                                    <option value="{{ $suburb->id }}" @if($suburb->id == $clubs->suburb_id) selected="selected" @endif >{{ $suburb->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -67,7 +67,7 @@
                         <label for="order" class="col-md-4 col-form-label text-md-right">{{ __('Order') }}</label>
 
                         <div class="col-sm-7">
-                            <input type="text" id="order" class="form-control{{ $errors->has('order') ? ' is-invalid' : '' }}" placeholder="Enter order number" name="order" value="{{ old('order')  }}" required>
+                            <input type="text" id="order" class="form-control{{ $errors->has('order') ? ' is-invalid' : '' }}" placeholder="Enter order number" name="order" value="{{ $clubs->order  }}" required>
 
                             @if ($errors->has('order'))
                                 <span class="invalid-feedback">
@@ -109,7 +109,7 @@
                         <label for="closing" class="col-md-4 col-form-label text-md-right">{{ __('Closing Time') }}</label>
 
                         <div class="col-sm-7">
-                            <input type="text" id="closing" class="form-control" name="closing" value="{{ $clubs->closing}}" required>
+                            <input type="text" id="closing" class="form-control" name="closing" value="{{ $clubs->closing_time}}" required>
                         </div>
                     </div>
 
@@ -143,7 +143,17 @@
                         <label for="pic" class="col-md-4 col-form-label text-md-right" >{{ __('Upload a cover pic') }}</label>
 
                         <div class="col-md-6">
-                            <input type="file" id="pic" name="pic" class="form-control{{ $errors->has('pic') ? ' is-invalid' : '' }}" placeholder="Choose a event pic to upload"  required/>
+                            @if($clubs->cover_photo)
+                                <img src="/images/{{ $clubs->cover_photo }}" style="width:150px; height:150px;">
+                            @else
+                                <p>No image found</p>
+                            @endif
+                            @if ($errors->has('pic'))
+                                <span class="invalid-feedback">
+                                                            <strong>{{ $errors->first('pic', 'Image size must be less than 15 MB')}}</strong>
+                                                        </span>
+                            @endif
+                            <input type="file" id="pic" name="pic" class="form-control{{ $errors->has('pic') ? ' is-invalid' : '' }}" placeholder="Choose a event pic to upload" value="{{ $clubs->cover_photo }}" required/>
                             @if ($errors->has('pic'))
                                 <span class="invalid-feedback">
                                                             <strong>{{ $errors->first('pic', 'Image size must be less than 15 MB')}}</strong>
