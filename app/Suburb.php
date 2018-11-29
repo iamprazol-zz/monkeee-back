@@ -13,4 +13,10 @@ class Suburb extends Model
     public function clubs(){
         return $this->hasMany('App\Club');
     }
+
+    public function partner(){
+
+        return $this->hasMany('App\partner');
+
+    }
 }

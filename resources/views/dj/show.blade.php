@@ -105,8 +105,10 @@
                             <td><div class="card-img"><img src="/images/{{ $dj->picture }}" style="width:100px; height:100px;"/></div></td>
 
                             <td>
-                                <a href="{{ route('dj.delete', ['id' => $dj->id]) }}" class="btn btn-sm btn-danger btn-pill ">Delete</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                @if($dj->is_shown($dj->id))
+                                <a href="{{ route('dj.delete', ['id' => $dj->id]) }}" class="btn btn-sm btn-danger btn-pill ">Delete</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                                <a href="{{ route('dj.edit', ['id' => $dj->id]) }}" class="btn btn-sm btn-primary btn-pill ">Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+
+                            @if($dj->is_shown($dj->id))
                                     <a href="{{ route('dj.unshown' , ['id' => $dj->id])  }}" class="btn btn-danger btn-sm btn-pill">UnShow</a>
                                 @else
                                     <a href="{{ route('dj.shown' , ['id' => $dj->id])  }}" class="btn btn-info btn-sm btn-pill">Show</a>

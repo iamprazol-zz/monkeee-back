@@ -44,6 +44,33 @@ class SuburbController extends Controller
 
     }
 
+    public function edit($id){
+
+        $suburb = Suburb::where('id', $id)->first();
+
+        return view('suburb.edit')->with('suburbs', $suburb);
+
+    }
+
+
+    public function update($id){
+        $r = request();
+
+        $this->validate($r ,[
+            'name' => 'required|string|min:2|max:255',
+            'postal' => 'required|integer|digits:4',
+        ]);
+
+        $suburb = Suburb::find($id);
+        $suburb->name = $r->name;
+        $suburb->postalcode = $r->postal;
+
+        $suburb->save();
+
+        Session::flash('success' , 'Suburb updated successfully');
+        return redirect()->route('suburb.index');
+
+    }
 
     public function destroy($id){
 

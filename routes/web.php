@@ -35,6 +35,16 @@ Route::group(['middleware' => 'admin'] , function () {
         'as' => 'suburb.store'
     ]);
 
+    Route::get('suburb/edit/{id}', [
+        'uses' => 'SuburbController@edit',
+        'as' => 'suburb.edit'
+    ]);
+
+    Route::post('suburb/update/{id}', [
+        'uses' => 'SuburbController@update',
+        'as' => 'suburb.update'
+    ]);
+
     Route::get('suburb/delete/{id}', [
         'uses' => 'SuburbController@destroy',
         'as' => 'suburb.delete'
@@ -197,6 +207,90 @@ Route::group(['middleware' => 'admin'] , function () {
         'as' => 'dj.unshown'
     ]);
 
+    Route::get('dj/edit/{id}', [
+        'uses' => 'DjController@edit',
+        'as' => 'dj.edit'
+    ]);
+
+    Route::post('dj/update/{id}', [
+        'uses' => 'DjController@update',
+        'as' => 'dj.update'
+    ]);
+
+    Route::get('partners', [
+        'uses' => 'PartnerController@show',
+        'as' => 'partner.show'
+    ]);
+
+    Route::get('partner/search', [
+        'uses' => 'PartnerController@search',
+        'as' => 'partner.search'
+    ]);
+
+    Route::get('partner/create', [
+        'uses' => 'PartnerController@create',
+        'as' => 'partner.create'
+    ]);
+
+    Route::post('partner/store', [
+        'uses' => 'PartnerController@store',
+        'as' => 'partner.store'
+    ]);
+
+    Route::get('partner/edit/{id}', [
+        'uses' => 'PartnerController@edit',
+        'as' => 'partner.edit'
+    ]);
+
+    Route::post('partner/update/{id}', [
+        'uses' => 'PartnerController@update',
+        'as' => 'partner.update'
+    ]);
+
+    Route::get('partner/delete/{id}', [
+        'uses' => 'PartnerController@destroy',
+        'as' => 'partner.delete'
+    ]);
+
+    Route::get('partner/shown/{id}', [
+        'uses' => 'PartnerController@shown',
+        'as' => 'partner.shown'
+    ]);
+
+    Route::get('partner/unshown/{id}', [
+        'uses' => 'PartnerController@unshown',
+        'as' => 'partner.unshown'
+    ]);
+
+    Route::get('partnercat', [
+        'uses' => 'PartnerCategoryController@show',
+        'as' => 'partnercat.show'
+    ]);
+
+    Route::get('partnercat/create', [
+        'uses' => 'PartnerCategoryController@create',
+        'as' => 'partnercat.create'
+    ]);
+
+    Route::post('partnercat/store', [
+        'uses' => 'PartnerCategoryController@store',
+        'as' => 'partnercat.store'
+    ]);
+
+    Route::get('partnercat/edit/{id}', [
+        'uses' => 'PartnerCategoryController@edit',
+        'as' => 'partnercat.edit'
+    ]);
+
+    Route::post('partnercat/update/{id}', [
+        'uses' => 'PartnerCategoryController@update',
+        'as' => 'partnercat.update'
+    ]);
+
+    Route::get('partnercat/delete/{id}', [
+        'uses' => 'PartnerCategoryController@destroy',
+        'as' => 'partnercat.delete'
+    ]);
 
 });
 

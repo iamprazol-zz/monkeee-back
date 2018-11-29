@@ -58,7 +58,7 @@
                         <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Description') }}</label>
 
                         <div class="col-sm-7">
-                            <input type="text" id="description" class="form-control" name="description" " value="{{ $clubs->description }}" required>
+                            <textarea rows="5" cols="40" type="text" id="description" class="form-control" name="description"  required autofocus>{{ $clubs->description }}</textarea>
                         </div>
                     </div>
 
@@ -96,28 +96,11 @@
                         </div>
                     </div>
 
-
-                    <div class="form-group row">
-                        <label for="opening" class="col-md-4 col-form-label text-md-right">{{ __('Opening Time') }}</label>
-
-                        <div class="col-sm-7">
-                            <input type="text" id="opening" class="form-control" name="opening" value="{{ $clubs->opening_time }}" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="closing" class="col-md-4 col-form-label text-md-right">{{ __('Closing Time') }}</label>
-
-                        <div class="col-sm-7">
-                            <input type="text" id="closing" class="form-control" name="closing" value="{{ $clubs->closing_time}}" required>
-                        </div>
-                    </div>
-
                     <div class="form-group row">
                         <label for="days" class="col-md-4 col-form-label text-md-right">{{ __('Opening Days') }}</label>
 
                         <div class="col-sm-7">
-                            <input type="text" id="days" class="form-control" name="days" value="{{ $clubs->open }}" required>
+                            <textarea rows="5" cols="40" type="text" id="days" class="form-control" name="days" required>{{ $clubs->open }}</textarea>
                         </div>
                     </div>
 

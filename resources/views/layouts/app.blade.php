@@ -34,6 +34,8 @@
                     <li><a class="nav-link" href="/events">Events</a></li>
                     <li><a class="nav-link" href="/gallery">Gallery</a></li>
                     <li><a class="nav-link" href="/djs">Djays</a></li>
+                    <li><a class="nav-link" href="/partners">Partners</a></li>
+
                 @endif
             @endif
         </ul>

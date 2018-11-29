@@ -100,7 +100,7 @@
                         <label for="description" class="col-md-4 col-form-label text-md-right" >{{ __('Description') }}</label>
 
                         <div class="col-sm-7">
-                            <input type="text" id="description" class="form-control" name="description" placeholder="Write something about the event" value="{{ old('description') }}" required>
+                            <textarea rows="5" cols="40" type="text" id="description" class="form-control" name="description" placeholder="Write something about the event" required autofocus>{{ old('description') }}</textarea>
                         </div>
                     </div>
 

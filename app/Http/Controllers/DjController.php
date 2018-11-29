@@ -157,4 +157,51 @@ class DjController extends Controller
 
     }
 
+    public function edit($id){
+
+        $dj = dj::where('id', $id)->first();
+
+        $category = Category::all();
+
+        return view('dj.edit')->with('djs', $dj)->with('categories', $category);
+
+    }
+
+
+    public function update($id){
+
+        $r = request();
+
+        $this->validate($r ,[
+            'name' => 'required|string|min:2|max:255',
+            'resident' => 'required|string|min:2|max:255',
+            'phone' => 'required|numeric|digits:10',
+            'email' => 'required|string|email|max:255|unique:users',
+        ]);
+
+
+        $file = $r->file('pic');
+        $filename = time() . '.' . $file->getClientOriginalExtension();
+        $path = public_path('/images/'. $filename);
+        Image::make($file)->save($path);
+
+        $dj = dj::find($id);
+        $dj->name = $r->name;
+        $dj->category_id = $r->category_id;
+        $dj->resident = $r->resident;
+        $dj->label = $r->label;
+        $dj->mobile = $r->phone;
+        $dj->email = $r->email;
+        $dj->bio = $r->description;
+        $dj->facebook = $r->facebook;
+        $dj->instagram = $r->instagram;
+        $dj->picture = $filename;
+
+        $dj->save();
+
+        Session::flash('success' , 'Dj Edited successfully');
+        return redirect()->route('dj.show');
+
+    }
+
 }

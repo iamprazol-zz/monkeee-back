@@ -75,7 +75,8 @@
                                 ?>
                             <div class="card-img"><img src="/images/{{ $item }}" style="width:100px; height:100px;"/></div>&nbsp;&nbsp;
                             <?php
-                            }?></td>
+                            }?>
+                            </td>
 
                             <td><a href="{{ route('gallery.delete', ['id' => $gallery->id]) }}" class="btn btn-sm btn-danger btn-pill ">Delete</a></td>
 

@@ -58,7 +58,7 @@
                             <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Description') }}</label>
 
                             <div class="col-sm-7">
-                                <input type="text" id="description" class="form-control" name="description" placeholder="Write something about the club " value="{{ old('description') }}" required>
+                                <textarea rows="5" cols="40" type="text" id="description" class="form-control" name="description" placeholder="Write something about the club" required autofocus>{{ old('description') }}</textarea>
                             </div>
                         </div>
 
@@ -98,26 +98,17 @@
 
 
                         <div class="form-group row">
-                            <label for="opening" class="col-md-4 col-form-label text-md-right">{{ __('Opening Time') }}</label>
-
-                            <div class="col-sm-7">
-                                <input type="text" id="opening" class="form-control" name="opening" placeholder="Enter the club's opening time in am/pm" value="{{ old('opening') }}" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="closing" class="col-md-4 col-form-label text-md-right">{{ __('Closing Time') }}</label>
-
-                            <div class="col-sm-7">
-                                <input type="text" id="closing" class="form-control" name="closing" placeholder="Enter the club's closing time in am/pm" value="{{ old('closing') }}" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
                             <label for="days" class="col-md-4 col-form-label text-md-right">{{ __('Opening Days') }}</label>
 
                             <div class="col-sm-7">
-                                <input type="text" id="days" class="form-control" name="days" placeholder="eg: Sun to Fri" value="{{ old('days') }}" required>
+                                <textarea rows="5" cols="40" type="text" id="days" class="form-control" name="days" placeholder="eg.  Sun from 4 am to 10 pm ,
+                                                                                                                                      Mon from 5 am to 11 pm ,
+                                                                                                                                      Tue from 4 am to 11 pm ,
+                                                                                                                                      Wed from 6 am to 8 pm ,
+                                                                                                                                      Thu from 8 am to 11 pm ,
+                                                                                                                                      Fri fron 7 am to 11 pm ,
+                                                                                                                                      Sat from 3 am to 11 pm "
+                                          required autofocus>{{ old('days') }}</textarea>
                             </div>
                         </div>
 

@@ -58,3 +58,10 @@ Route::get('dj' , 'DjController@index');
 
 // List the specified dj's details
 Route::get('djbyid/{id}' , 'DjController@showById');
+
+//List of all partners
+Route::get('partner', 'PartnerController@index');
+
+//Details of specified partner
+Route::get('partner/{id}', 'PartnerController@showById');
+

@@ -186,8 +186,6 @@ class ClubController extends Controller
             'order' => $r->order,
             'phone' => $r->phone,
             'email' => $r->email,
-            'opening_time' => Carbon::parse($r->opening)->format('H:i:s'),
-            'closing_time' => Carbon::parse($r->closing)->format('H:i:s'),
             'open' => $r->days,
             'facebook' => $r->facebook,
             'instagram' => $r->instagram,
@@ -282,8 +280,6 @@ class ClubController extends Controller
         $c->order = $r->order;
         $c->phone = $r->phone;
         $c->email = $r->email;
-        $c->opening_time = Carbon::parse($r->opening)->format('H:i:s');
-        $c->closing_time = Carbon::parse($r->closing)->format('H:i:s');
         $c->open = $r->days;
         $c->facebook = $r->facebook;
         $c->instagram = $r->instagram;

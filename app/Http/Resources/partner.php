@@ -2,16 +2,14 @@
 
 namespace App\Http\Resources;
 
-use App\Club_gallery;
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\Event as EventResource;
-use Carbon\Carbon;
-class Club extends JsonResource
+
+class partner extends JsonResource
 {
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return array
      */
     public function toArray($request)
@@ -20,18 +18,20 @@ class Club extends JsonResource
 
         return [
             'id' => $this->id,
-            'suburb_name' => $this->suburb->name,
+            'suburb_id' => $this->suburb_id,
+            'suburb' => $this->suburb->name,
+            'partnercategory_id' => $this->partnercategory_id,
+            'partnercategory' => $this->partnercategory->name,
             'name' => $this->name,
             'address' => $this->address,
             'description' => $this->description,
             'cover_photo' => $this->cover_photo,
-            'order' => $this->order,
+            'mobile' => $this->mobile,
             'email' => $this->email,
-            'phone' => $this->phone,
-            'open' => $this->open ,
             'facebook' => $this->facebook,
             'instagram' => $this->instagram,
+            'website' => $this->website,
+            'show' => $this->show,
         ];
     }
-
 }

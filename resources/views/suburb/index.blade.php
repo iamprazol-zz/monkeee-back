@@ -58,7 +58,9 @@
 
                                 <td>{{ $suburb->name }}</td>
                                 <td>{{ $suburb->postalcode }}</td>
-                                <td><a href="{{ route('suburb.delete', ['id' => $suburb->id]) }}" class="btn btn-sm btn-danger btn-pill ">Delete</a></td>
+                                <td><a href="{{ route('suburb.delete', ['id' => $suburb->id]) }}" class="btn btn-sm btn-danger btn-pill ">Delete</a>&nbsp;&nbsp;&nbsp;
+                                <a href="{{ route('suburb.edit', ['id' => $suburb->id]) }}" class="btn btn-sm btn-primary btn-pill ">Edit</a>
+                                </td>
 
                             </tr>
                         @endforeach
