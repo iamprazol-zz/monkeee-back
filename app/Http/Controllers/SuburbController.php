@@ -10,6 +10,8 @@ use App\Club_gallery;
 use App\Event;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
+use App\partner;
+use App\Video;
 
 class SuburbController extends Controller
 {
@@ -78,9 +80,13 @@ class SuburbController extends Controller
 
         $club = Club::where('suburb_id', $id);
 
+        $partner = partner::where('suburb_id', $id);
+
         $clubs = Club::where('suburb_id', $id)->get();
 
         $suburb->delete();
+
+        $partner->delete();
 
         $club->delete();
 
@@ -88,17 +94,26 @@ class SuburbController extends Controller
 
             $event = Event::where('club_id', $c->id);
 
+            $events = Event::where('club_id', $c->id)->get();
+
             $gallery = Club_gallery::where('club_id', $c->id);
 
             $event->delete();
 
             $gallery->delete();
 
+            foreach ($events as $e){
+
+                $video = Video::where('event_id', $e->id);
+
+                $video->delete();
+
+            }
         }
 
         Session::flash('success', 'Suburb and its associated clubs, events and gallery has been deleted successfully');
 
-        return redirect()->route('club.show');
+        return redirect()->route('suburb.index');
 
     }
 

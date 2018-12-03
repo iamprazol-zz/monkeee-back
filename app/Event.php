@@ -33,5 +33,8 @@ class Event extends Model
         return $this->belongsTo('App\Category');
     }
 
+    public function video(){
+        return $this->hasMany('App\Video');
+    }
 
 }

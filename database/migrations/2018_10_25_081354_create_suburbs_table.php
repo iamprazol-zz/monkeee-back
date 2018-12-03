@@ -15,6 +15,7 @@ class CreateSuburbsTable extends Migration
     {
         Schema::create('suburbs', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('city_id')->unsigned();
             $table->string('name');
             $table->string('postalcode');
             $table->timestamps();

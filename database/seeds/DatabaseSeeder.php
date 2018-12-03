@@ -20,6 +20,9 @@ class DatabaseSeeder extends Seeder
          $this->call(UsersTableSeeder::class);
          $this->call(PartnerCategoryTableSeeder::class);
          $this->call(PartnerTableSeeder::class);
+         $this->call(CountryTableSeeder::class);
+         $this->call(CityTableSeeder::class);
+         $this->call(VideoTableSeeder::class);
 
     }
 }

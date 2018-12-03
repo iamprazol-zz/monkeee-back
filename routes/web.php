@@ -20,6 +20,71 @@ Route::get('/', function () {
 
 Route::group(['middleware' => 'admin'] , function () {
 
+    Route::get('country', [
+        'uses' => 'CountryController@show',
+        'as' => 'country.show'
+    ]);
+
+    Route::get('country/create', [
+        'uses' => 'CountryController@create',
+        'as' => 'country.create'
+    ]);
+
+    Route::post('country/store', [
+        'uses' => 'CountryController@store',
+        'as' => 'country.store'
+    ]);
+
+    Route::get('country/edit/{id}', [
+        'uses' => 'CountryController@edit',
+        'as' => 'country.edit'
+    ]);
+
+    Route::post('country/update/{id}', [
+        'uses' => 'CountryController@update',
+        'as' => 'country.update'
+    ]);
+
+    Route::get('country/delete/{id}', [
+        'uses' => 'CountryController@destroy',
+        'as' => 'country.delete'
+    ]);
+
+    Route::get('city', [
+        'uses' => 'CityController@show',
+        'as' => 'city.show'
+    ]);
+
+    Route::get('city/search', [
+        'uses' => 'CityController@search',
+        'as' => 'city.search'
+    ]);
+
+    Route::get('city/create', [
+        'uses' => 'CityController@create',
+        'as' => 'city.create'
+    ]);
+
+    Route::post('city/store', [
+        'uses' => 'CityController@store',
+        'as' => 'city.store'
+    ]);
+
+    Route::get('city/edit/{id}', [
+        'uses' => 'CityController@edit',
+        'as' => 'city.edit'
+    ]);
+
+    Route::post('city/update/{id}', [
+        'uses' => 'CityController@update',
+        'as' => 'city.update'
+    ]);
+
+    Route::get('city/delete/{id}', [
+        'uses' => 'CityController@destroy',
+        'as' => 'city.delete'
+    ]);
+
     Route::get('suburb', [
         'uses' => 'SuburbController@index',
         'as' => 'suburb.index'
@@ -148,6 +213,31 @@ Route::group(['middleware' => 'admin'] , function () {
     Route::get('event/delete/{id}', [
         'uses' => 'EventController@destroy',
         'as' => 'event.delete'
+    ]);
+
+    Route::get('videos', [
+        'uses' => 'VideoController@show',
+        'as' => 'video.show'
+    ]);
+
+    Route::get('video/search', [
+        'uses' => 'VideoController@search',
+        'as' => 'video.search'
+    ]);
+
+    Route::get('video/create', [
+        'uses' => 'VideoController@create',
+        'as' => 'video.create'
+    ]);
+
+    Route::post('video/store', [
+        'uses' => 'VideoController@store',
+        'as' => 'video.store'
+    ]);
+
+    Route::get('video/delete/{id}', [
+        'uses' => 'VideoController@destroy',
+        'as' => 'video.delete'
     ]);
 
     Route::get('gallery', [

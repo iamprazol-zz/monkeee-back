@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Video;
 use Illuminate\Http\Request;
 use App\Club;
 use App\Suburb;
@@ -231,6 +232,8 @@ class ClubController extends Controller
 
         $event = Event::where('club_id', $id);
 
+        $events = Event::where('club_id', $id)->get();
+
         $gallery = Club_gallery::where('club_id', $id);
 
         $club->delete();
@@ -239,7 +242,15 @@ class ClubController extends Controller
 
         $gallery->delete();
 
-        Session::flash('success', 'Club and its associated events and gallery has been deleted successfully');
+        foreach ($events as $e){
+
+            $video = Video::where('event_id', $e->id);
+
+            $video->delete();
+
+        }
+
+        Session::flash('success', 'Club and its associated events, videos and gallery has been deleted successfully');
 
         return redirect()->route('club.show');
 

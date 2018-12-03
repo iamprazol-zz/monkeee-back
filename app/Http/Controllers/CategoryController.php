@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Category;
 use App\Event;
 use App\dj;
+use App\Video;
 use Carbon\Carbon;
 use Session;
 use App\Http\Resources\Event as EventResource;
@@ -113,17 +114,27 @@ class CategoryController extends Controller
 
         $category = Category::where('id', $id);
 
-        $events = Event::where('category_id', $id);
+        $event = Event::where('category_id', $id);
+
+        $events = Event::where('category_id', $id)->get();
 
         $djs = dj::where('category_id', $id);
 
         $category->delete();
 
-        $events->delete();
+        $event->delete();
 
         $djs->delete();
 
-        Session::flash('success', 'Category and its associated djs and events has been deleted successfully');
+        foreach ($events as $e){
+
+            $video = Video::where('event_id', $e->id);
+
+            $video->delete();
+
+        }
+
+        Session::flash('success', 'Category and its associated djs, events and videos has been deleted successfully');
 
         return redirect()->route('category.show');
 

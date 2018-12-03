@@ -14,25 +14,30 @@ class SuburbTableSeeder extends Seeder
     {
         $s1 = [
             'id' => 1 ,
+            'city_id' => 1,
             'name' => 'Gosford' ,
             'postalcode' => 2250
         ];
 
         $s2 = [
             'id' => 2 ,
+            'city_id' => 1,
             'name' => 'Mardi' ,
             'postalcode' => 2230
         ];
 
         $s3 = [
-        'id' => 3 ,
-        'name' => 'Wyoming' ,
+        'id' => 3,
+            'city_id' => 1,
+            'name' => 'Wyoming' ,
         'postalcode' => 2200
         ];
 
         $s4 = [
         'id' => 4 ,
-        'name' => 'Woy Woy' ,
+            'city_id' => 1,
+
+            'name' => 'Woy Woy' ,
         'postalcode' => 2250
         ];
 

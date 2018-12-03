@@ -11,6 +11,9 @@ use App\Suburb;
 use App\Http\Resources\Event as EventResource;
 use Illuminate\Support\Facades\Session;
 use Image;
+use App\Video;
+use paginate;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class EventController extends Controller
 {
@@ -51,7 +54,12 @@ class EventController extends Controller
 
         $num = $event->count();
 
-        $data = EventResource::collection($event);
+        $v = $this->videoByEvent($id);
+
+        $data = [
+            'event' => $event,
+            'video' => $v,
+        ];
 
         if ($num > 0) {
 
@@ -170,6 +178,10 @@ class EventController extends Controller
         if ($num > 0) {
 
             foreach ($kk as $k) {
+
+                $k->islive = 0;
+
+                $k->save();
 
                 if ($k->club->show == 1) {
 
@@ -418,6 +430,23 @@ class EventController extends Controller
 
     }
 
+    public function videoByEvent($id){
+
+        $video = Video::where('event_id', $id)->get();
+
+        $l = $video->count();
+
+        if ($l > 0) {
+
+            return $this->responser($video, 200, 'All Vides in specified event are listed');
+
+        } else {
+
+            return $this->responser($video, 404, 'Videos in specified event not found');
+        }
+
+    }
+
 
     public function show()
     {
@@ -459,9 +488,13 @@ class EventController extends Controller
 
         $event = Event::where('id', $id);
 
+        $video = Video::where('event_id', $id);
+
         $event->delete();
 
-        Session::flash('success', 'Event Has Been Deleted Successfully');
+        $video->delete();
+
+        Session::flash('success', 'Event and its associated video Has Been Deleted Successfully');
 
         return redirect()->route('event.show');
 

@@ -36,6 +36,9 @@
                     <table class="table table-hover">
                         <thead class="thead-light">
 
+                        <th>
+                            City Name
+                        </th>
 
                         <th>
                             Name
@@ -55,7 +58,7 @@
                         <tbody>
                         @foreach($suburbs as $suburb)
                             <tr>
-
+                                <td>{{ $suburb->city->name }}</td>
                                 <td>{{ $suburb->name }}</td>
                                 <td>{{ $suburb->postalcode }}</td>
                                 <td><a href="{{ route('suburb.delete', ['id' => $suburb->id]) }}" class="btn btn-sm btn-danger btn-pill ">Delete</a>&nbsp;&nbsp;&nbsp;
