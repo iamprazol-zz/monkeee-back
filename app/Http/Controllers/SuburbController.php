@@ -12,9 +12,29 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
 use App\partner;
 use App\Video;
+use App\Http\Resources\Suburb as SuburbResource;
 
 class SuburbController extends Controller
 {
+
+    public function show(){
+
+        $suburb = Suburb::orderBy('name', 'asc')->get();
+
+        $num = $suburb->count();
+
+        $data = SuburbResource::collection($suburb);
+
+        if ($num > 0) {
+
+            return $this->responser($data, 200, 'All Suburb are listed');
+
+        } else {
+
+            return $this->responser($data, 404, 'Suburbs not found');
+        }
+
+    }
 
     public function index(Request $r){
 

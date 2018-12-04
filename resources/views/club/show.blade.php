@@ -43,6 +43,8 @@
 
                 <button class="btn btn-sm btn-outline-primary "> Total Clubs: &nbsp;&nbsp;<span class="badge-pill badge-outline-dark">{{ $clubs->count() }}</span></button>&nbsp;&nbsp;
                 <a href="{{ route('club.create') }}" class="btn btn-sm btn-primary btn-pill ">Add Club</a>
+                    <a href="{{ route('club.views') }}" class="btn btn-sm btn-black btn-pill ">Most Viewed</a>
+
 
                 <div class="card-body">
 
@@ -95,6 +97,10 @@
                         </th>
 
                         <th>
+                            Opened By
+                        </th>
+
+                        <th>
                             Option
                         </th>
 
@@ -116,6 +122,7 @@
                                 <td>{{ $club->open }}</td>
                                 <td>{{ $club->facebook }}</td>
                                 <td>{{ $club->instagram }}</td>
+                                <td><span class="badge-pill badge-outline-danger">{{ $club->count }}</span></td>
                                 <td>
                                     <a href="{{ route('club.delete', ['id' => $club->id]) }}" class="btn btn-sm btn-danger btn-pill ">Delete</a>&nbsp;&nbsp;&nbsp;&nbsp;
                                     <a href="{{ route('club.edit', ['id' => $club->id]) }}" class="btn btn-sm btn-primary btn-pill ">Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

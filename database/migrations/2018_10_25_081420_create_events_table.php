@@ -29,6 +29,7 @@ class CreateEventsTable extends Migration
             $table->string('facebook')->nullable();
             $table->string('instagram')->nullable();
             $table->boolean('islive')->default('0');
+            $table->integer('count')->default('0');
             $table->timestamps();
         });
     }

@@ -27,6 +27,7 @@ class CreatePartnersTable extends Migration
             $table->string('instagram')->nullable();
             $table->string('website')->nullable();
             $table->boolean('show')->default(1);
+            $table->integer('count')->default(0);
             $table->timestamps();
         });
     }

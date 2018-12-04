@@ -65,3 +65,6 @@ Route::get('partner', 'PartnerController@index');
 //Details of specified partner
 Route::get('partner/{id}', 'PartnerController@showById');
 
+//list all the suburb
+Route::get('suburb', 'SuburbController@show');
+

@@ -42,6 +42,13 @@ class PartnerController extends Controller
 
         if ($num > 0) {
 
+            foreach ($partner as $p){
+
+                $p->count++;
+
+                $p->save();
+
+            }
             return $this->responser($data, 200, 'All Partners in specified category are listed');
 
         } else {
@@ -59,6 +66,17 @@ class PartnerController extends Controller
         return view('partner.show')->with('partners', $partner)->with('categories', $category);
 
     }
+
+    public function mostViewed(){
+
+        $partner = partner::orderBy('count', 'desc')->get();
+
+        $category = partnercategory::all();
+
+        return view('partner.most')->with('partners', $partner)->with('categories', $category);
+
+    }
+
 
     public function search(Request $r){
 

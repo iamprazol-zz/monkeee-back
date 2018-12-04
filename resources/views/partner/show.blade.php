@@ -9,23 +9,7 @@
 
         <div class="card-body">
 
-            <div class="col-md-3 pull-left">
-
-                <h4 class="card-header">
-                    Select
-                </h4>
-
-                <ul class="list-group">
-
-                    <li class="list-group-item"><a href="{{ route('partner.show') }}">Partners</a></li>
-                    <li class="list-group-item"><a href="{{ route('partnercat.show') }}">Partner Category</a></li>
-
-
-                </ul>
-
-            </div>
-
-            <div class="col-md-9 pull-right">
+            <div class="col-md-12 ">
 
             <form action="{{ route('partner.search') }}" method="get">
                 @csrf
@@ -53,6 +37,7 @@
 
             <button class="btn btn-sm btn-outline-primary "> Total Partners: &nbsp;&nbsp;<span class="badge-pill badge-outline-dark">{{ $partners->count() }}</span></button>&nbsp;&nbsp;
             <a href="{{ route('partner.create') }}" class="btn btn-sm btn-primary btn-pill ">Add Partner</a>
+                <a href="{{ route('partner.views') }}" class="btn btn-sm btn-black btn-pill ">Most Viewed</a>
 
                 <table class="table table-sm table-hover">
                     <thead class="thead-light">
@@ -102,6 +87,10 @@
                     </th>
 
                     <th>
+                        Opened By
+                    </th>
+
+                    <th>
                         Option
                     </th>
 
@@ -123,7 +112,7 @@
                                 <td>{{ $partner->facebook }}</td>
                                 <td>{{ $partner->instagram }}</td>
                                 <td>{{ $partner->website }}</td>
-
+                                <td><span class="badge-pill badge-outline-danger">{{ $partner->count }}</span></td>
                                 <td>
                                     <a href="{{ route('partner.delete', ['id' => $partner->id]) }}" class="btn btn-sm btn-danger btn-pill ">Delete</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
                                     <a href="{{ route('partner.edit', ['id' => $partner->id]) }}" class="btn btn-sm btn-primary btn-pill ">Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>

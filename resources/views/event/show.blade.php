@@ -36,6 +36,8 @@
 
             <button class="btn btn-sm btn-outline-primary "> Total Events: &nbsp;&nbsp;<span class="badge-pill badge-outline-dark">{{ $events->count() }}</span></button>&nbsp;&nbsp;
             <a href="{{ route('event.create') }}" class="btn btn-sm btn-primary btn-pill ">Add Event</a>
+            <a href="{{ route('event.views') }}" class="btn btn-sm btn-black btn-pill ">Most Viewed</a>
+
 
             <div class="card-body">
 
@@ -95,6 +97,10 @@
                     </th>
 
                     <th>
+                        Opened By
+                    </th>
+
+                    <th>
                         Option
                     </th>
 
@@ -119,6 +125,7 @@
                             <td>{{ $event->ticket_link }}</td>
                             <td>{{ $event->facebook }}</td>
                             <td>{{ $event->instagram }}</td>
+                            <td><span class="badge-pill badge-outline-danger">{{ $event->count }}</span></td>
                             <td>
                                 <a href="{{ route('event.delete', ['id' => $event->id]) }}" class="btn btn-sm btn-danger btn-pill ">Delete</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <a href="{{ route('event.edit', ['id' => $event->id]) }}" class="btn btn-sm btn-primary btn-pill ">Edit</a>&nbsp;&nbsp;

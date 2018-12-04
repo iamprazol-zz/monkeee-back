@@ -120,6 +120,11 @@ Route::group(['middleware' => 'admin'] , function () {
         'as' => 'club.show'
     ]);
 
+    Route::get('club/views', [
+        'uses' => 'ClubController@mostViewed',
+        'as' => 'club.views'
+    ]);
+
     Route::get('club/search', [
         'uses' => 'ClubController@search',
         'as' => 'club.search'
@@ -183,6 +188,11 @@ Route::group(['middleware' => 'admin'] , function () {
     Route::get('events', [
         'uses' => 'EventController@show',
         'as' => 'event.show'
+    ]);
+
+    Route::get('events/views', [
+        'uses' => 'EventController@mostViewed',
+        'as' => 'event.views'
     ]);
 
     Route::get('event/search', [
@@ -310,6 +320,11 @@ Route::group(['middleware' => 'admin'] , function () {
     Route::get('partners', [
         'uses' => 'PartnerController@show',
         'as' => 'partner.show'
+    ]);
+
+    Route::get('partner/views', [
+        'uses' => 'PartnerController@mostViewed',
+        'as' => 'partner.views'
     ]);
 
     Route::get('partner/search', [

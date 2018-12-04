@@ -50,7 +50,7 @@ class EventController extends Controller
     public function showById($id)
     {
 
-        $event = Event::where('id', $id)->get();
+        $event = Event::where('id', $id)->first();
 
         $num = $event->count();
 
@@ -63,12 +63,17 @@ class EventController extends Controller
 
         if ($num > 0) {
 
+            $event->count = $event->count + 1 ;
+
+            $event->save();
+
             return $this->responser($data, 200, 'The event with specific id is shown');
 
         } else {
 
             return $this->responser($data, 404, 'The event with specific id is no found');
         }
+
     }
 
 
@@ -252,7 +257,7 @@ class EventController extends Controller
         $filteredliveelement = null;
     }
 
-        $data = $filteredliveelement;
+        $data = collect($filteredliveelement);
 
         if (empty($filteredliveelement)) {
 
@@ -305,7 +310,7 @@ class EventController extends Controller
             $filteredupelement = null;
         }
 
-        $data = $filteredupelement;
+        $data = collect($filteredupelement);
 
         if (empty($filteredupelement)) {
 
@@ -379,8 +384,6 @@ class EventController extends Controller
 
         $today = Carbon::today();
 
-        $yesterday = Carbon::yesterday();
-
         $club = Club::where('suburb_id', $id)->where('show', 1)->get();
 
         $number = $club->count();
@@ -389,11 +392,12 @@ class EventController extends Controller
 
             foreach ($club as $c) {
 
-                $events = Event::where('club_id', $c->id)->where('opening_date', '>=', $yesterday->addDays(-2))->where('closing_date','>=', $today)->get();
+                $events = Event::where('club_id', $c->id)->where('closing_date','>=', $today)->get();
+
+                $num[] = $events->count();
 
             }
-
-            $count = $events->count();
+            $count = sizeOf($num);
 
             if($count > 0){
 
@@ -404,6 +408,7 @@ class EventController extends Controller
                 $l = 0;
 
             }
+
         } else {
 
             $l = 0;
@@ -429,6 +434,7 @@ class EventController extends Controller
         }
 
     }
+
 
     public function videoByEvent($id){
 
@@ -462,6 +468,23 @@ class EventController extends Controller
         $category = Category::all();
 
         return view('event.show')->with('events', $event)->with('clubs', $club)->with('categories', $category);
+    }
+
+
+    public function mostViewed()
+    {
+
+        $today = Carbon::today();
+
+        $yesterday = Carbon::yesterday();
+
+        $event = Event::where('opening_date', '>=', $yesterday->addDays(-2))->where('closing_date','>=', $today)->orderBy('count', 'desc')->get();
+
+        $club = Club::all();
+
+        $category = Category::all();
+
+        return view('event.most')->with('events', $event)->with('clubs', $club)->with('categories', $category);
     }
 
     public function search(Request $r)

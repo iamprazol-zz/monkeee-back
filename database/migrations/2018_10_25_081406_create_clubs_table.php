@@ -27,6 +27,7 @@ class CreateClubsTable extends Migration
             $table->string('facebook')->nullable();
             $table->string('instagram')->nullable();
             $table->boolean('show')->default(true);
+            $table->integer('count')->default('0');
             $table->timestamps();
         });
     }

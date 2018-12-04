@@ -61,6 +61,13 @@ class ClubController extends Controller
 
         if ($num > 0) {
 
+            foreach ($club as $c){
+
+                $c->count = $c->count + 1;
+
+                $c->save();
+            }
+
             return $this->responser($data , 200 , 'Club with specific id is found');
 
         } else {
@@ -140,6 +147,15 @@ class ClubController extends Controller
         $suburb = Suburb::all();
 
         return view('club.show')->with('clubs', $club)->with('suburbs', $suburb);
+    }
+
+    public function mostViewed(){
+
+        $club = Club::orderBy('count','desc')->get();
+
+        $suburb = Suburb::all();
+
+        return view('club.most')->with('clubs', $club)->with('suburbs', $suburb);
     }
 
     public function search(Request $r){

@@ -31,11 +31,48 @@
                     <li><a class="nav-link" href="/suburb">Suburb</a></li>
                     <li><a class="nav-link" href="/club">Clubs</a></li>
                     <li><a class="nav-link" href="/category">Category</a></li>
-                    <li><a class="nav-link" href="/events">Events</a></li>
+                    <li class="nav-item dropdown">
+
+                        <a href="/events" id="navbarDropdownMenuLink-5" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Events <span class=""></span>
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                            <a class="dropdown-item" href="{{ route('event.show') }}">
+                                {{ __('Event Details') }}
+                            </a>
+
+                            <a class="dropdown-item" href="{{ route('video.show') }}">
+                                {{ __('Video Details') }}
+                            </a>
+
+                        </div>
+
+
+                    </li>
                     <li><a class="nav-link" href="/gallery">Gallery</a></li>
                     <li><a class="nav-link" href="/djs">Djays</a></li>
-                    <li><a class="nav-link" href="/partners">Partners</a></li>
+                    <li class="nav-item dropdown">
 
+                        <a id="navbarDropdownMenuLink-5" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Partners <span class=""></span>
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                            <a class="dropdown-item" href="{{ route('partner.show') }}">
+                                {{ __('Partner Details') }}
+                            </a>
+
+                            <a class="dropdown-item" href="{{ route('partnercat.show') }}">
+                                {{ __('Partner Category') }}
+                            </a>
+
+                        </div>
+
+
+                    </li>
                 @endif
             @endif
         </ul>
