@@ -38,6 +38,9 @@ Route::get('eventbysuburb/{id}', 'EventController@eventBySuburb');
 // List all the events in a category
 Route::get('eventbycategory/{id}', 'EventController@eventByCategory');
 
+// List all the events in a suburb and category
+Route::get('eventbysucat/suid={suid}&&catid={catid}', 'EventController@eventBySuCat');
+
 //List all the Category
 Route::get('category', 'CategoryController@index');
 

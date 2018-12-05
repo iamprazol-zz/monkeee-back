@@ -474,6 +474,146 @@ class EventController extends Controller
 
     }
 
+    public function eventBySuCat($suid, $catid ){
+
+        $live = $this->liveByCategory('suburb_id', $suid);
+
+        $upcoming = $this->upcomingByCategory('suburb_id', $suid);
+
+        $livetojson = json_encode($live);
+
+        $livetoarray = json_decode($livetojson);
+
+        foreach ($livetoarray as $k => $v) {
+            $liveelementtoarray[] = $v;
+        }
+
+        foreach ($liveelementtoarray[1] as $liveelement) {
+            $eachelementtoarrayy[] = $liveelement;
+        }
+
+        $num = sizeof($eachelementtoarrayy[0]);
+
+        if ($num > 0) {
+
+            foreach ($eachelementtoarrayy[0] as $eachelementt) {
+
+                $checkparameterr = $eachelementt->category_id;
+
+                if ($checkparameterr == $catid) {
+
+                    $filteredd[] = $eachelementt;
+
+                }
+                if (empty($filteredd)) {
+                    $filteredliveelementt = null;
+                } else {
+                    $filteredliveelementt = $filteredd;
+                }
+            }
+        } else {
+            $filteredliveelementt = null;
+        }
+
+        $lived = collect($filteredliveelementt);
+
+        $uptojson = json_encode($upcoming);
+
+        $uptoarray = json_decode($uptojson);
+
+        foreach ($uptoarray as $k => $v) {
+            $upelementtoarray[] = $v;
+        }
+
+        foreach ($upelementtoarray[1] as $upelement) {
+            $eachelementtoarray[] = $upelement;
+        }
+
+        $num = sizeof($eachelementtoarray[0]);
+
+        if ($num > 0) {
+
+            foreach ($eachelementtoarray[0] as $eachelement) {
+
+                $checkparameter = $eachelement->category_id;
+
+                if ($checkparameter == $catid) {
+
+                    $filtered[] = $eachelement;
+
+                }
+                if (empty($filtered)) {
+                    $filteredupelement = null;
+                } else {
+                    $filteredupelement = $filtered;
+                }
+            }
+        } else {
+            $filteredupelement = null;
+        }
+
+        $upcomng = collect($filteredupelement);
+
+        $l = collect(json_decode(json_encode($lived)));
+
+        $u = collect(json_decode(json_encode($upcomng)));
+
+
+        if(!empty($l) && !empty($u)) {
+
+            foreach ($l as $ll) {
+                $liv[] = $ll;
+            }
+
+            if(!empty($liv)) {
+                $lcount = sizeof($liv);
+            } else {
+                $lcount = 0;
+            }
+
+            foreach ($u as $uu) {
+                $up[] = $uu;
+            }
+
+
+            if(!empty($up)) {
+                $upcount = sizeof($up);
+            } else {
+                $upcount = 0;
+            }
+
+            $count = $lcount + $upcount;
+
+            $data = [
+                'live' => $lived,
+                'upcoming' => $upcomng
+            ];
+
+
+            if ($count > 0) {
+
+                return $this->responser($data, 200, 'All Events in specified suburb and category are listed');
+
+            } else {
+
+                return $this->responser($data, 404, 'Events in specified suburb and category not found');
+
+            }
+
+        } else {
+
+            $data = [
+                'live' => $lived,
+                'upcoming' => $upcomng
+            ];
+
+            return $this->responser($data, 404, 'Events in specified suburb and category not found');
+
+        }
+
+
+
+    }
 
 
     public function videoByEvent($id){
