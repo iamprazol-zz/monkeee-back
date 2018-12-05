@@ -63,7 +63,7 @@ class EventController extends Controller
 
         if ($num > 0) {
 
-            $event->count = $event->count + 1 ;
+            $event->count = $event->count + 1;
 
             $event->save();
 
@@ -92,7 +92,7 @@ class EventController extends Controller
             ->orderBy('opening', 'asc')
             ->get();
 
-        $livetomorrow = Event::where('opening_date', $today)->where('opening', '<', $time)->where('closing_date','>=', $tomorrow)
+        $livetomorrow = Event::where('opening_date', $today)->where('opening', '<', $time)->where('closing_date', '>=', $tomorrow)
             ->orderBy('opening', 'asc')
             ->get();
 
@@ -100,17 +100,18 @@ class EventController extends Controller
             ->orderBy('opening', 'asc')
             ->get();
 
-        $livefrommany = Event::where('opening_date','<', $yesterday)->where('closing_date', $today)->where('closing','>',$time)
+        $livefrommany = Event::where('opening_date', '<', $yesterday)->where('closing_date', $today)->where('closing', '>', $time)
             ->orderBy('opening', 'asc')
             ->get();
 
-        $liveformany = Event::where('opening_date','<=', $yesterday)->where('closing_date','>', $today)
+        $liveformany = Event::where('opening_date', '<=', $yesterday)->where('closing_date', '>', $today)
             ->orderBy('opening', 'asc')
             ->get();
 
         $gone = Event::where('opening_date', $today)->where('opening', '<', $time)->where('closing_date', $today)->where('closing', '<', $time)
             ->orderBy('opening', 'asc')
             ->get();
+
 
         foreach ($gone as $g) {
 
@@ -138,7 +139,7 @@ class EventController extends Controller
 
                 }
 
-                if(empty($t)){
+                if (empty($t)) {
                     $l = null;
                 } else {
                     $l = $t;
@@ -194,7 +195,7 @@ class EventController extends Controller
 
                 }
 
-                if(empty($t)){
+                if (empty($t)) {
                     $l = null;
                 } else {
                     $l = $t;
@@ -217,7 +218,7 @@ class EventController extends Controller
 
     }
 
-    public function liveByCategory($parameter ,$id)
+    public function liveByCategory($parameter, $id)
     {
 
         $live = $this->liveEvent();
@@ -226,11 +227,11 @@ class EventController extends Controller
 
         $livetoarray = json_decode($livetojson);
 
-        foreach ($livetoarray as $k=>$v){
+        foreach ($livetoarray as $k => $v) {
             $liveelementtoarray[] = $v;
         }
 
-        foreach ($liveelementtoarray[1] as $liveelement){
+        foreach ($liveelementtoarray[1] as $liveelement) {
             $eachelementtoarray[] = $liveelement;
         }
 
@@ -247,15 +248,15 @@ class EventController extends Controller
                     $filtered[] = $eachelement;
 
                 }
-                    if (empty($filtered)) {
-                        $filteredliveelement = null;
-                    } else {
-                        $filteredliveelement = $filtered;
-                    }
+                if (empty($filtered)) {
+                    $filteredliveelement = null;
+                } else {
+                    $filteredliveelement = $filtered;
                 }
-            } else {
-        $filteredliveelement = null;
-    }
+            }
+        } else {
+            $filteredliveelement = null;
+        }
 
         $data = collect($filteredliveelement);
 
@@ -270,7 +271,8 @@ class EventController extends Controller
 
     }
 
-    public function upcomingByCategory($parameter, $id){
+    public function upcomingByCategory($parameter, $id)
+    {
 
 
         $up = $this->upComing();
@@ -279,11 +281,11 @@ class EventController extends Controller
 
         $uptoarray = json_decode($uptojson);
 
-        foreach ($uptoarray as $k=>$v){
+        foreach ($uptoarray as $k => $v) {
             $upelementtoarray[] = $v;
         }
 
-        foreach ($upelementtoarray[1] as $upelement){
+        foreach ($upelementtoarray[1] as $upelement) {
             $eachelementtoarray[] = $upelement;
         }
 
@@ -332,7 +334,7 @@ class EventController extends Controller
 
         $num = $events->count();
 
-        $l = $this->liveByCategory('club_id',$id);
+        $l = $this->liveByCategory('club_id', $id);
 
         $u = $this->upcomingByCategory('club_id', $id);
 
@@ -352,7 +354,8 @@ class EventController extends Controller
 
     }
 
-    public function eventByCategory($id){
+    public function eventByCategory($id)
+    {
 
         $today = Carbon::today();
 
@@ -360,7 +363,7 @@ class EventController extends Controller
 
         $num = $events->count();
 
-        $l = $this->liveByCategory('category_id',$id);
+        $l = $this->liveByCategory('category_id', $id);
 
         $u = $this->upcomingByCategory('category_id', $id);
 
@@ -380,60 +383,97 @@ class EventController extends Controller
 
     }
 
-    public function eventBySuburb($id){
+    public function eventBySuburb($id)
+    {
 
-        $today = Carbon::today();
+        /*$today = Carbon::today();
 
         $club = Club::where('suburb_id', $id)->where('show', 1)->get();
 
         $number = $club->count();
 
-        if($number >0) {
+        if ($number > 0) {
 
             foreach ($club as $c) {
 
-                $events = Event::where('club_id', $c->id)->where('closing_date','>=', $today)->get();
+                $events = Event::where('club_id', $c->id)->get();
 
-                $num[] = $events->count();
+                $k = $events->count();
 
+                if ($k > 0) {
+
+                    foreach ($events as $e) {
+
+                        if ($e->closing_date >= $today) {
+
+                            $kk[] = $e;
+
+                        } else {
+
+                            $kk = null;
+
+                        }
+
+
+                    }
+
+                } else {
+
+                    $kk = null;
+
+                }
             }
-            $count = sizeOf($num);
 
-            if($count > 0){
+                dd(sizeof(collect($kk)));
 
-                $l = $count;
+                 if (!empty($ka)) {
 
-            } else {
+                     $l = $kk;
 
-                $l = 0;
+                 } else {
 
-            }
+                     $l = 0;
 
-        } else {
+                 }
 
-            $l = 0;
+             } else {
 
-        }
+                 $l = 0;
 
-        $live = $this->liveByCategory('suburb_id', $id);
+             }*/
 
-        $upcoming = $this->upcomingByCategory('suburb_id', $id);
 
-        $data = [
-            'live' => $live,
-            'upcoming' => $upcoming,
-        ];
+                 $live = $this->liveByCategory('suburb_id', $id);
 
-        if ($l > 0) {
+                 $upcoming = $this->upcomingByCategory('suburb_id', $id);
 
-            return $this->responser($data, 200, 'All Events in specified suburb are listed');
+                 $l = json_decode(json_encode($live));
+                 $lcount = sizeof($l->original->data);
 
-        } else {
+                 $u = json_decode(json_encode($upcoming));
+                 $upcount = sizeof($u->original->data);
 
-            return $this->responser($data, 404, 'Events in specified suburb not found');
-        }
+                 $count = $lcount + $upcount;
+
+                 $data = [
+                     'live' => $live,
+                     'upcoming' => $upcoming,
+                 ];
+
+
+                 if ($count > 0) {
+
+                     return $this->responser($data, 200, 'All Events in specified suburb are listed');
+
+                 } else {
+
+                     return $this->responser($data, 404, 'Events in specified suburb not found');
+
+                }
+
 
     }
+
 
 
     public function videoByEvent($id){
@@ -461,7 +501,7 @@ class EventController extends Controller
 
         $yesterday = Carbon::yesterday();
 
-        $event = Event::orderBy('opening_date', 'asc')->where('opening_date', '>=', $yesterday->addDays(-2))->where('closing_date','>=', $today)->orderBy('opening', 'asc')->get();
+        $event = Event::orderBy('opening_date', 'asc')->where('opening_date', '>=', $yesterday->addDays(-2))->where('closing_date','>=', $today)->orderBy('opening', 'asc')->paginate(10);
 
         $club = Club::all();
 

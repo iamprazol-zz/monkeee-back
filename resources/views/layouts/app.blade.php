@@ -28,8 +28,30 @@
         <ul class="navbar-nav mr-auto">
             @if(Auth::check())
                 @if(Auth::user()->admin)
-                    <li><a class="nav-link" href="/suburb">Suburb</a></li>
-                    <li><a class="nav-link" href="/club">Clubs</a></li>
+                    <li class="nav-item dropdown">
+
+                        <a id="navbarDropdownMenuLink-5" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Country <span class=""></span>
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                            <a class="dropdown-item" href="{{ route('country.show') }}">
+                                {{ __('Country') }}
+                            </a>
+
+                            <a class="dropdown-item" href="{{ route('city.show') }}">
+                                {{ __('City') }}
+                            </a>
+
+                            <a class="dropdown-item" href="{{ route('suburb.index') }}">
+                                {{ __('suburbs') }}
+                            </a>
+
+                        </div>
+
+
+                    </li>                    <li><a class="nav-link" href="/club">Clubs</a></li>
                     <li><a class="nav-link" href="/category">Category</a></li>
                     <li class="nav-item dropdown">
 

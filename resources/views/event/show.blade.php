@@ -144,7 +144,11 @@
 
 
 
+            <div class="card-footer">
 
+                {{ $events->links() }}
+
+            </div>
 
         </div>
     </div>

@@ -141,6 +141,11 @@
                     </table>
 
 
+                    <div class="card-footer">
+
+                        {{ $clubs->links() }}
+
+                    </div>
 
                 </div>
 

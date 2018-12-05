@@ -142,7 +142,7 @@ class ClubController extends Controller
 
     public function show(){
 
-        $club = Club::orderBy('name','ASC')->get();
+        $club = Club::orderBy('name','ASC')->paginate(10);
 
         $suburb = Suburb::all();
 

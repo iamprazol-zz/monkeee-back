@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use Carbon\Carbon;
+use App\Video;
 
 class Event extends JsonResource
 {
@@ -38,8 +39,35 @@ class Event extends JsonResource
             'instagram' => $this->instagram,
             'address' => $this->club->address,
             'expanded' => false,
-            'islive' => $this->islive
+            'islive' => $this->islive,
+            'video' => $this->video(),
         ];
+    }
+
+    public function video(){
+
+        $event = Event::where('id', $this->id)->first();
+
+        if($event->islive == 1) {
+
+            $video = Video::where('event_id', $this->id)->first();
+
+            if (!empty($video)){
+
+                return $video->video;
+
+            } else {
+
+                return null;
+
+            }
+
+        } else {
+
+            return null;
+
+        }
+
     }
 
 }
