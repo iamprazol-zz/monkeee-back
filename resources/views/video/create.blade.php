@@ -30,11 +30,13 @@
                         <label for="pic" class="col-md-4 col-form-label text-md-right" >{{ __('Upload a video') }}</label>
 
                         <div class="col-md-6">
-                            <input type="file" id="pic" name="pic" class="form-control{{ $errors->has('pic') ? ' is-invalid' : '' }}" placeholder="Choose a event pic to upload" value="{{ old('pic') }}" required/>
+                            <input type="file" id="pic" name="pic" class="form-control{{ $errors->has('pic') ? ' is-invalid' : '' }}" placeholder="Choose a event pic to upload" required/>
                             @if ($errors->has('pic'))
+                                @foreach($errors->all() as $error)
                                 <span class="invalid-feedback">
-                                                            <strong>{{ $errors->first('pic') }}</strong>
+                                                            <strong>{{ $error }}</strong>
                                                         </span>
+                                @endforeach
                             @endif
                         </div>
                     </div>

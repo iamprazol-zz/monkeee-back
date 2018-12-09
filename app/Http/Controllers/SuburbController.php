@@ -8,6 +8,7 @@ use App\Suburb;
 use App\Club;
 use App\Club_gallery;
 use App\Event;
+use App\city;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
 use App\partner;
@@ -45,7 +46,9 @@ class SuburbController extends Controller
 
     public function create() {
 
-        return view('suburb.create');
+        $city = city::all();
+
+        return view('suburb.create')->with('cities', $city);
 
     }
 
@@ -57,6 +60,7 @@ class SuburbController extends Controller
         ]);
 
         $req = Suburb::create([
+            'city_id' => $r->city_id,
             'name' => $r->name,
             'postalcode' => $r->postal,
         ]);
@@ -70,7 +74,9 @@ class SuburbController extends Controller
 
         $suburb = Suburb::where('id', $id)->first();
 
-        return view('suburb.edit')->with('suburbs', $suburb);
+        $city = city::all();
+
+        return view('suburb.edit')->with('suburbs', $suburb)->with('cities', $city);
 
     }
 
@@ -84,6 +90,7 @@ class SuburbController extends Controller
         ]);
 
         $suburb = Suburb::find($id);
+        $suburb->city_id = $r->city_id;
         $suburb->name = $r->name;
         $suburb->postalcode = $r->postal;
 

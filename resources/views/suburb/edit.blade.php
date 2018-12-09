@@ -11,6 +11,20 @@
             <div class="card-body">
                 <form method="post" action="{{ route('suburb.update', ['id' => $suburbs->id]) }}">
                     @csrf
+
+                    <div class="form-group row">
+                        <label for="city_id" class="col-md-4 col-form-label text-md-right">{{ __('City') }}</label>
+
+                        <div class="col-md-6">
+                            <select name="city_id" class="custom-select" id="city_id" required>
+                                <option value="" selected="">Choose One</option>
+                                @foreach($cities as $city)
+                                    <option value="{{ $city->id }}" @if($city->id == $suburbs->city_id) selected="selected" @endif>{{ $city->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
                     <div class="form-group row">
                         <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 

@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Event;
 use App\Video;
 use Image;
-use Validator;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
 
@@ -79,23 +78,11 @@ class VideoController extends Controller
 
 
         $this->validate($r, [
-            'pic'  => 'mimes:mp4,mov,ogg | max: 20480'
+            'pic'  => 'max:51200| mimes:mp4,mov,ogg'
         ], [
+            'pic.max' => 'The video size must be less than 50 mb',
             'pic.mimes' => 'The video must be of mp4,mov and ogg type',
-            'pic.max' => 'The video size must be less than 20 mb'
         ]);
-
-        $validator = Validator::make($r->all(), [
-            'pic' => 'video_length:60', // 60 max video length in second
-        ], [
-            'pic.video_length' => 'The video length must be less than 1 minute'
-        ]);
-
-        if ($validator->fails()) {
-            return redirect('video/create')
-                ->withErrors($validator)
-                ->withInput();
-        }
 
         $file = $r->file('pic');
         $filename = time() . '.' . $file->getClientOriginalExtension();

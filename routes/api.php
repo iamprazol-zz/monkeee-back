@@ -71,3 +71,9 @@ Route::get('partner/{id}', 'PartnerController@showById');
 //list all the suburb
 Route::get('suburb', 'SuburbController@show');
 
+//Store subscriber details
+Route::post('subscriber', 'SubscriberController@store');
+
+//List all subscribers details
+Route::get('subscriber', 'SubscriberController@index');
+
