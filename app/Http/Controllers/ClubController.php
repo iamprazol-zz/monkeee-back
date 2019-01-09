@@ -162,7 +162,7 @@ class ClubController extends Controller
 
         $id = $r->suburb_id;
 
-        $club = Club::orderBy('name', 'asc')->where('suburb_id', $id)->where('name' ,'like' , '%'.$r->get('club').'%')->get();
+        $club = Club::orderBy('name', 'asc')->where('suburb_id', $id)->where('name' ,'like' , '%'.$r->get('club').'%')->paginate(10);
 
         $suburb = Suburb::all();
 

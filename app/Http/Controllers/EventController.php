@@ -676,7 +676,7 @@ class EventController extends Controller
 
         $id = $r->club_id;
 
-        $event = Event::orderBy('id', 'asc')->where('club_id', $id)->where('opening_date', '>=', $yesterday->addDays(-2))->where('closing_date','>=', $today)->orderBy('opening_date', 'asc')->orderBy('opening', 'asc')->get();
+        $event = Event::orderBy('id', 'asc')->where('club_id', $id)->where('opening_date', '>=', $yesterday->addDays(-2))->where('closing_date','>=', $today)->orderBy('opening_date', 'asc')->orderBy('opening', 'asc')->paginate(10);
 
         $club = Club::all();
 
