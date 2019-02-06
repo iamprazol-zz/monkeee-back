@@ -128,7 +128,9 @@
                             <td><span class="badge-pill badge-outline-danger">{{ $event->count }}</span></td>
                             <td>
                                 <a href="{{ route('event.delete', ['id' => $event->id]) }}" class="btn btn-sm btn-danger btn-pill ">Delete</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <a href="{{ route('event.edit', ['id' => $event->id]) }}" class="btn btn-sm btn-primary btn-pill ">Edit</a>&nbsp;&nbsp;
+                                <a href="{{ route('event.edit', ['id' => $event->id]) }}" class="btn btn-sm btn-primary btn-pill ">Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="{{ route('event.copy', ['id' => $event->id]) }}" class="btn btn-sm btn-pill " style=" color: white; background-color: lightseagreen">Copy</a>&nbsp;&nbsp;
+
                             </td>
 
                         </tr>

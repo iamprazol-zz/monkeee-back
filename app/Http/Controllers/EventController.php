@@ -754,6 +754,58 @@ class EventController extends Controller
 
     }
 
+    public function copy($id){
+
+        $event = Event::where('id', $id)->first();
+
+        $club = Club::all();
+
+        $category = Category::all();
+
+        return view('event.copy')->with('events', $event)->with('clubs', $club)->with('categories', $category);
+
+    }
+
+    public function updatecopy()
+    {
+
+        $r = request();
+
+        $this->validate($r, [
+            'name' => 'required|string|min:2|max:255',
+            'odate' => 'required|date|after:yesterday',
+            'cdate' => 'required|date|after:yesterday',
+            'pic' => 'required|max:15360'
+        ]);
+
+
+        $file = $r->file('pic');
+        $filename = time() . '.' . $file->getClientOriginalExtension();
+        $path = public_path('/images/' . $filename);
+        Image::make($file)->save($path);
+
+        $event = Event::create([
+            'name' => $r->name,
+            'club_id' => $r->club_id,
+            'category_id' => $r->category_id,
+            'opening_date' => $r->odate,
+            'opening' => Carbon::parse($r->opening)->format('H:i:s'),
+            'closing_date' => $r->cdate,
+            'closing' => Carbon::parse($r->closing)->format('H:i:s'),
+            'description' => $r->description,
+            'price' => $r->price,
+            'ticket_link' => $r->ticket,
+            'facebook' => $r->facebook,
+            'instagram' => $r->instagram,
+            'picture' => $filename,
+
+        ]);
+
+        Session::flash('success', 'Event copied successfully');
+        return redirect()->route('event.show');
+
+    }
+
     public function edit($id){
 
         $event = Event::where('id', $id)->first();

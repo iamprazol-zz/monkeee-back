@@ -220,6 +220,17 @@ Route::group(['middleware' => 'admin'] , function () {
         'as' => 'event.update'
     ]);
 
+    Route::get('event/copy/{id}', [
+        'uses' => 'EventController@copy',
+        'as' => 'event.copy'
+    ]);
+
+    Route::post('event/updatecopy/{id}', [
+        'uses' => 'EventController@updatecopy',
+        'as' => 'event.updatecopy'
+    ]);
+
+
     Route::get('event/delete/{id}', [
         'uses' => 'EventController@destroy',
         'as' => 'event.delete'
