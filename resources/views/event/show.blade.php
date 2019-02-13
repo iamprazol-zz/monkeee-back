@@ -77,10 +77,6 @@
                     </th>
 
                     <th>
-                        Description
-                    </th>
-
-                    <th>
                         Price
                     </th>
 
@@ -120,16 +116,15 @@
                             <td>{{ $event->closing_date }}</td>
                             <td>{{ $event->closing }}</td>
                             <td><div class="card-img"><img src="/images/{{ $event->picture }}" style="width:80px; height:80px;"/></div></td>
-                            <td>{{ $event->description }}</td>
                             <td>{{ $event->price }}</td>
                             <td>{{ $event->ticket_link }}</td>
                             <td>{{ $event->facebook }}</td>
                             <td>{{ $event->instagram }}</td>
                             <td><span class="badge-pill badge-outline-danger">{{ $event->count }}</span></td>
                             <td>
-                                <a href="{{ route('event.delete', ['id' => $event->id]) }}" class="btn btn-sm btn-danger btn-pill ">Delete</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <a href="{{ route('event.edit', ['id' => $event->id]) }}" class="btn btn-sm btn-primary btn-pill ">Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <a href="{{ route('event.copy', ['id' => $event->id]) }}" class="btn btn-sm btn-pill " style=" color: white; background-color: lightseagreen">Copy</a>&nbsp;&nbsp;
+                                <a href="{{ route('event.delete', ['id' => $event->id]) }}" class="btn btn-sm btn-danger btn-pill " style="margin-bottom: 10px;">Delete</a>
+                                <a href="{{ route('event.edit', ['id' => $event->id]) }}" class="btn btn-sm btn-primary btn-pill " style="margin-bottom: 10px;">Edit</a>
+                                <a href="{{ route('event.copy', ['id' => $event->id]) }}" class="btn btn-sm btn-pill " style=" color: white; background-color: lightseagreen; margin-bottom: 10px;">Copy</a>
 
                             </td>
 
